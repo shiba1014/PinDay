@@ -277,7 +277,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PinDay/Preview Content\"";
-				DEVELOPMENT_TEAM = X9K27HD32M;
+				DEVELOPMENT_TEAM = U6JP7S27NV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PinDay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -285,7 +285,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shiba.PinDay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shiba1014.PinDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -299,7 +299,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PinDay/Preview Content\"";
-				DEVELOPMENT_TEAM = X9K27HD32M;
+				DEVELOPMENT_TEAM = U6JP7S27NV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PinDay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -307,7 +307,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shiba.PinDay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shiba1014.PinDay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
