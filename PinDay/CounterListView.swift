@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct CounterListView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -17,21 +17,28 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+        NavigationView {
+            List {
+                ForEach(items) { item in
+                    Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                }
             }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
+            .navigationTitle("Today")
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Button(action: {}) {
+                        Image(systemName: "gearshape.fill")
+                    }
+                }
 
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {}) {
+                        Image(systemName: "slider.horizontal.3")
+                    }
+                }
             }
         }
+        .accentColor(.gray)
     }
 
     private func addItem() {
@@ -75,6 +82,6 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        CounterListView().preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

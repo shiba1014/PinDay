@@ -13,7 +13,7 @@ struct PinDayApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CounterListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

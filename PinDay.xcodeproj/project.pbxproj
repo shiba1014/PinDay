@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91266261C85E200D58C5B /* PinDayApp.swift */; };
-		B6E91269261C85E200D58C5B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91268261C85E200D58C5B /* ContentView.swift */; };
+		B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91268261C85E200D58C5B /* CounterListView.swift */; };
 		B6E9126B261C85E400D58C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126A261C85E400D58C5B /* Assets.xcassets */; };
 		B6E9126E261C85E400D58C5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126D261C85E400D58C5B /* Preview Assets.xcassets */; };
 		B6E91270261C85E400D58C5B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E9126F261C85E400D58C5B /* Persistence.swift */; };
@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		B6E91263261C85E200D58C5B /* PinDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E91266261C85E200D58C5B /* PinDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDayApp.swift; sourceTree = "<group>"; };
-		B6E91268261C85E200D58C5B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B6E91268261C85E200D58C5B /* CounterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterListView.swift; sourceTree = "<group>"; };
 		B6E9126A261C85E400D58C5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6E9126D261C85E400D58C5B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B6E9126F261C85E400D58C5B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				B6E91266261C85E200D58C5B /* PinDayApp.swift */,
-				B6E91268261C85E200D58C5B /* ContentView.swift */,
+				B6E91268261C85E200D58C5B /* CounterListView.swift */,
 				B6E9126A261C85E400D58C5B /* Assets.xcassets */,
 				B6E9126F261C85E400D58C5B /* Persistence.swift */,
 				B6E91274261C85E400D58C5B /* Info.plist */,
@@ -146,7 +146,7 @@
 			files = (
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
 				B6E91270261C85E400D58C5B /* Persistence.swift in Sources */,
-				B6E91269261C85E200D58C5B /* ContentView.swift in Sources */,
+				B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */,
 				B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
