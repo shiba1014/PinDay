@@ -13,6 +13,7 @@
 		B6E9126E261C85E400D58C5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126D261C85E400D58C5B /* Preview Assets.xcassets */; };
 		B6E91270261C85E400D58C5B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E9126F261C85E400D58C5B /* Persistence.swift */; };
 		B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6E91271261C85E400D58C5B /* PinDay.xcdatamodeld */; };
+		B6E91B622622F6AC00D58C5B /* DayCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91B612622F6AC00D58C5B /* DayCounterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B6E9126F261C85E400D58C5B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B6E91272261C85E400D58C5B /* PinDay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PinDay.xcdatamodel; sourceTree = "<group>"; };
 		B6E91274261C85E400D58C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6E91B612622F6AC00D58C5B /* DayCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCounterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				B6E91266261C85E200D58C5B /* PinDayApp.swift */,
 				B6E91268261C85E200D58C5B /* CounterListView.swift */,
+				B6E91B612622F6AC00D58C5B /* DayCounterView.swift */,
 				B6E9126A261C85E400D58C5B /* Assets.xcassets */,
 				B6E9126F261C85E400D58C5B /* Persistence.swift */,
 				B6E91274261C85E400D58C5B /* Info.plist */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
+				B6E91B622622F6AC00D58C5B /* DayCounterView.swift in Sources */,
 				B6E91270261C85E400D58C5B /* Persistence.swift in Sources */,
 				B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */,
 				B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */,
