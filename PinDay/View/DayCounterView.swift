@@ -14,7 +14,7 @@ struct DayCounterView: View {
             ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
                 Rectangle()
-                    .fill(Color.pink)
+                    .fill(Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 24))
 
                 VStack(alignment: .leading, spacing: 16) {
@@ -29,10 +29,3 @@ struct DayCounterView: View {
         }
     }
 }
-
-struct DayCounterView_Previews: PreviewProvider {
-    static var previews: some View {
-        DayCounterView().preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
-

@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct CounterListView: View {
-
+    
+    @State private var showCreateView = false
+    
     let gridItems = [GridItem(), GridItem()]
-
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -26,24 +27,22 @@ struct CounterListView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigation) {
                         Button(action: {}) {
-                            Image(systemName: "gearshape.fill")
+                            Image(systemName: "slider.horizontal.3")
                         }
                     }
-
+                    
                     ToolbarItem(placement: .primaryAction) {
-                        Button(action: {}) {
-                            Image(systemName: "slider.horizontal.3")
+                        Button(action: {
+                            showCreateView.toggle()
+                        }) {
+                            Image(systemName: "plus")
                         }
                     }
                 }
             }
+            .sheet(isPresented: $showCreateView) {
+                CreateView()
+            }
         }
-        .accentColor(.gray)
-    }
-}
-
-struct CounterListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CounterListView().preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

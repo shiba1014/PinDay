@@ -16,5 +16,6 @@ struct PinDayApp: App {
             CounterListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+        
     }
 }
