@@ -8,15 +8,34 @@
 import SwiftUI
 
 struct CreateView: View {
+    
     @Environment(\.presentationMode) var presentationMode
+    @State private var eventTitle: String = ""
+    @State private var description: String = ""
+    @State private var pinnedDate: Date = .init()
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Create")
-                Text("Which date do you want to pin?")
+            List {
+                Section {
+                    TextField(
+                        "Event Title",
+                        text: $eventTitle
+                    )
+                    TextField(
+                        "Description",
+                        text: $description
+                    )
+                }
+                Section {
+                    DatePicker(
+                        "Date",
+                        selection: $pinnedDate,
+                        displayedComponents: [.date]
+                    )
+                }
             }
-            .padding()
+            .listStyle(InsetGroupedListStyle())
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button(action: {
@@ -28,12 +47,17 @@ struct CreateView: View {
 
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss()
                     }) {
-                        Image(systemName: "pin.fill")
+                        Image(systemName: "chevron.forward")
                     }
                 }
             }
         }
+    }
+}
+
+struct CreateView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreateView()
     }
 }
