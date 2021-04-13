@@ -9,8 +9,22 @@ import SwiftUI
 
 @main
 struct PinDayApp: App {
+    
+    init() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.secondaryLabel]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.secondaryLabel]
+        
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+    }
+    
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
             CounterListView()

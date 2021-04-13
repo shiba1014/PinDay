@@ -23,7 +23,7 @@ struct CounterListView: View {
                     }
                 }
                 .padding()
-                .navigationTitle("Today")
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigation) {
                         Button(action: {}) {
@@ -44,5 +44,11 @@ struct CounterListView: View {
                 CreateView()
             }
         }
+    }
+}
+
+struct CounterListView_Previews: PreviewProvider {
+    static var previews: some View {
+        CounterListView()
     }
 }
