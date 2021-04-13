@@ -13,29 +13,58 @@ struct CreateView: View {
     @State private var eventTitle: String = ""
     @State private var description: String = ""
     @State private var pinnedDate: Date = .init()
+    @State private var startDate: Date = .init()
     
     var body: some View {
         NavigationView {
-            List {
-                Section {
-                    TextField(
-                        "Event Title",
-                        text: $eventTitle
-                    )
-                    TextField(
-                        "Description",
-                        text: $description
-                    )
-                }
-                Section {
+            VStack(spacing: 24) {
+                Rectangle()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.gray)
+                    .cornerRadius(5)
+                    .padding(.horizontal, 50)
+                TextField(
+                    "Event Title",
+                    text: $eventTitle
+                )
+                .multilineTextAlignment(.center)
+                .font(.title)
+                
+                Divider()
+                
+                HStack {
+                    Image(systemName: "calendar")
                     DatePicker(
                         "Date",
                         selection: $pinnedDate,
                         displayedComponents: [.date]
                     )
                 }
+                .padding(.horizontal)
+                
+                HStack {
+                    Image(systemName: "calendar.badge.plus")
+                    DatePicker(
+                        "Start Date",
+                        selection: $pinnedDate,
+                        displayedComponents: [.date]
+                    )
+                }
+                .padding(.horizontal)
+                
+                HStack {
+                    Image(systemName: "hourglass")
+                        .padding(.horizontal, 3)
+                    Text("Count Style")
+                    Spacer()
+                    Text("Progress")
+                }
+                .padding(.horizontal)
+                
+                Spacer()
             }
-            .listStyle(InsetGroupedListStyle())
+            .padding()
+            .navigationBarTitle("Create", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button(action: {
