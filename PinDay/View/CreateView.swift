@@ -16,54 +16,59 @@ struct CreateView: View {
     @State private var startDate: Date = .init()
     
     var body: some View {
+
         NavigationView {
-            VStack(spacing: 24) {
-                Rectangle()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.gray)
-                    .cornerRadius(5)
-                    .padding(.horizontal, 50)
-                TextField(
-                    "Event Title",
-                    text: $eventTitle
-                )
-                .multilineTextAlignment(.center)
-                .font(.title)
-                
-                Divider()
-                
-                HStack {
-                    Image(systemName: "calendar")
-                    DatePicker(
-                        "Date",
-                        selection: $pinnedDate,
-                        displayedComponents: [.date]
-                    )
+            VStack {
+
+                List {
+                    VStack(spacing: 24) {
+                        Rectangle()
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.gray)
+                            .cornerRadius(5)
+                            .padding(.horizontal, 50)
+                        TextField(
+                            "Event Title",
+                            text: $eventTitle
+                        )
+                        .multilineTextAlignment(.center)
+                        .font(.title)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: "calendar")
+                        DatePicker(
+                            "Date",
+                            selection: $pinnedDate,
+                            displayedComponents: [.date]
+                        )
+                    }
+
+                    HStack {
+                        Image(systemName: "calendar.badge.plus")
+                        DatePicker(
+                            "Start Date",
+                            selection: $pinnedDate,
+                            displayedComponents: [.date]
+                        )
+                    }
+                    
+                    NavigationLink(
+                        destination: SelectCountStyleListView()
+                    ) {
+                        HStack {
+                            Image(systemName: "hourglass")
+                                .padding(.horizontal, 3)
+                            Text("Count Style")
+                            Spacer()
+                            Text("Progress")
+                        }
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .padding(.horizontal)
-                
-                HStack {
-                    Image(systemName: "calendar.badge.plus")
-                    DatePicker(
-                        "Start Date",
-                        selection: $pinnedDate,
-                        displayedComponents: [.date]
-                    )
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Image(systemName: "hourglass")
-                        .padding(.horizontal, 3)
-                    Text("Count Style")
-                    Spacer()
-                    Text("Progress")
-                }
-                .padding(.horizontal)
-                
-                Spacer()
+                .listStyle(PlainListStyle())
             }
-            .padding()
             .navigationBarTitle("Create", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
