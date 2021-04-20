@@ -48,14 +48,16 @@ struct CreateView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @State private var eventTitle: String = ""
-    @State private var _pinnedDate: Date = .init() {
-        willSet {
-            newEvent.updatePinnedDate(newValue)
-        }
-    }
     @State private var startDate: Date = .init()
 
     @ObservedObject private var newEvent: NewEvent = .init()
+
+    private var pinnedDateProxy: Binding<Date> {
+        .init(
+            get: { newEvent.pinnedDate },
+            set: { newEvent.updatePinnedDate($0) }
+        )
+    }
     
     var body: some View {
 
@@ -82,7 +84,7 @@ struct CreateView: View {
                         Image(systemName: "calendar")
                         DatePicker(
                             "Date",
-                            selection: $_pinnedDate,
+                            selection: pinnedDateProxy,
                             displayedComponents: [.date]
                         )
                     }
