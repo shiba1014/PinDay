@@ -69,7 +69,7 @@ struct CreateView: View {
                 }
                 .listStyle(PlainListStyle())
             }
-            .navigationBarTitle("Create", displayMode: .inline)
+            .navigationBarTitle("", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button(action: {

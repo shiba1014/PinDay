@@ -19,7 +19,7 @@ struct CounterListView: View {
                 LazyVGrid(columns: gridItems) {
                     ForEach(0...6, id: \.self) { _ in
                         DayCounterView()
-                            .aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                            .aspectRatio(1, contentMode: .fill)
                     }
                 }
                 .padding()

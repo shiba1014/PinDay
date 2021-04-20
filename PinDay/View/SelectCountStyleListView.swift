@@ -8,16 +8,33 @@
 import SwiftUI
 
 struct SelectCountStyleListView: View {
-    
 
     var body: some View {
-        VStack(spacing: 24) {
-            Text("Count up")
-            Text("Count down")
-            Text("Progress")
+        ScrollView {
+            LazyVGrid(
+                columns: [GridItem(spacing: 20), GridItem(spacing: 20)]
+            ) {
+                optionBox(text: "Count down")
+                optionBox(text: "Progress")
+            }
+            .padding()
+        }.navigationBarTitle("Count Style", displayMode: .inline)
+    }
+
+    private func header(_ text: String) -> some View {
+        HStack(alignment: .top, spacing: nil) {
+            Text(text).font(.headline)
+            Spacer()
         }
-        .padding()
-        .navigationBarTitle("Count Style", displayMode: .inline)
+    }
+
+    private func optionBox(text: String) -> some View {
+        VStack {
+            DayCounterView()
+                .aspectRatio(1, contentMode: .fill)
+            Text(text)
+        }
+
     }
 }
 
