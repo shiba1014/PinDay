@@ -10,6 +10,7 @@
 		5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219E97C2625618D0004FFC0 /* CreateView.swift */; };
 		527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */; };
 		527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B4D262F1DA50062EB07 /* Date+Ext.swift */; };
+		52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C680AE262F2A2F00BEF355 /* NewEvent.swift */; };
 		B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91266261C85E200D58C5B /* PinDayApp.swift */; };
 		B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91268261C85E200D58C5B /* CounterListView.swift */; };
 		B6E9126B261C85E400D58C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126A261C85E400D58C5B /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		5219E97C2625618D0004FFC0 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountStyleListView.swift; sourceTree = "<group>"; };
 		527A9B4D262F1DA50062EB07 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		52C680AE262F2A2F00BEF355 /* NewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEvent.swift; sourceTree = "<group>"; };
 		B6E91263261C85E200D58C5B /* PinDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E91266261C85E200D58C5B /* PinDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDayApp.swift; sourceTree = "<group>"; };
 		B6E91268261C85E200D58C5B /* CounterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterListView.swift; sourceTree = "<group>"; };
@@ -45,15 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5219E97F262561930004FFC0 /* View */ = {
+		5219E97F262561930004FFC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				527A9B50262F29920062EB07 /* Create */,
 				B6E91268261C85E200D58C5B /* CounterListView.swift */,
-				5219E97C2625618D0004FFC0 /* CreateView.swift */,
 				B6E91B612622F6AC00D58C5B /* DayCounterView.swift */,
-				527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		527A9B4C262F1D920062EB07 /* Extensions */ = {
@@ -62,6 +63,23 @@
 				527A9B4D262F1DA50062EB07 /* Date+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		527A9B50262F29920062EB07 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				5219E97C2625618D0004FFC0 /* CreateView.swift */,
+				527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		527A9B51262F29A60062EB07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52C680AE262F2A2F00BEF355 /* NewEvent.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B6E9125A261C85E200D58C5B = {
@@ -83,8 +101,9 @@
 		B6E91265261C85E200D58C5B /* PinDay */ = {
 			isa = PBXGroup;
 			children = (
+				527A9B51262F29A60062EB07 /* Models */,
 				527A9B4C262F1D920062EB07 /* Extensions */,
-				5219E97F262561930004FFC0 /* View */,
+				5219E97F262561930004FFC0 /* Views */,
 				B6E91266261C85E200D58C5B /* PinDayApp.swift */,
 				B6E9126A261C85E400D58C5B /* Assets.xcassets */,
 				B6E9126F261C85E400D58C5B /* Persistence.swift */,
@@ -172,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */,
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
 				B6E91B622622F6AC00D58C5B /* DayCounterView.swift in Sources */,
 				B6E91270261C85E400D58C5B /* Persistence.swift in Sources */,
