@@ -7,13 +7,55 @@
 
 import SwiftUI
 
+class NewEvent: ObservableObject {
+
+    enum CountStyle {
+        case countUp
+        case countDown
+        case progress(from: Date)
+
+        func isFutureStyle() -> Bool {
+            switch self {
+            case .countUp:
+                return false
+            case .countDown, .progress:
+                return true
+            }
+        }
+
+        static let futureDefault: Self = .countDown
+        static let pastDefault: Self = .countUp
+    }
+
+    @Published var title: String = ""
+    @Published var pinnedDate: Date = .init()
+    @Published var countStyle: CountStyle = .countUp
+
+    func updatePinnedDate(_ date: Date) {
+        pinnedDate = date.beginning()
+        if date.isFuture() && !countStyle.isFutureStyle() {
+            countStyle = .futureDefault
+        }
+        else if !date.isFuture() && countStyle.isFutureStyle() {
+            countStyle = .pastDefault
+        }
+    }
+}
+
 struct CreateView: View {
-    
+
+    private let calendar: Calendar = .init(identifier: .gregorian)
+
     @Environment(\.presentationMode) var presentationMode
     @State private var eventTitle: String = ""
-    @State private var description: String = ""
-    @State private var pinnedDate: Date = .init()
+    @State private var _pinnedDate: Date = .init() {
+        willSet {
+            newEvent.updatePinnedDate(newValue)
+        }
+    }
     @State private var startDate: Date = .init()
+
+    @ObservedObject private var newEvent: NewEvent = .init()
     
     var body: some View {
 
@@ -29,7 +71,7 @@ struct CreateView: View {
                             .padding(.horizontal, 50)
                         TextField(
                             "Event Title",
-                            text: $eventTitle
+                            text: $newEvent.title
                         )
                         .multilineTextAlignment(.center)
                         .font(.title)
@@ -40,32 +82,36 @@ struct CreateView: View {
                         Image(systemName: "calendar")
                         DatePicker(
                             "Date",
-                            selection: $pinnedDate,
+                            selection: $_pinnedDate,
                             displayedComponents: [.date]
                         )
                     }
 
-                    HStack {
-                        Image(systemName: "calendar.badge.plus")
-                        DatePicker(
-                            "Start Date",
-                            selection: $pinnedDate,
-                            displayedComponents: [.date]
-                        )
+                    if calendar.startOfDay(for: newEvent.pinnedDate) > calendar.startOfDay(for: Date()) {
+                        NavigationLink(
+                            destination: SelectCountStyleListView()
+                        ) {
+                            HStack {
+                                Image(systemName: "hourglass")
+                                    .padding(.horizontal, 3)
+                                Text("Count Style")
+                                Spacer()
+                                Text("Progress")
+                            }
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
-                    
-                    NavigationLink(
-                        destination: SelectCountStyleListView()
-                    ) {
+
+                    if case .progress = newEvent.countStyle {
                         HStack {
-                            Image(systemName: "hourglass")
-                                .padding(.horizontal, 3)
-                            Text("Count Style")
-                            Spacer()
-                            Text("Progress")
+                            Image(systemName: "calendar.badge.plus")
+                            DatePicker(
+                                "Start Date",
+                                selection: $startDate,
+                                displayedComponents: [.date]
+                            )
                         }
                     }
-                    .buttonStyle(PlainButtonStyle())
                 }
                 .listStyle(PlainListStyle())
             }
