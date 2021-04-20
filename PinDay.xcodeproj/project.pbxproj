@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219E97C2625618D0004FFC0 /* CreateView.swift */; };
 		527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */; };
+		527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B4D262F1DA50062EB07 /* Date+Ext.swift */; };
 		B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91266261C85E200D58C5B /* PinDayApp.swift */; };
 		B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91268261C85E200D58C5B /* CounterListView.swift */; };
 		B6E9126B261C85E400D58C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126A261C85E400D58C5B /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		5219E97C2625618D0004FFC0 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountStyleListView.swift; sourceTree = "<group>"; };
+		527A9B4D262F1DA50062EB07 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B6E91263261C85E200D58C5B /* PinDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E91266261C85E200D58C5B /* PinDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDayApp.swift; sourceTree = "<group>"; };
 		B6E91268261C85E200D58C5B /* CounterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterListView.swift; sourceTree = "<group>"; };
@@ -54,6 +56,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		527A9B4C262F1D920062EB07 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				527A9B4D262F1DA50062EB07 /* Date+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B6E9125A261C85E200D58C5B = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 		B6E91265261C85E200D58C5B /* PinDay */ = {
 			isa = PBXGroup;
 			children = (
+				527A9B4C262F1D920062EB07 /* Extensions */,
 				5219E97F262561930004FFC0 /* View */,
 				B6E91266261C85E200D58C5B /* PinDayApp.swift */,
 				B6E9126A261C85E400D58C5B /* Assets.xcassets */,
@@ -164,6 +175,7 @@
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
 				B6E91B622622F6AC00D58C5B /* DayCounterView.swift in Sources */,
 				B6E91270261C85E400D58C5B /* Persistence.swift in Sources */,
+				527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */,
 				527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */,
 				B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */,
 				5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */,
