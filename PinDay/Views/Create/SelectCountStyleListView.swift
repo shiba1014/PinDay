@@ -9,38 +9,47 @@ import SwiftUI
 
 struct SelectCountStyleListView: View {
 
-    var body: some View {
-        ScrollView {
-            LazyVGrid(
-                columns: [GridItem(spacing: 20), GridItem(spacing: 20)]
-            ) {
-                optionBox(text: "Count down")
-                optionBox(text: "Progress")
-            }
-            .padding()
-        }.navigationBarTitle("Count Style", displayMode: .inline)
-    }
+    @Environment(\.presentationMode) var presentationMode
 
-    private func header(_ text: String) -> some View {
-        HStack(alignment: .top, spacing: nil) {
-            Text(text).font(.headline)
+    typealias CountStyle = NewEvent.PinnedDateType.FutureCountStyle
+    @Binding var style: CountStyle
+
+    var body: some View {
+        VStack(alignment: .trailing) {
+            Button("Done") {
+                presentationMode.wrappedValue.dismiss()
+            }
+
+            HStack {
+                ForEach(CountStyle.allCases) { style in
+                    optionBox(style)
+                        .padding()
+                        .aspectRatio(1, contentMode: .fit)
+                        .onTapGesture {
+                            self.style = style
+                        }
+                        .background(self.style == style ? Color(UIColor.tertiarySystemFill) : Color.clear)
+                }
+            }
+
             Spacer()
         }
+        .padding()
     }
 
-    private func optionBox(text: String) -> some View {
+    private func optionBox(_ style: CountStyle) -> some View {
         VStack {
             DayCounterView()
                 .aspectRatio(1, contentMode: .fill)
-            Text(text)
+            Text(style.description)
         }
-
     }
 }
 
 struct SelectCountStyleListView_Previews: PreviewProvider {
+    @State static var style: NewEvent.PinnedDateType.FutureCountStyle = .countDown
     static var previews: some View {
-        SelectCountStyleListView()
+        SelectCountStyleListView(style: $style)
     }
 }
 

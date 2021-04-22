@@ -14,6 +14,7 @@ struct CreateView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var eventTitle: String = ""
     @State private var startDate: Date = .init()
+    @State private var showCountStyleSheet = false
 
     @ObservedObject private var newEvent: NewEvent = .init()
     
@@ -48,18 +49,26 @@ struct CreateView: View {
                     }
 
                     newEvent.pinnedDateType.style.map { style in
-                        NavigationLink(
-                            destination: SelectCountStyleListView().environmentObject(newEvent)
-                        ) {
+
+                        Button(action: { showCountStyleSheet.toggle() }) {
                             HStack {
                                 Image(systemName: "hourglass")
                                     .padding(.horizontal, 3)
                                 Text("Count Style")
                                 Spacer()
                                 Text(style.description)
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(Color(UIColor.tertiaryLabel))
                             }
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        .sheet(isPresented: $showCountStyleSheet) {
+                            SelectCountStyleListView(
+                                style: .init(
+                                    get: { style },
+                                    set: { try? newEvent.update(futureCountStyle: $0) }
+                                )
+                            )
+                        }
                     }
 
                     newEvent.pinnedDateType.startDate.map { startDate in
@@ -71,6 +80,7 @@ struct CreateView: View {
                                     get: { startDate },
                                     set: { try? newEvent.update(futureCountStyle: .progress(from: $0)) }
                                 ),
+                                in: ...Date(),
                                 displayedComponents: [.date]
                             )
                         }

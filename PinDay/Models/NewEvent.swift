@@ -11,7 +11,9 @@ class NewEvent: ObservableObject {
 
     enum PinnedDateType {
 
-        enum FutureCountStyle {
+        enum FutureCountStyle: Equatable, Identifiable {
+            var id: String { description }
+
             case countDown
             case progress(from: Date)
 
