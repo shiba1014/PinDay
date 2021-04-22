@@ -42,32 +42,35 @@ struct CreateView: View {
                         Image(systemName: "calendar")
                         DatePicker(
                             "Date",
-                            selection: .init(get: { newEvent.pinnedDate }, set: { newEvent.updatePinnedDate($0) }),
+                            selection: .init(get: { newEvent.pinnedDateType.date }, set: { newEvent.update(pinnedDate: $0) }),
                             displayedComponents: [.date]
                         )
                     }
 
-                    if calendar.startOfDay(for: newEvent.pinnedDate) > calendar.startOfDay(for: Date()) {
+                    newEvent.pinnedDateType.style.map { style in
                         NavigationLink(
-                            destination: SelectCountStyleListView()
+                            destination: SelectCountStyleListView().environmentObject(newEvent)
                         ) {
                             HStack {
                                 Image(systemName: "hourglass")
                                     .padding(.horizontal, 3)
                                 Text("Count Style")
                                 Spacer()
-                                Text("Progress")
+                                Text(style.description)
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
 
-                    if case .progress = newEvent.countStyle {
+                    newEvent.pinnedDateType.startDate.map { startDate in
                         HStack {
                             Image(systemName: "calendar.badge.plus")
                             DatePicker(
                                 "Start Date",
-                                selection: $startDate,
+                                selection: .init(
+                                    get: { startDate },
+                                    set: { try? newEvent.update(futureCountStyle: .progress(from: $0)) }
+                                ),
                                 displayedComponents: [.date]
                             )
                         }
