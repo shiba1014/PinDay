@@ -63,6 +63,9 @@ class NewEvent: ObservableObject {
 
     @Published var title: String = ""
     @Published var pinnedDateType: PinnedDateType = .past(date: Date())
+    var isValid: Bool {
+        !title.isEmpty
+    }
 
     func update(pinnedDate: Date) {
 

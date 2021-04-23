@@ -103,6 +103,7 @@ struct CreateView: View {
                     }) {
                         Image(systemName: "chevron.forward")
                     }
+                    .disabled(!newEvent.isValid)
                 }
             }
         }
