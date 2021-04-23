@@ -9,12 +9,12 @@ import SwiftUI
 
 struct CreateView: View {
 
-    private let calendar: Calendar = .init(identifier: .gregorian)
-
     @Environment(\.presentationMode) var presentationMode
     @State private var eventTitle: String = ""
     @State private var startDate: Date = .init()
+
     @State private var showCountStyleSheet = false
+    @State private var showCreateBackgroundSheet = false
 
     @ObservedObject private var newEvent: NewEvent = .init()
     
@@ -30,6 +30,23 @@ struct CreateView: View {
                             .foregroundColor(.gray)
                             .cornerRadius(5)
                             .padding(.horizontal, 50)
+                            .overlay(
+                                    ZStack {
+                                        Circle()
+                                            .frame(width: 70)
+                                            .foregroundColor(.secondary)
+                                            .shadow(radius: 4)
+                                        Image(systemName: "camera.fill")
+                                            .foregroundColor(.gray)
+                                    }
+                                    .onTapGesture {
+                                        showCreateBackgroundSheet.toggle()
+                                    }
+                                    .sheet(isPresented: $showCreateBackgroundSheet) {
+                                        CreateBackgroundView()
+                                    }
+                            )
+
                         TextField(
                             "Event Title",
                             text: $newEvent.title
