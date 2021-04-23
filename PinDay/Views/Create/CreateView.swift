@@ -116,8 +116,7 @@ struct CreateView: View {
                 }
 
                 ToolbarItem(placement: .primaryAction) {
-                    Button(action: {
-                    }) {
+                    NavigationLink(destination: Text("Preview")) {
                         Image(systemName: "chevron.forward")
                     }
                     .disabled(!newEvent.isValid)

@@ -15,26 +15,29 @@ struct SelectCountStyleListView: View {
     @Binding var style: CountStyle
 
     var body: some View {
-        VStack(alignment: .trailing) {
-            Button("Done") {
-                presentationMode.wrappedValue.dismiss()
-            }
+        NavigationView {
+            VStack {
+                HStack {
+                    ForEach(CountStyle.allCases) { style in
+                        optionBox(style)
+                            .padding()
+                            .aspectRatio(1, contentMode: .fit)
+                            .onTapGesture {
+                                self.style = style
+                            }
+                            .background(self.style == style ? Color(UIColor.tertiarySystemFill) : Color.clear)
+                    }
+                }
 
-            HStack {
-                ForEach(CountStyle.allCases) { style in
-                    optionBox(style)
-                        .padding()
-                        .aspectRatio(1, contentMode: .fit)
-                        .onTapGesture {
-                            self.style = style
-                        }
-                        .background(self.style == style ? Color(UIColor.tertiarySystemFill) : Color.clear)
+                Spacer()
+            }
+            .navigationBarTitle("", displayMode: .inline)
+            .toolbar {
+                Button("Done") {
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
-
-            Spacer()
         }
-        .padding()
     }
 
     private func optionBox(_ style: CountStyle) -> some View {
