@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219E97C2625618D0004FFC0 /* CreateView.swift */; };
 		525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F23263308B300D22B32 /* CreateBackgroundView.swift */; };
+		525B1F27263407F500D22B32 /* SelectColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F26263407F500D22B32 /* SelectColorView.swift */; };
 		527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */; };
 		527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B4D262F1DA50062EB07 /* Date+Ext.swift */; };
 		52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C680AE262F2A2F00BEF355 /* NewEvent.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		5219E97C2625618D0004FFC0 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		525B1F23263308B300D22B32 /* CreateBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBackgroundView.swift; sourceTree = "<group>"; };
+		525B1F26263407F500D22B32 /* SelectColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorView.swift; sourceTree = "<group>"; };
 		527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountStyleListView.swift; sourceTree = "<group>"; };
 		527A9B4D262F1DA50062EB07 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		52C680AE262F2A2F00BEF355 /* NewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEvent.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				5219E97C2625618D0004FFC0 /* CreateView.swift */,
 				527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */,
 				525B1F23263308B300D22B32 /* CreateBackgroundView.swift */,
+				525B1F26263407F500D22B32 /* SelectColorView.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */,
 				525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */,
 				B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */,
+				525B1F27263407F500D22B32 /* SelectColorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
