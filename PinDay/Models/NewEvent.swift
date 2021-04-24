@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class NewEvent: ObservableObject {
 
@@ -61,11 +62,17 @@ class NewEvent: ObservableObject {
         }
     }
 
+    enum BackgroundStyle {
+        case color(Color)
+        case image(Image)
+    }
+
     @Published var title: String = ""
     @Published var pinnedDateType: PinnedDateType = .past(date: Date())
     var isValid: Bool {
         !title.isEmpty
     }
+    @Published var backgroundStyle: BackgroundStyle = .color(.gray)
 
     func update(pinnedDate: Date) {
 

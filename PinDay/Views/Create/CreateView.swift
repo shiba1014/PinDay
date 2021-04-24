@@ -25,7 +25,7 @@ struct CreateView: View {
 
                 List {
                     VStack(spacing: 24) {
-                        ThumbnailView(color: .constant(.gray))
+                        BackgroundView(style: $newEvent.backgroundStyle)
                             .aspectRatio(contentMode: .fit)
                             .padding(.horizontal, 50)
                             .overlay(
@@ -41,7 +41,7 @@ struct CreateView: View {
                                         showCreateBackgroundSheet.toggle()
                                     }
                                     .sheet(isPresented: $showCreateBackgroundSheet) {
-                                        CreateBackgroundView()
+                                        CreateBackgroundView(backgroundStyle: $newEvent.backgroundStyle)
                                     }
                             )
 

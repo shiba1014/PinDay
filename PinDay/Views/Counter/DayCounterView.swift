@@ -12,7 +12,7 @@ struct DayCounterView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
-            ThumbnailView(color: .constant(.gray))
+            BackgroundView(style: .constant(.color(.gray)))
 
             VStack(alignment: .leading, spacing: 16) {
                 Text("Xmas")

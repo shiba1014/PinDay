@@ -17,12 +17,24 @@ struct CreateBackgroundView: View {
     }
 
     @Environment(\.presentationMode) var presentationMode
+
+    @Binding var backgroundStyle: NewEvent.BackgroundStyle
+
     @State private var selectedStyle: Style = .color
+    @State private var selectedColor: Color?
+
+    init(backgroundStyle: Binding<NewEvent.BackgroundStyle>) {
+        self._backgroundStyle = backgroundStyle
+
+        if case .color(let c) = self.backgroundStyle {
+            self.selectedColor = c
+        }
+    }
 
     var body: some View {
         NavigationView {
             VStack {
-                DayCounterView()
+                BackgroundView(style: $backgroundStyle)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(.horizontal, 100)
 
@@ -35,7 +47,16 @@ struct CreateBackgroundView: View {
                 .padding()
 
                 if selectedStyle == .color {
-                    SelectColorView()
+                    SelectColorView(
+                        selectedColor: .init(
+                            get: { selectedColor },
+                            set: { color in
+                                guard let color = color else { return }
+                                selectedColor = color
+                                backgroundStyle = .color(color)
+                            }
+                        )
+                    )
                         .padding(.horizontal)
                 }
 
@@ -56,6 +77,6 @@ struct CreateBackgroundView: View {
 
 struct CreateBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateBackgroundView()
+        CreateBackgroundView(backgroundStyle: .constant(.color(.gray)))
     }
 }
