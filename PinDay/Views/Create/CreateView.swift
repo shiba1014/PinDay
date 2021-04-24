@@ -34,10 +34,10 @@ struct CreateView: View {
                                     ZStack {
                                         Circle()
                                             .frame(width: 70)
-                                            .foregroundColor(.secondary)
+                                            .foregroundColor(.init(white: 0.9))
                                             .shadow(radius: 4)
                                         Image(systemName: "camera.fill")
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(.black)
                                     }
                                     .onTapGesture {
                                         showCreateBackgroundSheet.toggle()
