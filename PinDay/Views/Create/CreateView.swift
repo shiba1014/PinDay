@@ -25,10 +25,8 @@ struct CreateView: View {
 
                 List {
                     VStack(spacing: 24) {
-                        Rectangle()
+                        ThumbnailView(color: .constant(.gray))
                             .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.gray)
-                            .cornerRadius(5)
                             .padding(.horizontal, 50)
                             .overlay(
                                     ZStack {
