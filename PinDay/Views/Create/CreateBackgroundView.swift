@@ -63,13 +63,13 @@ struct CreateBackgroundView: View {
                         Text("Select Photo")
                             .font(.headline )
                     }
+                    .padding(.vertical)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(.white)
+                    .background(Color("AccentColor"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding()
                 })
-                .padding(.vertical)
-                .frame(maxWidth: .infinity)
-                .foregroundColor(.white)
-                .background(Color("AccentColor"))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .padding()
                 .sheet(isPresented: $showPhotoLibrary) {
                     ImagePicker(
                         selectedImage: .init(
