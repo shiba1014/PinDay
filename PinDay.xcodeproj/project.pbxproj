@@ -79,6 +79,7 @@
 		527A9B4C262F1D920062EB07 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				52F3760F263843050074990C /* Image+Ext.swift */,
 				527A9B4D262F1DA50062EB07 /* Date+Ext.swift */,
 			);
 			path = Extensions;
@@ -100,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				52C680AE262F2A2F00BEF355 /* NewEvent.swift */,
-				52F3760F263843050074990C /* Image+Ext.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

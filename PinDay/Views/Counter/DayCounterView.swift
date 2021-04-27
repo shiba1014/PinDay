@@ -14,9 +14,9 @@ struct DayCounterView: View {
 
             BackgroundView(style: .constant(.color(.gray)))
 
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text("Xmas")
-                    .font(.title)
+                    .font(Font.title2.weight(.medium))
                 Text("37 days left")
                     .font(.body)
             }

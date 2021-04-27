@@ -10,6 +10,8 @@ import SwiftUI
 
 class NewEvent: ObservableObject {
 
+    private static let maxTitleCount: Int = 15
+
     enum PinnedDateType {
 
         enum FutureCountStyle: Equatable, Identifiable {
@@ -70,7 +72,7 @@ class NewEvent: ObservableObject {
     @Published var title: String = ""
     @Published var pinnedDateType: PinnedDateType = .past(date: Date())
     var isValid: Bool {
-        !title.isEmpty
+        !title.isEmpty && title.count <= Self.maxTitleCount
     }
     @Published var backgroundStyle: BackgroundStyle = .color(.gray)
 
