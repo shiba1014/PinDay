@@ -38,14 +38,6 @@ struct CreateBackgroundView: View {
                     .aspectRatio(1, contentMode: .fit)
                     .padding(.horizontal, 100)
 
-                Picker("Style", selection: $selectedStyle) {
-                    ForEach(Style.allCases) { style in
-                        Text(style.rawValue)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-
                 if selectedStyle == .color {
                     SelectColorView(
                         selectedColor: .init(
@@ -57,8 +49,18 @@ struct CreateBackgroundView: View {
                             }
                         )
                     )
-                        .padding(.horizontal)
+                    .padding()
                 }
+
+                Button("Select Photo") {
+
+                }
+                .padding(.vertical)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.white)
+                .background(Color("AccentColor"))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding()
 
                 Spacer()
             }
