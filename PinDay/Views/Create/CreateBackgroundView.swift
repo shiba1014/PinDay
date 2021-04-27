@@ -23,6 +23,9 @@ struct CreateBackgroundView: View {
     @State private var selectedStyle: Style = .color
     @State private var selectedColor: Color?
 
+    @State private var showPhotoLibrary = false
+    @State private var selectedImage: UIImage = .init()
+
     init(backgroundStyle: Binding<NewEvent.BackgroundStyle>) {
         self._backgroundStyle = backgroundStyle
 
@@ -52,15 +55,32 @@ struct CreateBackgroundView: View {
                     .padding()
                 }
 
-                Button("Select Photo") {
-
-                }
+                Button(action: {
+                    showPhotoLibrary = true
+                }, label: {
+                    HStack {
+                        Image(systemName: "photo.fill")
+                        Text("Select Photo")
+                            .font(.headline )
+                    }
+                })
                 .padding(.vertical)
                 .frame(maxWidth: .infinity)
                 .foregroundColor(.white)
                 .background(Color("AccentColor"))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .padding()
+                .sheet(isPresented: $showPhotoLibrary) {
+                    ImagePicker(
+                        selectedImage: .init(
+                            get: { selectedImage },
+                            set: { image in
+                                selectedImage = image
+                                backgroundStyle = .image(Image(uiImage: image))
+                            }
+                        )
+                    )
+                }
 
                 Spacer()
             }

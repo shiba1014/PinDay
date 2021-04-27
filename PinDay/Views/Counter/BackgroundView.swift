@@ -18,8 +18,7 @@ struct BackgroundView: View {
         }
         else if case .image(let image) = style {
             image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+                .fitToAspectRatio(1)
                 .clipShape(RoundedRectangle(cornerRadius: Self.radius))
         }
     }

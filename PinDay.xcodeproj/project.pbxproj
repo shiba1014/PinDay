@@ -14,6 +14,8 @@
 		527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */; };
 		527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B4D262F1DA50062EB07 /* Date+Ext.swift */; };
 		52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C680AE262F2A2F00BEF355 /* NewEvent.swift */; };
+		52F3760D263836C50074990C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3760C263836C50074990C /* ImagePicker.swift */; };
+		52F37610263843050074990C /* Image+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3760F263843050074990C /* Image+Ext.swift */; };
 		B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91266261C85E200D58C5B /* PinDayApp.swift */; };
 		B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91268261C85E200D58C5B /* CounterListView.swift */; };
 		B6E9126B261C85E400D58C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126A261C85E400D58C5B /* Assets.xcassets */; };
@@ -31,6 +33,8 @@
 		527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountStyleListView.swift; sourceTree = "<group>"; };
 		527A9B4D262F1DA50062EB07 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		52C680AE262F2A2F00BEF355 /* NewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEvent.swift; sourceTree = "<group>"; };
+		52F3760C263836C50074990C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		52F3760F263843050074990C /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
 		B6E91263261C85E200D58C5B /* PinDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E91266261C85E200D58C5B /* PinDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDayApp.swift; sourceTree = "<group>"; };
 		B6E91268261C85E200D58C5B /* CounterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterListView.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 				527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */,
 				525B1F23263308B300D22B32 /* CreateBackgroundView.swift */,
 				525B1F26263407F500D22B32 /* SelectColorView.swift */,
+				52F3760C263836C50074990C /* ImagePicker.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -95,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				52C680AE262F2A2F00BEF355 /* NewEvent.swift */,
+				52F3760F263843050074990C /* Image+Ext.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F3760D263836C50074990C /* ImagePicker.swift in Sources */,
 				52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */,
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
 				B6E91B622622F6AC00D58C5B /* DayCounterView.swift in Sources */,
@@ -218,6 +225,7 @@
 				5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */,
 				525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */,
 				52472A25263415F9008F4B31 /* BackgroundView.swift in Sources */,
+				52F37610263843050074990C /* Image+Ext.swift in Sources */,
 				B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */,
 				525B1F27263407F500D22B32 /* SelectColorView.swift in Sources */,
 			);
