@@ -116,4 +116,11 @@ class NewEvent: ObservableObject {
             }
         }
     }
+
+    static let mock: NewEvent = {
+        let event = NewEvent()
+        event.title = "Xmas"
+        event.pinnedDateType = .future(date: Date().fixed(month: 12, day: 24), style: .countDown)
+        return event
+    }()
 }

@@ -42,7 +42,7 @@ struct SelectCountStyleListView: View {
 
     private func optionBox(_ style: CountStyle) -> some View {
         VStack {
-            DayCounterView()
+            DayCounterView.mock
                 .aspectRatio(1, contentMode: .fill)
             Text(style.description)
         }

@@ -18,7 +18,7 @@ struct CounterListView: View {
             ScrollView {
                 LazyVGrid(columns: gridItems) {
                     ForEach(0...6, id: \.self) { _ in
-                        DayCounterView()
+                        DayCounterView.mock
                             .aspectRatio(1, contentMode: .fill)
                     }
                 }

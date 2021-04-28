@@ -24,11 +24,37 @@ struct DayCounterView: View {
 
         }
     }
+
+    static let mock: DayCounterView = {
+        DayCounterView(event: .constant(.mock))
+    }()
 }
 
 struct DayCounterView_Previews: PreviewProvider {
     static var previews: some View {
-        DayCounterView()
+        DayCounterView.mock
     }
 }
 
+struct BackgroundView: View {
+    private static let radius: CGFloat = 24
+    @Binding var style: NewEvent.BackgroundStyle
+
+    var body: some View {
+        if case .color(let color) = style {
+            RoundedRectangle(cornerRadius: Self.radius)
+                .fill(color)
+        }
+        else if case .image(let image) = style {
+            image
+                .fitToAspectRatio(1)
+                .clipShape(RoundedRectangle(cornerRadius: Self.radius))
+        }
+    }
+}
+
+struct BackgroundView_Previews: PreviewProvider {
+    static var previews: some View {
+        BackgroundView(style: .constant(.color(.gray)))
+    }
+}
