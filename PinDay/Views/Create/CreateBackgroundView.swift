@@ -20,6 +20,8 @@ struct CreateBackgroundView: View {
 
     @Binding var backgroundStyle: NewEvent.BackgroundStyle
 
+    @State private var mockEvent: NewEvent = .mock
+
     @State private var selectedStyle: Style = .color
     @State private var selectedColor: Color?
 
@@ -32,12 +34,14 @@ struct CreateBackgroundView: View {
         if case .color(let c) = self.backgroundStyle {
             self.selectedColor = c
         }
+
+        mockEvent.backgroundStyle = self.backgroundStyle
     }
 
     var body: some View {
         NavigationView {
             VStack {
-                BackgroundView(style: $backgroundStyle)
+                DayCounterView(event: mockEvent)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(.horizontal, 100)
 
@@ -49,6 +53,7 @@ struct CreateBackgroundView: View {
                                 guard let color = color else { return }
                                 selectedColor = color
                                 backgroundStyle = .color(color)
+                                mockEvent.backgroundStyle = backgroundStyle
                             }
                         )
                     )
@@ -77,6 +82,7 @@ struct CreateBackgroundView: View {
                             set: { image in
                                 selectedImage = image
                                 backgroundStyle = .image(Image(uiImage: image))
+                                mockEvent.backgroundStyle = backgroundStyle
                             }
                         )
                     )

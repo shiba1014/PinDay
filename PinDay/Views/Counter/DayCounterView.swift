@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct DayCounterView: View {
+    private static let radius: CGFloat = 24
+
+    @ObservedObject var event: NewEvent
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
-            BackgroundView(style: .constant(.color(.gray)))
+            BackgroundView(style: event.backgroundStyle)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Xmas")
+                Text(event.title)
                     .font(Font.title2.weight(.medium))
                 Text("37 days left")
                     .font(.body)
@@ -26,7 +29,7 @@ struct DayCounterView: View {
     }
 
     static let mock: DayCounterView = {
-        DayCounterView(event: .constant(.mock))
+        DayCounterView(event: .mock)
     }()
 }
 
@@ -38,14 +41,14 @@ struct DayCounterView_Previews: PreviewProvider {
 
 struct BackgroundView: View {
     private static let radius: CGFloat = 24
-    @Binding var style: NewEvent.BackgroundStyle
+    var style: NewEvent.BackgroundStyle
 
     var body: some View {
-        if case .color(let color) = style {
+        switch style {
+        case .color(let color):
             RoundedRectangle(cornerRadius: Self.radius)
                 .fill(color)
-        }
-        else if case .image(let image) = style {
+        case .image(let image):
             image
                 .fitToAspectRatio(1)
                 .clipShape(RoundedRectangle(cornerRadius: Self.radius))
@@ -55,6 +58,6 @@ struct BackgroundView: View {
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        BackgroundView(style: .constant(.color(.gray)))
+        BackgroundView(style: .color(.gray))
     }
 }
