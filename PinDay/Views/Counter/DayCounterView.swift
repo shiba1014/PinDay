@@ -20,8 +20,11 @@ struct DayCounterView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text(event.title)
                     .font(Font.title2.weight(.medium))
+                    .foregroundColor(.white)
+
                 Text("37 days left")
                     .font(.body)
+                    .foregroundColor(.white)
             }
             .padding(.all, 20)
 
@@ -44,15 +47,29 @@ struct BackgroundView: View {
     var style: NewEvent.BackgroundStyle
 
     var body: some View {
-        switch style {
-        case .color(let color):
-            RoundedRectangle(cornerRadius: Self.radius)
-                .fill(color)
-        case .image(let image):
-            image
-                .fitToAspectRatio(1)
-                .clipShape(RoundedRectangle(cornerRadius: Self.radius))
+        Group {
+            switch style {
+            case .color(let color):
+                Rectangle()
+                    .fill(color)
+            case .image(let image):
+                image
+                    .fitToAspectRatio(1)
+            }
         }
+        .overlay(
+            LinearGradient(
+                gradient: Gradient(
+                    stops: [
+                        .init(color: .clear, location: 0.2),
+                        .init(color: Color.black.opacity(0.5), location: 1.0)
+                    ]
+                ),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
+        .clipShape(RoundedRectangle(cornerRadius: Self.radius))
     }
 }
 
