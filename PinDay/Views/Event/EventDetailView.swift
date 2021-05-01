@@ -15,7 +15,7 @@ struct EventDetailView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
-            EventBackgroundView(style: event.backgroundStyle)
+            EventBackgroundView(style: event.backgroundStyle, size: .fullscreen)
                 .ignoresSafeArea()
 
             VStack(alignment: .leading) {

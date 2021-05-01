@@ -16,7 +16,7 @@ struct EventSummaryView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
-            EventBackgroundView(style: event.backgroundStyle)
+            EventBackgroundView(style: event.backgroundStyle, size: size)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(event.title)

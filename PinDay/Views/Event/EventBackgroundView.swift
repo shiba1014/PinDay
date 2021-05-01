@@ -9,38 +9,52 @@ import SwiftUI
 
 struct EventBackgroundView: View {
     private static let radius: CGFloat = 24
-    var style: Event.BackgroundStyle
+    let style: Event.BackgroundStyle
+    let size: EventViewSize
 
     var body: some View {
-        Group {
-            switch style {
-            case .color(let color):
-                Rectangle()
-                    .fill(color)
-            case .image(let image):
+
+        buildBackgroundView()
+            .overlay(
+                LinearGradient(
+                    gradient: Gradient(
+                        stops: [
+                            .init(color: .clear, location: 0.2),
+                            .init(color: Color.black.opacity(0.5), location: 1.0)
+                        ]
+                    ),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
+            .clipShape(RoundedRectangle(cornerRadius: Self.radius))
+    }
+
+    @ViewBuilder
+    private func buildBackgroundView() -> some View {
+        switch style {
+
+        case .color(let color):
+            Rectangle()
+                .fill(color)
+
+        case .image(let image):
+            switch size {
+            case .small, .medium:
+                image
+                    .resizable()
+                    .fitToAspectRatio(size.aspectRatio)
+            case .fullscreen:
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
         }
-        .overlay(
-            LinearGradient(
-                gradient: Gradient(
-                    stops: [
-                        .init(color: .clear, location: 0.2),
-                        .init(color: Color.black.opacity(0.5), location: 1.0)
-                    ]
-                ),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        )
-        .clipShape(RoundedRectangle(cornerRadius: Self.radius))
     }
 }
 
 struct EventBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        EventBackgroundView(style: .color(.gray))
+        EventBackgroundView(style: .color(.gray), size: .small)
     }
 }
