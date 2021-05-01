@@ -12,7 +12,8 @@ struct EventListView: View {
     @State private var showCreateView = false
     @State private var selectedEvent: Event? = nil
 
-    private let gridItems = [GridItem(), GridItem()]
+    private static let spacing: CGFloat = 16
+    private let gridItems = [GridItem(spacing: Self.spacing), GridItem(spacing: Self.spacing)]
     private let events: [Event] = (0...6).map { i in
         if i%3 == 0 { return .pastMock }
         else if i%3 == 1 { return .countDownMock }
@@ -22,7 +23,7 @@ struct EventListView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: gridItems) {
+                LazyVGrid(columns: gridItems, spacing: Self.spacing) {
                     ForEach(events.indices) { i in
                         Button(action: {
                             selectedEvent = events[i]
