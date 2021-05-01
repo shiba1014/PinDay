@@ -33,9 +33,9 @@ public extension Date {
         return Calendar.gregorian.dateComponents([.day], from: date, to: self).day!
     }
 
-    static func calcProgress(from: Date, to: Date) -> Double {
+    static func calcProgress(from: Date, to: Date) -> Float {
         let whole = to.calcDayDiff(from: from)
         let current = Date().calcDayDiff(from: from)
-        return Double(current) / Double(whole)
+        return Float(current) / Float(whole)
     }
 }
