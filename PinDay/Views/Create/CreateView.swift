@@ -24,7 +24,7 @@ struct CreateView: View {
             VStack {
 
                 List {
-                    VStack(spacing: 24) {
+                    VStack {
                         BackgroundView(style: newEvent.backgroundStyle)
                             .aspectRatio(contentMode: .fit)
                             .padding(.horizontal, 50)
@@ -44,6 +44,7 @@ struct CreateView: View {
                                         CreateBackgroundView(event: newEvent)
                                     }
                             )
+                            .padding(.bottom, 24)
 
                         TextField(
                             "Event Title",
@@ -51,6 +52,8 @@ struct CreateView: View {
                         )
                         .multilineTextAlignment(.center)
                         .font(.title)
+                        Text("\(newEvent.title.count) / \(NewEvent.maxTitleCount)")
+                            .foregroundColor(newEvent.title.count > NewEvent.maxTitleCount ? .red : .secondary)
                     }
                     .padding()
                     

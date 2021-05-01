@@ -10,7 +10,7 @@ import SwiftUI
 
 class NewEvent: ObservableObject {
 
-    private static let maxTitleCount: Int = 15
+    static let maxTitleCount: Int = 15
 
     enum PinnedDateType {
 
