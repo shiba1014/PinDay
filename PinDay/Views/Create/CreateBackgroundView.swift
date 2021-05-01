@@ -10,7 +10,7 @@ import SwiftUI
 struct CreateBackgroundView: View {
 
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var event: NewEvent
+    @ObservedObject var event: Event
     @State private var showPhotoLibrary = false
 
     var body: some View {

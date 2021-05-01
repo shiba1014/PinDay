@@ -16,7 +16,7 @@ struct CreateView: View {
     @State private var showCountStyleSheet = false
     @State private var showCreateBackgroundSheet = false
 
-    @ObservedObject private var newEvent: NewEvent = .init()
+    @ObservedObject private var newEvent: Event = .init()
     
     var body: some View {
 
@@ -52,8 +52,8 @@ struct CreateView: View {
                         )
                         .multilineTextAlignment(.center)
                         .font(.title)
-                        Text("\(newEvent.title.count) / \(NewEvent.maxTitleCount)")
-                            .foregroundColor(newEvent.title.count > NewEvent.maxTitleCount ? .red : .secondary)
+                        Text("\(newEvent.title.count) / \(Event.maxTitleCount)")
+                            .foregroundColor(newEvent.title.count > Event.maxTitleCount ? .red : .secondary)
                     }
                     .padding()
                     

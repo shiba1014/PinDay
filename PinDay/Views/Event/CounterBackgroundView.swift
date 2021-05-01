@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CounterBackgroundView: View {
     private static let radius: CGFloat = 24
-    var style: NewEvent.BackgroundStyle
+    var style: Event.BackgroundStyle
 
     var body: some View {
         Group {

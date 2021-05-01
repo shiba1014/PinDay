@@ -1,5 +1,5 @@
 //
-//  NewEvent.swift
+//  Event.swift
 //  PinDay
 //
 //  Created by shiba on 2021/04/21.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class NewEvent: ObservableObject {
+class Event: ObservableObject {
 
     static let maxTitleCount: Int = 15
 
@@ -142,22 +142,22 @@ class NewEvent: ObservableObject {
     }
 
     // MARK: Mock
-    static let pastMock: NewEvent = {
-        let event = NewEvent()
+    static let pastMock: Event = {
+        let event = Event()
         event.title = "This Year"
         event.pinnedDateType = .past(date: Date().fixed(month: 1, day: 1))
         return event
     }()
 
-    static let countDownMock: NewEvent = {
-        let event = NewEvent()
+    static let countDownMock: Event = {
+        let event = Event()
         event.title = "New Year"
         event.pinnedDateType = .future(date: Date().fixed(month: 1, day: 1).added(year: 1), style: .countDown)
         return event
     }()
 
-    static let progressMock: NewEvent = {
-        let event = NewEvent()
+    static let progressMock: Event = {
+        let event = Event()
         event.title = "This Year"
         event.pinnedDateType = .future(date: Date().fixed(month: 12, day: 31), style: .progress(from: Date().fixed(month: 1, day: 1)))
         return event

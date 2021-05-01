@@ -27,7 +27,7 @@ struct PinDayApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CounterListView()
+            EventListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
         

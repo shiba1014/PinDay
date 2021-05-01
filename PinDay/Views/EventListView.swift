@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EventListView.swift
 //  PinDay
 //
 //  Created by Satsuki Hashiba on 2021/04/06.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct CounterListView: View {
+struct EventListView: View {
     
     @State private var showCreateView = false
-    
+
     let gridItems = [GridItem(), GridItem()]
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -47,8 +47,8 @@ struct CounterListView: View {
     }
 }
 
-struct CounterListView_Previews: PreviewProvider {
+struct EventListView_Previews: PreviewProvider {
     static var previews: some View {
-        CounterListView()
+        EventListView()
     }
 }

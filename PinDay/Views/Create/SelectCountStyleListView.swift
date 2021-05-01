@@ -11,7 +11,7 @@ struct SelectCountStyleListView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
-    typealias CountStyle = NewEvent.PinnedDateType.FutureCountStyle
+    typealias CountStyle = Event.PinnedDateType.FutureCountStyle
     @Binding var style: CountStyle
 
     var body: some View {
@@ -60,7 +60,7 @@ struct SelectCountStyleListView: View {
 }
 
 struct SelectCountStyleListView_Previews: PreviewProvider {
-    @State static var style: NewEvent.PinnedDateType.FutureCountStyle = .countDown
+    @State static var style: Event.PinnedDateType.FutureCountStyle = .countDown
     static var previews: some View {
         SelectCountStyleListView(style: $style)
     }

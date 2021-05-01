@@ -10,7 +10,7 @@ import SwiftUI
 struct EventSummaryView: View {
     private static let radius: CGFloat = 24
 
-    @ObservedObject var event: NewEvent
+    @ObservedObject var event: Event
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventDetailView: View {
-    @ObservedObject var event: NewEvent
+    @ObservedObject var event: Event
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {

@@ -15,11 +15,11 @@
 		525B1F27263407F500D22B32 /* SelectColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F26263407F500D22B32 /* SelectColorView.swift */; };
 		527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */; };
 		527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B4D262F1DA50062EB07 /* Date+Ext.swift */; };
-		52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C680AE262F2A2F00BEF355 /* NewEvent.swift */; };
+		52C680AF262F2A2F00BEF355 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C680AE262F2A2F00BEF355 /* Event.swift */; };
 		52F3760D263836C50074990C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3760C263836C50074990C /* ImagePicker.swift */; };
 		52F37610263843050074990C /* Image+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3760F263843050074990C /* Image+Ext.swift */; };
 		B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91266261C85E200D58C5B /* PinDayApp.swift */; };
-		B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91268261C85E200D58C5B /* CounterListView.swift */; };
+		B6E91269261C85E200D58C5B /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91268261C85E200D58C5B /* EventListView.swift */; };
 		B6E9126B261C85E400D58C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126A261C85E400D58C5B /* Assets.xcassets */; };
 		B6E9126E261C85E400D58C5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126D261C85E400D58C5B /* Preview Assets.xcassets */; };
 		B6E91270261C85E400D58C5B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E9126F261C85E400D58C5B /* Persistence.swift */; };
@@ -36,12 +36,12 @@
 		525B1F26263407F500D22B32 /* SelectColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorView.swift; sourceTree = "<group>"; };
 		527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountStyleListView.swift; sourceTree = "<group>"; };
 		527A9B4D262F1DA50062EB07 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		52C680AE262F2A2F00BEF355 /* NewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEvent.swift; sourceTree = "<group>"; };
+		52C680AE262F2A2F00BEF355 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		52F3760C263836C50074990C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		52F3760F263843050074990C /* Image+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Ext.swift"; sourceTree = "<group>"; };
 		B6E91263261C85E200D58C5B /* PinDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E91266261C85E200D58C5B /* PinDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDayApp.swift; sourceTree = "<group>"; };
-		B6E91268261C85E200D58C5B /* CounterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterListView.swift; sourceTree = "<group>"; };
+		B6E91268261C85E200D58C5B /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		B6E9126A261C85E400D58C5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6E9126D261C85E400D58C5B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B6E9126F261C85E400D58C5B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 			children = (
 				525B1F292634107D00D22B32 /* Event */,
 				527A9B50262F29920062EB07 /* Create */,
-				B6E91268261C85E200D58C5B /* CounterListView.swift */,
+				B6E91268261C85E200D58C5B /* EventListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -106,7 +106,7 @@
 		527A9B51262F29A60062EB07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				52C680AE262F2A2F00BEF355 /* NewEvent.swift */,
+				52C680AE262F2A2F00BEF355 /* Event.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -222,14 +222,14 @@
 			files = (
 				5229A90C263D416D00E793F4 /* EventDetailView.swift in Sources */,
 				52F3760D263836C50074990C /* ImagePicker.swift in Sources */,
-				52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */,
+				52C680AF262F2A2F00BEF355 /* Event.swift in Sources */,
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
 				5229A905263D342300E793F4 /* CounterBackgroundView.swift in Sources */,
 				B6E91B622622F6AC00D58C5B /* EventSummaryView.swift in Sources */,
 				B6E91270261C85E400D58C5B /* Persistence.swift in Sources */,
 				527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */,
 				527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */,
-				B6E91269261C85E200D58C5B /* CounterListView.swift in Sources */,
+				B6E91269261C85E200D58C5B /* EventListView.swift in Sources */,
 				5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */,
 				525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */,
 				52F37610263843050074990C /* Image+Ext.swift in Sources */,
