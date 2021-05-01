@@ -20,7 +20,7 @@ struct CreateBackgroundView: View {
 
     @Binding var backgroundStyle: NewEvent.BackgroundStyle
 
-    @State private var mockEvent: NewEvent = .mock
+    @State private var mockEvent: NewEvent = .countDownMock
 
     @State private var selectedStyle: Style = .color
     @State private var selectedColor: Color?

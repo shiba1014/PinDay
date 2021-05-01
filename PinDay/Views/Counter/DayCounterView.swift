@@ -22,9 +22,7 @@ struct DayCounterView: View {
                     .font(Font.title2.weight(.medium))
                     .foregroundColor(.white)
 
-                Text("37 days left")
-                    .font(.body)
-                    .foregroundColor(.white)
+                makeContent()
             }
             .padding(.all, 20)
 
@@ -32,8 +30,39 @@ struct DayCounterView: View {
     }
 
     static let mock: DayCounterView = {
-        DayCounterView(event: .mock)
+        DayCounterView(event: .progressMock)
     }()
+
+    @ViewBuilder
+    private func makeContent() -> some View {
+
+        switch event.pinnedDateType {
+
+        case .past(let date):
+            Text("37 days ago")
+                .font(.body)
+                .foregroundColor(.white)
+
+        case .future(let date, let style):
+            switch style {
+
+            case .countDown:
+                Text("37 days left")
+                    .font(.body)
+                    .foregroundColor(.white)
+
+            case .progress(let from):
+                HStack {
+                    Circle()
+                        .strokeBorder(Color.white, lineWidth: 3)
+                        .frame(width: 50, height: 50)
+                    Text("75%")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                }
+            }
+        }
+    }
 }
 
 struct DayCounterView_Previews: PreviewProvider {

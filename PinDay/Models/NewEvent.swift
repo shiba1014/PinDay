@@ -117,10 +117,24 @@ class NewEvent: ObservableObject {
         }
     }
 
-    static let mock: NewEvent = {
+    static let pastMock: NewEvent = {
+        let event = NewEvent()
+        event.title = "New Year"
+        event.pinnedDateType = .past(date: Date().fixed(month: 1, day: 1))
+        return event
+    }()
+
+    static let countDownMock: NewEvent = {
         let event = NewEvent()
         event.title = "Xmas"
         event.pinnedDateType = .future(date: Date().fixed(month: 12, day: 24), style: .countDown)
+        return event
+    }()
+
+    static let progressMock: NewEvent = {
+        let event = NewEvent()
+        event.title = "This Year"
+        event.pinnedDateType = .future(date: Date().fixed(month: 12, day: 31), style: .progress(from: Date().fixed(month: 1, day: 1)))
         return event
     }()
 }
