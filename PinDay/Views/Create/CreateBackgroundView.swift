@@ -9,56 +9,32 @@ import SwiftUI
 
 struct CreateBackgroundView: View {
 
-    enum Style: String, CaseIterable, Identifiable {
-        var id: Self { self }
-
-        case color = "Color"
-        case image = "Image"
-    }
-
     @Environment(\.presentationMode) var presentationMode
-
-    @Binding var backgroundStyle: NewEvent.BackgroundStyle
-
-    @State private var mockEvent: NewEvent = .countDownMock
-
-    @State private var selectedStyle: Style = .color
-    @State private var selectedColor: Color?
-
+    @ObservedObject var event: NewEvent
     @State private var showPhotoLibrary = false
-    @State private var selectedImage: UIImage = .init()
-
-    init(backgroundStyle: Binding<NewEvent.BackgroundStyle>) {
-        self._backgroundStyle = backgroundStyle
-
-        if case .color(let c) = self.backgroundStyle {
-            self.selectedColor = c
-        }
-
-        mockEvent.backgroundStyle = self.backgroundStyle
-    }
 
     var body: some View {
         NavigationView {
             VStack {
-                DayCounterView(event: mockEvent)
+                DayCounterView(event: event)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(.horizontal, 100)
 
-                if selectedStyle == .color {
-                    SelectColorView(
-                        selectedColor: .init(
-                            get: { selectedColor },
-                            set: { color in
-                                guard let color = color else { return }
-                                selectedColor = color
-                                backgroundStyle = .color(color)
-                                mockEvent.backgroundStyle = backgroundStyle
+                SelectColorView(
+                    selectedColor: .init(
+                        get: {
+                            if case .color(let color) = event.backgroundStyle {
+                                return color
                             }
-                        )
+                            return nil
+                        },
+                        set: { color in
+                            guard let color = color else { return }
+                            event.backgroundStyle = .color(color)
+                        }
                     )
-                    .padding()
-                }
+                )
+                .padding()
 
                 Button(action: {
                     showPhotoLibrary = true
@@ -78,11 +54,9 @@ struct CreateBackgroundView: View {
                 .sheet(isPresented: $showPhotoLibrary) {
                     ImagePicker(
                         selectedImage: .init(
-                            get: { selectedImage },
+                            get: { .init() },
                             set: { image in
-                                selectedImage = image
-                                backgroundStyle = .image(Image(uiImage: image))
-                                mockEvent.backgroundStyle = backgroundStyle
+                                event.backgroundStyle = .image(Image(uiImage: image))
                             }
                         )
                     )
@@ -105,6 +79,6 @@ struct CreateBackgroundView: View {
 
 struct CreateBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateBackgroundView(backgroundStyle: .constant(.color(.gray)))
+        CreateBackgroundView(event: .countDownMock)
     }
 }

@@ -41,7 +41,7 @@ struct CreateView: View {
                                         showCreateBackgroundSheet.toggle()
                                     }
                                     .sheet(isPresented: $showCreateBackgroundSheet) {
-                                        CreateBackgroundView(backgroundStyle: $newEvent.backgroundStyle)
+                                        CreateBackgroundView(event: newEvent)
                                     }
                             )
 
