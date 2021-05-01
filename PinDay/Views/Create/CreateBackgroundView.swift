@@ -16,7 +16,7 @@ struct CreateBackgroundView: View {
     var body: some View {
         NavigationView {
             VStack {
-                DayCounterView(event: event)
+                EventSummaryView(event: event)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(.horizontal, 100)
 

@@ -56,7 +56,7 @@ struct CircularDayProgressView: View {
     }
 }
 
-struct CircularProgressView_Previews: PreviewProvider {
+struct CircularDayProgressView_Previews: PreviewProvider {
     static var previews: some View {
         CircularDayProgressView(
             start: Date().fixed(month: 1, day: 1),

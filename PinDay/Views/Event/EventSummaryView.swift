@@ -1,5 +1,5 @@
 //
-//  DayCounterView.swift
+//  EventSummaryView.swift
 //  PinDay
 //
 //  Created by Satsuki Hashiba on 2021/04/11.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DayCounterView: View {
+struct EventSummaryView: View {
     private static let radius: CGFloat = 24
 
     @ObservedObject var event: NewEvent
@@ -30,9 +30,9 @@ struct DayCounterView: View {
     }
 }
 
-struct DayCounterView_Previews: PreviewProvider {
+struct EventSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        DayCounterView(event: .countDownMock)
+        EventSummaryView(event: .countDownMock)
             .frame(width: 200, height: 200, alignment: .center)
     }
 }

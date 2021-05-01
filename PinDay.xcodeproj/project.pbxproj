@@ -24,7 +24,7 @@
 		B6E9126E261C85E400D58C5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126D261C85E400D58C5B /* Preview Assets.xcassets */; };
 		B6E91270261C85E400D58C5B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E9126F261C85E400D58C5B /* Persistence.swift */; };
 		B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6E91271261C85E400D58C5B /* PinDay.xcdatamodeld */; };
-		B6E91B622622F6AC00D58C5B /* DayCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91B612622F6AC00D58C5B /* DayCounterView.swift */; };
+		B6E91B622622F6AC00D58C5B /* EventSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E91B612622F6AC00D58C5B /* EventSummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +47,7 @@
 		B6E9126F261C85E400D58C5B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B6E91272261C85E400D58C5B /* PinDay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PinDay.xcdatamodel; sourceTree = "<group>"; };
 		B6E91274261C85E400D58C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6E91B612622F6AC00D58C5B /* DayCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCounterView.swift; sourceTree = "<group>"; };
+		B6E91B612622F6AC00D58C5B /* EventSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,22 +64,22 @@
 		5219E97F262561930004FFC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				525B1F292634107D00D22B32 /* Counter */,
+				525B1F292634107D00D22B32 /* Event */,
 				527A9B50262F29920062EB07 /* Create */,
 				B6E91268261C85E200D58C5B /* CounterListView.swift */,
-				5229A90B263D416D00E793F4 /* EventDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		525B1F292634107D00D22B32 /* Counter */ = {
+		525B1F292634107D00D22B32 /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				B6E91B612622F6AC00D58C5B /* DayCounterView.swift */,
+				B6E91B612622F6AC00D58C5B /* EventSummaryView.swift */,
+				5229A90B263D416D00E793F4 /* EventDetailView.swift */,
 				5229A904263D342300E793F4 /* CounterBackgroundView.swift */,
 				5229A907263D34A000E793F4 /* CircularDayProgressView.swift */,
 			);
-			path = Counter;
+			path = Event;
 			sourceTree = "<group>";
 		};
 		527A9B4C262F1D920062EB07 /* Extensions */ = {
@@ -225,7 +225,7 @@
 				52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */,
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
 				5229A905263D342300E793F4 /* CounterBackgroundView.swift in Sources */,
-				B6E91B622622F6AC00D58C5B /* DayCounterView.swift in Sources */,
+				B6E91B622622F6AC00D58C5B /* EventSummaryView.swift in Sources */,
 				B6E91270261C85E400D58C5B /* Persistence.swift in Sources */,
 				527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */,
 				527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */,
