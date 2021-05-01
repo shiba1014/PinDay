@@ -52,15 +52,7 @@ struct DayCounterView: View {
                     .foregroundColor(.white)
 
             case .progress(let start):
-                let progress = Int(Date.calcProgress(from: start, to: date) * 100)
-                HStack {
-                    Circle()
-                        .strokeBorder(Color.white, lineWidth: 3)
-                        .frame(width: 50, height: 50)
-                    Text("\(progress)%")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                }
+                CircularDayProgressView(start: start, end: date)
             }
         }
     }
