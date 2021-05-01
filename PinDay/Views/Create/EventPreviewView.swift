@@ -10,7 +10,7 @@ import SwiftUI
 struct EventPreviewView: View {
 
     @ObservedObject var event: Event
-    @State private var previewSize: EventViewSize = .fullscreen
+    @State private var previewSize: EventViewSize = .small
 
     var body: some View {
 
