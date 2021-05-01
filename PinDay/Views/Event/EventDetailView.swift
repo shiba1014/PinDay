@@ -15,7 +15,7 @@ struct EventDetailView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
-            CounterBackgroundView(style: event.backgroundStyle)
+            EventBackgroundView(style: event.backgroundStyle)
                 .ignoresSafeArea()
 
             VStack(alignment: .leading) {

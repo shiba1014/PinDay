@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		52199E71263D74B90077181D /* EventPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52199E70263D74B90077181D /* EventPreviewView.swift */; };
+		52199E75263D7C060077181D /* EventViewSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52199E74263D7C060077181D /* EventViewSize.swift */; };
+		52199E78263D7DF90077181D /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52199E77263D7DF90077181D /* View+Ext.swift */; };
 		5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219E97C2625618D0004FFC0 /* CreateView.swift */; };
-		5229A905263D342300E793F4 /* CounterBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A904263D342300E793F4 /* CounterBackgroundView.swift */; };
+		5229A905263D342300E793F4 /* EventBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A904263D342300E793F4 /* EventBackgroundView.swift */; };
 		5229A908263D34A000E793F4 /* CircularDayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A907263D34A000E793F4 /* CircularDayProgressView.swift */; };
 		5229A90C263D416D00E793F4 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A90B263D416D00E793F4 /* EventDetailView.swift */; };
 		525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F23263308B300D22B32 /* CreateBackgroundView.swift */; };
@@ -30,8 +32,10 @@
 
 /* Begin PBXFileReference section */
 		52199E70263D74B90077181D /* EventPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPreviewView.swift; sourceTree = "<group>"; };
+		52199E74263D7C060077181D /* EventViewSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewSize.swift; sourceTree = "<group>"; };
+		52199E77263D7DF90077181D /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		5219E97C2625618D0004FFC0 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
-		5229A904263D342300E793F4 /* CounterBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterBackgroundView.swift; sourceTree = "<group>"; };
+		5229A904263D342300E793F4 /* EventBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBackgroundView.swift; sourceTree = "<group>"; };
 		5229A907263D34A000E793F4 /* CircularDayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularDayProgressView.swift; sourceTree = "<group>"; };
 		5229A90B263D416D00E793F4 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		525B1F23263308B300D22B32 /* CreateBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBackgroundView.swift; sourceTree = "<group>"; };
@@ -78,7 +82,7 @@
 			children = (
 				B6E91B612622F6AC00D58C5B /* EventSummaryView.swift */,
 				5229A90B263D416D00E793F4 /* EventDetailView.swift */,
-				5229A904263D342300E793F4 /* CounterBackgroundView.swift */,
+				5229A904263D342300E793F4 /* EventBackgroundView.swift */,
 				5229A907263D34A000E793F4 /* CircularDayProgressView.swift */,
 			);
 			path = Event;
@@ -89,6 +93,7 @@
 			children = (
 				52F3760F263843050074990C /* Image+Ext.swift */,
 				527A9B4D262F1DA50062EB07 /* Date+Ext.swift */,
+				52199E77263D7DF90077181D /* View+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				52C680AE262F2A2F00BEF355 /* Event.swift */,
+				52199E74263D7C060077181D /* EventViewSize.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,14 +231,16 @@
 			files = (
 				5229A90C263D416D00E793F4 /* EventDetailView.swift in Sources */,
 				52F3760D263836C50074990C /* ImagePicker.swift in Sources */,
+				52199E75263D7C060077181D /* EventViewSize.swift in Sources */,
 				52C680AF262F2A2F00BEF355 /* Event.swift in Sources */,
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
-				5229A905263D342300E793F4 /* CounterBackgroundView.swift in Sources */,
+				5229A905263D342300E793F4 /* EventBackgroundView.swift in Sources */,
 				B6E91B622622F6AC00D58C5B /* EventSummaryView.swift in Sources */,
 				52199E71263D74B90077181D /* EventPreviewView.swift in Sources */,
 				B6E91270261C85E400D58C5B /* Persistence.swift in Sources */,
 				527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */,
 				527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */,
+				52199E78263D7DF90077181D /* View+Ext.swift in Sources */,
 				B6E91269261C85E200D58C5B /* EventListView.swift in Sources */,
 				5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */,
 				525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */,

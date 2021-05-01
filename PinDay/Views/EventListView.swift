@@ -27,7 +27,7 @@ struct EventListView: View {
                         Button(action: {
                             selectedEvent = events[i]
                         }) {
-                            EventSummaryView(event: events[i])
+                            EventSummaryView(event: events[i], size: .small)
                                 .aspectRatio(1, contentMode: .fill)
                         }
                     }

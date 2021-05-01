@@ -16,7 +16,7 @@ struct CreateBackgroundView: View {
     var body: some View {
         NavigationView {
             VStack {
-                EventSummaryView(event: event)
+                EventSummaryView(event: event, size: .small)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(.horizontal, 100)
 

@@ -45,13 +45,13 @@ struct SelectCountStyleListView: View {
         switch style {
         case .countDown:
             VStack {
-                EventSummaryView(event: .countDownMock)
+                EventSummaryView(event: .countDownMock, size: .small)
                     .aspectRatio(1, contentMode: .fill)
                 Text(style.description)
             }
         case .progress:
             VStack {
-                EventSummaryView(event: .progressMock)
+                EventSummaryView(event: .progressMock, size: .small)
                     .aspectRatio(1, contentMode: .fill)
                 Text(style.description)
             }

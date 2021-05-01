@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// https://gist.github.com/karigrooms/fdf435274f4403abd57b1ed533dcea53#file-swiftui-resize-image-and-maintain-aspect-ratio-swift
+// Ref: https://gist.github.com/karigrooms/fdf435274f4403abd57b1ed533dcea53#file-swiftui-resize-image-and-maintain-aspect-ratio-swift
 
 /// Fit an image to a certain aspect ratio while maintaining its aspect ratio
 public struct FitToAspectRatio: ViewModifier {

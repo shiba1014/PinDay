@@ -9,56 +9,35 @@ import SwiftUI
 
 struct EventPreviewView: View {
 
-    private enum PreviewSize: String, CaseIterable {
-        case small = "Small"
-        case medium = "Medium"
-        case fullscreen = "Full Screen"
-    }
-
     @ObservedObject var event: Event
-    @State private var previewSize: PreviewSize = .medium
+    @State private var previewSize: EventViewSize = .small
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Picker("Preview Size", selection: $previewSize) {
-                    ForEach(PreviewSize.allCases, id: \.self) { size in
-                        Text(size.rawValue)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
 
-                buildPreview()
-                    .padding(.top)
-
-                Spacer()
-            }
-            .padding()
-            .navigationBarTitle("Preview", displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button("Save") {
-
-                    }
+        VStack {
+            Picker("Preview Size", selection: $previewSize) {
+                ForEach(EventViewSize.allCases, id: \.self) { size in
+                    Text(size.description)
                 }
             }
+            .pickerStyle(SegmentedPickerStyle())
+
+            EventSummaryView(event: event, size: previewSize)
+                .if(previewSize == .small) {
+                    $0.padding(.horizontal, 100)
+                }
+                .padding(.top)
+
+            Spacer()
         }
-    }
+        .padding()
+        .navigationBarTitle("Preview", displayMode: .inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("Save") {
 
-    @ViewBuilder
-    private func buildPreview() -> some View {
-        switch previewSize {
-        case .small:
-            EventSummaryView(event: event)
-                .aspectRatio(1, contentMode: .fit)
-                .padding(.horizontal, 100)
-
-        case .medium:
-            EventSummaryView(event: event)
-                .aspectRatio(1.77, contentMode: .fit)
-
-        case .fullscreen:
-            EventSummaryView(event: event)
+                }
+            }
         }
     }
 }

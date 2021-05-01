@@ -1,5 +1,5 @@
 //
-//  CounterBackgroundView.swift
+//  EventBackgroundView.swift
 //  PinDay
 //
 //  Created by shiba on 2021/05/01.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CounterBackgroundView: View {
+struct EventBackgroundView: View {
     private static let radius: CGFloat = 24
     var style: Event.BackgroundStyle
 
@@ -19,7 +19,8 @@ struct CounterBackgroundView: View {
                     .fill(color)
             case .image(let image):
                 image
-                    .fitToAspectRatio(1)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
             }
         }
         .overlay(
@@ -38,8 +39,8 @@ struct CounterBackgroundView: View {
     }
 }
 
-struct CounterBackgroundView_Previews: PreviewProvider {
+struct EventBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        CounterBackgroundView(style: .color(.gray))
+        EventBackgroundView(style: .color(.gray))
     }
 }

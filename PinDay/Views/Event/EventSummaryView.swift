@@ -11,11 +11,12 @@ struct EventSummaryView: View {
     private static let radius: CGFloat = 24
 
     @ObservedObject var event: Event
+    let size: EventViewSize
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
-            CounterBackgroundView(style: event.backgroundStyle)
+            EventBackgroundView(style: event.backgroundStyle)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(event.title)
@@ -25,14 +26,16 @@ struct EventSummaryView: View {
                 event.makeCounterView()
             }
             .padding(.all, 20)
-
+        }
+        .if(size != .fullscreen) {
+            $0.aspectRatio(size.aspectRatio, contentMode: .fit)
         }
     }
 }
 
 struct EventSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        EventSummaryView(event: .countDownMock)
-            .frame(width: 200, height: 200, alignment: .center)
+        EventSummaryView(event: .countDownMock, size: .small)
+            .padding()
     }
 }

@@ -25,7 +25,7 @@ struct CreateView: View {
 
                 List {
                     VStack {
-                        CounterBackgroundView(style: newEvent.backgroundStyle)
+                        EventBackgroundView(style: newEvent.backgroundStyle)
                             .aspectRatio(contentMode: .fit)
                             .padding(.horizontal, 50)
                             .overlay(
