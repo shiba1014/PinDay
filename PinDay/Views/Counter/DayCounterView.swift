@@ -39,7 +39,7 @@ struct DayCounterView: View {
         switch event.pinnedDateType {
 
         case .past(let date):
-            Text("37 days ago")
+            Text("\(date.calcDayDiff()) days ago")
                 .font(.body)
                 .foregroundColor(.white)
 
@@ -47,16 +47,17 @@ struct DayCounterView: View {
             switch style {
 
             case .countDown:
-                Text("37 days left")
+                Text("\(date.calcDayDiff()) days left")
                     .font(.body)
                     .foregroundColor(.white)
 
-            case .progress(let from):
+            case .progress(let start):
+                let progress = Int(Date.calcProgress(from: start, to: date) * 100)
                 HStack {
                     Circle()
                         .strokeBorder(Color.white, lineWidth: 3)
                         .frame(width: 50, height: 50)
-                    Text("75%")
+                    Text("\(progress)%")
                         .font(.title2)
                         .foregroundColor(.white)
                 }

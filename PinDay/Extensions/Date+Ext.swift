@@ -16,8 +16,8 @@ public extension Date {
         Calendar.gregorian.startOfDay(for: self)
     }
 
-    func isFuture(than date: Date? = nil) -> Bool {
-        Calendar.gregorian.startOfDay(for: self) > Calendar.gregorian.startOfDay(for: date ?? Date())
+    func isFuture(than date: Date = .init()) -> Bool {
+        Calendar.gregorian.startOfDay(for: self) > Calendar.gregorian.startOfDay(for: date)
     }
 
     func fixed(year: Int? = nil, month: Int? = nil, day: Int? = nil) -> Date {
@@ -27,5 +27,15 @@ public extension Date {
         comp.month = month ?? calendar.component(.month, from: self)
         comp.day = day ?? calendar.component(.day, from: self)
         return calendar.date(from: comp)!
+    }
+
+    func calcDayDiff(from date: Date = .init()) -> Int {
+        return Calendar.gregorian.dateComponents([.day], from: date, to: self).day!
+    }
+
+    static func calcProgress(from: Date, to: Date) -> Double {
+        let whole = to.calcDayDiff(from: from)
+        let current = Date().calcDayDiff(from: from)
+        return Double(current) / Double(whole)
     }
 }
