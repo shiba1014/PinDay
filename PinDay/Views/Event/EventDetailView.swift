@@ -33,13 +33,23 @@ struct EventDetailView: View {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "xmark")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(12)
+                    .frame(width: 44, height: 44)
                     .foregroundColor(.white)
             }
+
             Spacer()
+
             Button(action: {
                 // TODO: action sheet (edit/delete)
             }) {
                 Image(systemName: "square.and.pencil")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(12)
+                    .frame(width: 44, height: 44)
                     .foregroundColor(.white)
             }
         }
