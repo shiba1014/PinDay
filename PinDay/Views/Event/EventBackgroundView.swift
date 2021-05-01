@@ -45,9 +45,13 @@ struct EventBackgroundView: View {
                     .resizable()
                     .fitToAspectRatio(size.aspectRatio)
             case .fullscreen:
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                Rectangle()
+                    .fill(Color.clear)
+                    .background(
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    )
             }
         }
     }
