@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EventDetailView: View {
+
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var event: Event
 
     var body: some View {
@@ -28,7 +30,7 @@ struct EventDetailView: View {
     private func buildToolBar() -> some View {
         HStack {
             Button(action: {
-                // TODO: close
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "xmark")
                     .foregroundColor(.white)

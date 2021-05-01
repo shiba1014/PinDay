@@ -10,17 +10,30 @@ import SwiftUI
 struct EventListView: View {
     
     @State private var showCreateView = false
+    @State private var selectedEvent: Event? = nil
 
-    let gridItems = [GridItem(), GridItem()]
+    private let gridItems = [GridItem(), GridItem()]
+    private let events: [Event] = (0...6).map { i in
+        if i%3 == 0 { return .pastMock }
+        else if i%3 == 1 { return .countDownMock }
+        else { return .progressMock }
+    }
 
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: gridItems) {
-                    ForEach(0...6, id: \.self) { _ in
-                        EventSummaryView(event: .countDownMock)
-                            .aspectRatio(1, contentMode: .fill)
+                    ForEach(events.indices) { i in
+                        Button(action: {
+                            selectedEvent = events[i]
+                        }) {
+                            EventSummaryView(event: events[i])
+                                .aspectRatio(1, contentMode: .fill)
+                        }
                     }
+                }
+                .fullScreenCover(item: $selectedEvent) { event in
+                    EventDetailView(event: event)
                 }
                 .padding()
                 .navigationBarTitleDisplayMode(.inline)
@@ -37,11 +50,11 @@ struct EventListView: View {
                         }) {
                             Image(systemName: "plus")
                         }
+                        .sheet(isPresented: $showCreateView) {
+                            CreateView()
+                        }
                     }
                 }
-            }
-            .sheet(isPresented: $showCreateView) {
-                CreateView()
             }
         }
     }

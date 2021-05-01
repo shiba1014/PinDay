@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Event: ObservableObject {
+class Event: ObservableObject, Identifiable {
 
     static let maxTitleCount: Int = 15
 
@@ -69,6 +69,7 @@ class Event: ObservableObject {
         case image(Image)
     }
 
+    var id: UUID = .init()
     @Published var title: String = ""
     @Published var pinnedDateType: PinnedDateType = .past(date: Date())
     var isValid: Bool {
