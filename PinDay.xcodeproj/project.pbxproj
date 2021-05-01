@@ -10,6 +10,7 @@
 		5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219E97C2625618D0004FFC0 /* CreateView.swift */; };
 		5229A905263D342300E793F4 /* CounterBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A904263D342300E793F4 /* CounterBackgroundView.swift */; };
 		5229A908263D34A000E793F4 /* CircularDayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A907263D34A000E793F4 /* CircularDayProgressView.swift */; };
+		5229A90C263D416D00E793F4 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A90B263D416D00E793F4 /* EventDetailView.swift */; };
 		525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F23263308B300D22B32 /* CreateBackgroundView.swift */; };
 		525B1F27263407F500D22B32 /* SelectColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F26263407F500D22B32 /* SelectColorView.swift */; };
 		527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */; };
@@ -30,6 +31,7 @@
 		5219E97C2625618D0004FFC0 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		5229A904263D342300E793F4 /* CounterBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterBackgroundView.swift; sourceTree = "<group>"; };
 		5229A907263D34A000E793F4 /* CircularDayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularDayProgressView.swift; sourceTree = "<group>"; };
+		5229A90B263D416D00E793F4 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		525B1F23263308B300D22B32 /* CreateBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBackgroundView.swift; sourceTree = "<group>"; };
 		525B1F26263407F500D22B32 /* SelectColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorView.swift; sourceTree = "<group>"; };
 		527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountStyleListView.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				525B1F292634107D00D22B32 /* Counter */,
 				527A9B50262F29920062EB07 /* Create */,
 				B6E91268261C85E200D58C5B /* CounterListView.swift */,
+				5229A90B263D416D00E793F4 /* EventDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5229A90C263D416D00E793F4 /* EventDetailView.swift in Sources */,
 				52F3760D263836C50074990C /* ImagePicker.swift in Sources */,
 				52C680AF262F2A2F00BEF355 /* NewEvent.swift in Sources */,
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,

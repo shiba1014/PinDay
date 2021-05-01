@@ -117,6 +117,31 @@ class NewEvent: ObservableObject {
         }
     }
 
+    @ViewBuilder
+    func makeCounterView() -> some View {
+
+        switch self.pinnedDateType {
+
+        case .past(let date):
+            Text("\(Date().calcDayDiff(from: date)) days ago")
+                .font(.body)
+                .foregroundColor(.white)
+
+        case .future(let date, let style):
+            switch style {
+
+            case .countDown:
+                Text("\(date.calcDayDiff()) days left")
+                    .font(.body)
+                    .foregroundColor(.white)
+
+            case .progress(let start):
+                CircularDayProgressView(start: start, end: date)
+            }
+        }
+    }
+
+    // MARK: Mock
     static let pastMock: NewEvent = {
         let event = NewEvent()
         event.title = "This Year"

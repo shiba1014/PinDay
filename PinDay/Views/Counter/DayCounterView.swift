@@ -22,34 +22,10 @@ struct DayCounterView: View {
                     .font(Font.title2.weight(.medium))
                     .foregroundColor(.white)
 
-                makeContent()
+                event.makeCounterView()
             }
             .padding(.all, 20)
 
-        }
-    }
-
-    @ViewBuilder
-    private func makeContent() -> some View {
-
-        switch event.pinnedDateType {
-
-        case .past(let date):
-            Text("\(Date().calcDayDiff(from: date)) days ago")
-                .font(.body)
-                .foregroundColor(.white)
-
-        case .future(let date, let style):
-            switch style {
-
-            case .countDown:
-                Text("\(date.calcDayDiff()) days left")
-                    .font(.body)
-                    .foregroundColor(.white)
-
-            case .progress(let start):
-                CircularDayProgressView(start: start, end: date)
-            }
         }
     }
 }
@@ -57,5 +33,6 @@ struct DayCounterView: View {
 struct DayCounterView_Previews: PreviewProvider {
     static var previews: some View {
         DayCounterView(event: .countDownMock)
+            .frame(width: 200, height: 200, alignment: .center)
     }
 }
