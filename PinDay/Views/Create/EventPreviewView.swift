@@ -15,7 +15,19 @@ struct EventPreviewView: View {
     var body: some View {
 
         VStack {
-            Picker("Preview Size", selection: $previewSize) {
+            Picker(
+                "Preview Size",
+                selection:
+                    .init(
+                        get: { previewSize },
+                        set: { size in
+                            withAnimation {
+                                previewSize = size
+                            }
+
+                        }
+                    )
+            ) {
                 ForEach(EventViewSize.allCases, id: \.self) { size in
                     Text(size.description)
                 }
