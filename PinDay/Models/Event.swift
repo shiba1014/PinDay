@@ -119,13 +119,13 @@ class Event: ObservableObject, Identifiable {
     }
 
     @ViewBuilder
-    func makeCounterView() -> some View {
+    func makeCounterView(size: EventViewSize) -> some View {
 
         switch self.pinnedDateType {
 
         case .past(let date):
             Text("\(Date().calcDayDiff(from: date)) days ago")
-                .font(.body)
+                .font(size.bodyFont)
                 .foregroundColor(.white)
 
         case .future(let date, let style):
@@ -133,11 +133,12 @@ class Event: ObservableObject, Identifiable {
 
             case .countDown:
                 Text("\(date.calcDayDiff()) days left")
-                    .font(.body)
+                    .font(size.bodyFont)
                     .foregroundColor(.white)
 
             case .progress(let start):
-                CircularDayProgressView(start: start, end: date)
+                CircularDayProgressView(start: start, end: date, size: size)
+                    .padding(.top, 4)
             }
         }
     }

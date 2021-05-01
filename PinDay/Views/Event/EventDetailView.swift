@@ -13,17 +13,12 @@ struct EventDetailView: View {
     @ObservedObject var event: Event
 
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
-
-            EventBackgroundView(style: event.backgroundStyle, size: .fullscreen)
+        ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
+            EventSummaryView(event: event, size: .fullscreen)
                 .ignoresSafeArea()
 
-            VStack(alignment: .leading) {
-                buildToolBar()
-                Spacer()
-                buildContent()
-            }
-            .padding(.all, 20)
+            buildToolBar()
+                .padding(8)
         }
     }
 
@@ -61,7 +56,7 @@ struct EventDetailView: View {
                 .font(Font.title2.weight(.medium))
                 .foregroundColor(.white)
 
-            event.makeCounterView()
+            event.makeCounterView(size: .fullscreen)
         }
     }
 }

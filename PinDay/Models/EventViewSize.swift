@@ -27,4 +27,18 @@ enum EventViewSize: CaseIterable {
         case .fullscreen: return 0.0
         }
     }
+
+    var titleFont: Font {
+        switch self {
+        case .small, .medium: return Font.title2.weight(.medium)
+        case .fullscreen: return Font.largeTitle.weight(.medium)
+        }
+    }
+
+    var bodyFont: Font {
+        switch self {
+        case .small, .medium: return .body
+        case .fullscreen: return .title
+        }
+    }
 }

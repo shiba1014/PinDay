@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+fileprivate extension EventViewSize {
+    var spacing: CGFloat {
+        switch self {
+        case .small, .medium: return 8
+        case .fullscreen: return 16
+        }
+    }
+
+    var padding: CGFloat {
+        switch self {
+        case .small, .medium: return 20
+        case .fullscreen: return 40
+        }
+    }
+}
+
 struct EventSummaryView: View {
     private static let radius: CGFloat = 24
 
@@ -18,14 +34,14 @@ struct EventSummaryView: View {
 
             EventBackgroundView(style: event.backgroundStyle, size: size)
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: size.spacing) {
                 Text(event.title)
-                    .font(Font.title2.weight(.medium))
+                    .font(size.titleFont)
                     .foregroundColor(.white)
 
-                event.makeCounterView()
+                event.makeCounterView(size: size)
             }
-            .padding(.all, 20)
+            .padding(size.padding)
         }
         .if(size != .fullscreen) {
             $0.aspectRatio(size.aspectRatio, contentMode: .fit)
