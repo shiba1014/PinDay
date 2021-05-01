@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52199E71263D74B90077181D /* EventPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52199E70263D74B90077181D /* EventPreviewView.swift */; };
 		5219E97D2625618D0004FFC0 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219E97C2625618D0004FFC0 /* CreateView.swift */; };
 		5229A905263D342300E793F4 /* CounterBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A904263D342300E793F4 /* CounterBackgroundView.swift */; };
 		5229A908263D34A000E793F4 /* CircularDayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229A907263D34A000E793F4 /* CircularDayProgressView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52199E70263D74B90077181D /* EventPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPreviewView.swift; sourceTree = "<group>"; };
 		5219E97C2625618D0004FFC0 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		5229A904263D342300E793F4 /* CounterBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterBackgroundView.swift; sourceTree = "<group>"; };
 		5229A907263D34A000E793F4 /* CircularDayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularDayProgressView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				525B1F23263308B300D22B32 /* CreateBackgroundView.swift */,
 				525B1F26263407F500D22B32 /* SelectColorView.swift */,
 				52F3760C263836C50074990C /* ImagePicker.swift */,
+				52199E70263D74B90077181D /* EventPreviewView.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
 				5229A905263D342300E793F4 /* CounterBackgroundView.swift in Sources */,
 				B6E91B622622F6AC00D58C5B /* EventSummaryView.swift in Sources */,
+				52199E71263D74B90077181D /* EventPreviewView.swift in Sources */,
 				B6E91270261C85E400D58C5B /* Persistence.swift in Sources */,
 				527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */,
 				527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */,
