@@ -40,11 +40,21 @@ struct SelectCountStyleListView: View {
         }
     }
 
+    @ViewBuilder
     private func optionBox(_ style: CountStyle) -> some View {
-        VStack {
-            DayCounterView.mock
-                .aspectRatio(1, contentMode: .fill)
-            Text(style.description)
+        switch style {
+        case .countDown:
+            VStack {
+                DayCounterView(event: .countDownMock)
+                    .aspectRatio(1, contentMode: .fill)
+                Text(style.description)
+            }
+        case .progress:
+            VStack {
+                DayCounterView(event: .progressMock)
+                    .aspectRatio(1, contentMode: .fill)
+                Text(style.description)
+            }
         }
     }
 }

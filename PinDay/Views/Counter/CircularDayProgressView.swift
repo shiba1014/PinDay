@@ -46,7 +46,7 @@ struct CircularDayProgressView: View {
             .frame(width: 40, height: 40)
 
             Text("\(Int(progress*100))%")
-                .font(.title2)
+                .font(.body)
                 .foregroundColor(.white)
 
         }

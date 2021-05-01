@@ -29,17 +29,13 @@ struct DayCounterView: View {
         }
     }
 
-    static let mock: DayCounterView = {
-        DayCounterView(event: .progressMock)
-    }()
-
     @ViewBuilder
     private func makeContent() -> some View {
 
         switch event.pinnedDateType {
 
         case .past(let date):
-            Text("\(date.calcDayDiff()) days ago")
+            Text("\(Date().calcDayDiff(from: date)) days ago")
                 .font(.body)
                 .foregroundColor(.white)
 
@@ -60,6 +56,6 @@ struct DayCounterView: View {
 
 struct DayCounterView_Previews: PreviewProvider {
     static var previews: some View {
-        DayCounterView.mock
+        DayCounterView(event: .countDownMock)
     }
 }
