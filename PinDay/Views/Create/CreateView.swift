@@ -16,7 +16,11 @@ struct CreateView: View {
     @State private var showCountStyleSheet = false
     @State private var showCreateBackgroundSheet = false
 
-    @ObservedObject private var newEvent: Event = .init()
+    @ObservedObject private var event: Event
+
+    init(editEvent: Event? = nil) {
+        self.event = editEvent ?? .init()
+    }
     
     var body: some View {
 
@@ -25,7 +29,7 @@ struct CreateView: View {
 
                 List {
                     VStack {
-                        EventBackgroundView(style: newEvent.backgroundStyle, size: .small)
+                        EventBackgroundView(style: event.backgroundStyle, size: .small)
                             .aspectRatio(contentMode: .fit)
                             .padding(.horizontal, 50)
                             .overlay(
@@ -41,19 +45,19 @@ struct CreateView: View {
                                         showCreateBackgroundSheet.toggle()
                                     }
                                     .sheet(isPresented: $showCreateBackgroundSheet) {
-                                        CreateBackgroundView(event: newEvent)
+                                        CreateBackgroundView(event: event)
                                     }
                             )
                             .padding(.bottom, 24)
 
                         TextField(
                             "Event Title",
-                            text: $newEvent.title
+                            text: $event.title
                         )
                         .multilineTextAlignment(.center)
                         .font(.title)
-                        Text("\(newEvent.title.count) / \(Event.maxTitleCount)")
-                            .foregroundColor(newEvent.title.count > Event.maxTitleCount ? .red : .secondary)
+                        Text("\(event.title.count) / \(Event.maxTitleCount)")
+                            .foregroundColor(event.title.count > Event.maxTitleCount ? .red : .secondary)
                     }
                     .padding()
                     
@@ -61,12 +65,12 @@ struct CreateView: View {
                         Image(systemName: "calendar")
                         DatePicker(
                             "Date",
-                            selection: .init(get: { newEvent.pinnedDateType.date }, set: { newEvent.update(pinnedDate: $0) }),
+                            selection: .init(get: { event.pinnedDateType.date }, set: { event.update(pinnedDate: $0) }),
                             displayedComponents: [.date]
                         )
                     }
 
-                    newEvent.pinnedDateType.style.map { style in
+                    event.pinnedDateType.style.map { style in
 
                         Button(action: { showCountStyleSheet.toggle() }) {
                             HStack {
@@ -83,20 +87,20 @@ struct CreateView: View {
                             SelectCountStyleListView(
                                 style: .init(
                                     get: { style },
-                                    set: { try? newEvent.update(futureCountStyle: $0) }
+                                    set: { try? event.update(futureCountStyle: $0) }
                                 )
                             )
                         }
                     }
 
-                    newEvent.pinnedDateType.startDate.map { startDate in
+                    event.pinnedDateType.startDate.map { startDate in
                         HStack {
                             Image(systemName: "calendar.badge.plus")
                             DatePicker(
                                 "Start Date",
                                 selection: .init(
                                     get: { startDate },
-                                    set: { try? newEvent.update(futureCountStyle: .progress(from: $0)) }
+                                    set: { try? event.update(futureCountStyle: .progress(from: $0)) }
                                 ),
                                 in: ...Date(),
                                 displayedComponents: [.date]
@@ -117,10 +121,10 @@ struct CreateView: View {
                 }
 
                 ToolbarItem(placement: .primaryAction) {
-                    NavigationLink(destination: EventPreviewView(event: newEvent)) {
+                    NavigationLink(destination: EventPreviewView(event: event)) {
                         Image(systemName: "chevron.forward")
                     }
-                    .disabled(!newEvent.isValid)
+                    .disabled(!event.isValid)
                 }
             }
         }

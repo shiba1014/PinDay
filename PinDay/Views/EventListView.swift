@@ -9,7 +9,19 @@ import SwiftUI
 
 struct EventListView: View {
     
-    @State private var showCreateView = false
+    enum CreateType: Identifiable {
+        case new
+        case edit(event: Event)
+
+        var id: Int {
+            switch self {
+            case .new: return 0
+            case .edit: return 1
+            }
+        }
+    }
+
+    @State private var createType: CreateType? = nil
     @State private var selectedEvent: Event? = nil
 
     private static let spacing: CGFloat = 16
@@ -31,10 +43,10 @@ struct EventListView: View {
                             EventSummaryView(event: events[i], size: .small)
                                 .aspectRatio(1, contentMode: .fill)
                         }
+                        .fullScreenCover(item: $selectedEvent) { event in
+                            EventDetailView(event: event, createType: $createType)
+                        }
                     }
-                }
-                .fullScreenCover(item: $selectedEvent) { event in
-                    EventDetailView(event: event)
                 }
                 .padding()
                 .navigationBarTitleDisplayMode(.inline)
@@ -47,12 +59,17 @@ struct EventListView: View {
                     
                     ToolbarItem(placement: .primaryAction) {
                         Button(action: {
-                            showCreateView.toggle()
+                            createType = .new
                         }) {
                             Image(systemName: "plus")
                         }
-                        .sheet(isPresented: $showCreateView) {
-                            CreateView()
+                        .sheet(item: $createType) { type in
+                            switch type {
+                            case .new:
+                                CreateView()
+                            case .edit(let event):
+                                CreateView(editEvent: event)
+                            }
                         }
                     }
                 }
