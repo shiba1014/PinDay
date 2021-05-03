@@ -15,28 +15,28 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
 
         for i in 0..<10 {
-            let newItem = EventData(context: viewContext)
-            newItem.id = UUID()
-            newItem.createdAt = Date()
+            let entity = EventEntity(context: viewContext)
+            entity.id = UUID()
+            entity.createdAt = Date()
 
             if i%3 == 0 {
                 let date = Date().fixed(month: 1, day: 1)
-                newItem.title = "\(date.year)"
-                newItem.pinnedDate = date
-                newItem.backgroundColor = Data.encode(.orange)
+                entity.title = "\(date.year)"
+                entity.pinnedDate = date
+                entity.backgroundColor = Data.encode(.orange)
             }
             else if i%3 == 1 {
                 let date = Date().fixed(month: 1, day: 1).added(year: 1)
-                newItem.title = "New Year"
-                newItem.pinnedDate = date
-                newItem.backgroundColor = Data.encode(.yellow)
+                entity.title = "New Year"
+                entity.pinnedDate = date
+                entity.backgroundColor = Data.encode(.yellow)
             }
             else {
                 let date = Date().fixed(month: 12, day: 31)
-                newItem.title = "\(date.year)"
-                newItem.pinnedDate = date
-                newItem.startDate = Date().fixed(month: 1, day: 1)
-                newItem.backgroundColor = Data.encode(.pink)
+                entity.title = "\(date.year)"
+                entity.pinnedDate = date
+                entity.startDate = Date().fixed(month: 1, day: 1)
+                entity.backgroundColor = Data.encode(.pink)
             }
         }
         do {

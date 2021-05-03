@@ -11,11 +11,11 @@ struct EventListView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        entity: EventData.entity(),
-        sortDescriptors: [.init(keyPath: \EventData.createdAt, ascending: true)],
+        entity: EventEntity.entity(),
+        sortDescriptors: [.init(keyPath: \EventEntity.createdAt, ascending: true)],
         animation: .default
     )
-    private var entities: FetchedResults<EventData>
+    private var entities: FetchedResults<EventEntity>
 
     @State private var eventCreateType: EventCreateType? = nil
     @State private var selectedEvent: Event? = nil

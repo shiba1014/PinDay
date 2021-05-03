@@ -28,7 +28,7 @@ class Event: ObservableObject, Identifiable {
         self.createdAt = Date()
     }
 
-    init(data: EventData) throws {
+    init(data: EventEntity) throws {
         guard let id = data.id,
               let title = data.title,
               let pinnedDate = data.pinnedDate,
