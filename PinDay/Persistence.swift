@@ -13,11 +13,28 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
+
+        for i in 0..<10 {
             let newItem = Item(context: viewContext)
             newItem.id = UUID()
-            newItem.title = "test"
             newItem.createdAt = Date()
+
+            if i%3 == 0 {
+                let date = Date().fixed(month: 1, day: 1)
+                newItem.title = "\(date.year)"
+                newItem.pinnedDate = date
+            }
+            else if i%3 == 1 {
+                let date = Date().fixed(month: 1, day: 1).added(year: 1)
+                newItem.title = "New Year"
+                newItem.pinnedDate = date
+            }
+            else {
+                let date = Date().fixed(month: 12, day: 31)
+                newItem.title = "\(date.year)"
+                newItem.pinnedDate = date
+                newItem.startDate = Date().fixed(month: 1, day: 1)
+            }
         }
         do {
             try viewContext.save()

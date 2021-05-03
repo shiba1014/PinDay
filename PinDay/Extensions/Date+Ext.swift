@@ -41,6 +41,10 @@ public extension Date {
         return calendar.date(from: comp)!
     }
 
+    var year: Int {
+        Calendar.gregorian.component(.year, from: self)
+    }
+
     func calcDayDiff(from date: Date = .init()) -> Int {
         return Calendar.gregorian.dateComponents([.day], from: date, to: self).day!
     }

@@ -34,7 +34,7 @@ class Event: ObservableObject, Identifiable {
               let pinnedDate = data.pinnedDate,
               let createdAt = data.createdAt
         else {
-            fatalError("Couldn't initialize data: \(data)")
+            fatalError("Invalid data: \(data)")
         }
 
         if let colorData = data.backgroundColor, let color = Color.decode(colorData) {
@@ -200,8 +200,9 @@ extension Event {
 extension Event {
     static let pastMock: Event = {
         let event = Event()
-        event.title = "This Year"
-        event.pinnedDateType = .past(date: Date().fixed(month: 1, day: 1))
+        let date = Date().fixed(month: 1, day: 1)
+        event.title = "\(date.year)"
+        event.pinnedDateType = .past(date: date)
         return event
     }()
 
@@ -214,7 +215,8 @@ extension Event {
 
     static let progressMock: Event = {
         let event = Event()
-        event.title = "This Year"
+        let date = Date().fixed(month: 12, day: 31)
+        event.title = "\(date.year)"
         event.pinnedDateType = .future(date: Date().fixed(month: 12, day: 31), style: .progress(from: Date().fixed(month: 1, day: 1)))
         return event
     }()
