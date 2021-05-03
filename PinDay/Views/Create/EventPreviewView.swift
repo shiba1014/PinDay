@@ -10,6 +10,7 @@ import SwiftUI
 struct EventPreviewView: View {
 
     @ObservedObject var event: Event
+    @Binding var eventCreateType: EventCreateType?
     @State private var previewSize: EventViewSize = .small
 
     var body: some View {
@@ -47,7 +48,8 @@ struct EventPreviewView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Save") {
-
+                    // TODO: Save
+                    eventCreateType = nil
                 }
             }
         }
@@ -56,6 +58,6 @@ struct EventPreviewView: View {
 
 struct EventPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        EventPreviewView(event: .countDownMock)
+        EventPreviewView(event: .countDownMock, eventCreateType: .constant(nil))
     }
 }

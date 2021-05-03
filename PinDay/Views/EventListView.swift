@@ -8,20 +8,8 @@
 import SwiftUI
 
 struct EventListView: View {
-    
-    enum CreateType: Identifiable {
-        case new
-        case edit(event: Event)
 
-        var id: Int {
-            switch self {
-            case .new: return 0
-            case .edit: return 1
-            }
-        }
-    }
-
-    @State private var createType: CreateType? = nil
+    @State private var eventCreateType: EventCreateType? = nil
     @State private var selectedEvent: Event? = nil
 
     private static let spacing: CGFloat = 16
@@ -44,7 +32,7 @@ struct EventListView: View {
                                 .aspectRatio(1, contentMode: .fill)
                         }
                         .fullScreenCover(item: $selectedEvent) { event in
-                            EventDetailView(event: event, createType: $createType)
+                            EventDetailView(event: event, eventCreateType: $eventCreateType)
                         }
                     }
                 }
@@ -59,16 +47,16 @@ struct EventListView: View {
                     
                     ToolbarItem(placement: .primaryAction) {
                         Button(action: {
-                            createType = .new
+                            eventCreateType = .new
                         }) {
                             Image(systemName: "plus")
                         }
-                        .sheet(item: $createType) { type in
+                        .sheet(item: $eventCreateType) { type in
                             switch type {
                             case .new:
-                                CreateView()
+                                CreateView(eventCreateType: $eventCreateType)
                             case .edit(let event):
-                                CreateView(editEvent: event)
+                                CreateView(editEvent: event, eventCreateType: $eventCreateType)
                             }
                         }
                     }

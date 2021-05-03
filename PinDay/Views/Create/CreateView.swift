@@ -12,6 +12,7 @@ struct CreateView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @ObservedObject private var event: Event
+    @Binding var eventCreateType: EventCreateType?
 
     @State private var showCountStyleSheet = false
     @State private var showCreateBackgroundSheet = false
@@ -19,8 +20,9 @@ struct CreateView: View {
 
     private let isEdit: Bool
 
-    init(editEvent: Event? = nil) {
+    init(editEvent: Event? = nil, eventCreateType: Binding<EventCreateType?>) {
         self.event = editEvent ?? .init()
+        self._eventCreateType = eventCreateType
         self.isEdit = (editEvent != nil)
     }
     
@@ -152,7 +154,7 @@ struct CreateView: View {
                 }
 
                 ToolbarItem(placement: .primaryAction) {
-                    NavigationLink(destination: EventPreviewView(event: event)) {
+                    NavigationLink(destination: EventPreviewView(event: event, eventCreateType: $eventCreateType)) {
                         Image(systemName: "chevron.forward")
                     }
                     .disabled(!event.isValid)
@@ -164,6 +166,6 @@ struct CreateView: View {
 
 struct CreateView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateView()
+        CreateView(eventCreateType: .constant(.new))
     }
 }

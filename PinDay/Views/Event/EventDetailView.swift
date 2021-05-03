@@ -11,7 +11,7 @@ struct EventDetailView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var event: Event
-    @Binding var createType: EventListView.CreateType?
+    @Binding var eventCreateType: EventCreateType?
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
@@ -39,7 +39,7 @@ struct EventDetailView: View {
             Spacer()
 
             Button(action: {
-                createType = .edit(event: event)
+                eventCreateType = .edit(event: event)
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "square.and.pencil")
@@ -65,6 +65,6 @@ struct EventDetailView: View {
 
 struct EventDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetailView(event: .countDownMock, createType: .constant(nil))
+        EventDetailView(event: .countDownMock, eventCreateType: .constant(nil))
     }
 }
