@@ -10,7 +10,7 @@ import SwiftUI
 // Ref: https://gist.github.com/karigrooms/fdf435274f4403abd57b1ed533dcea53#file-swiftui-resize-image-and-maintain-aspect-ratio-swift
 
 /// Fit an image to a certain aspect ratio while maintaining its aspect ratio
-public struct FitToAspectRatio: ViewModifier {
+struct FitToAspectRatio: ViewModifier {
 
     private let aspectRatio: CGFloat
 
@@ -33,8 +33,15 @@ public struct FitToAspectRatio: ViewModifier {
 }
 
 // Image extension that composes with the `.resizable()` modifier
-public extension Image {
+extension Image {
     func fitToAspectRatio(_ aspectRatio: CGFloat) -> some View {
         self.resizable().modifier(FitToAspectRatio(aspectRatio))
+    }
+
+    static func decode(_ data: Data) -> Image? {
+        if let uiImage = UIImage(data: data) {
+            return Image(uiImage: uiImage)
+        }
+        return nil
     }
 }
