@@ -10,16 +10,18 @@ import SwiftUI
 struct CreateView: View {
 
     @Environment(\.presentationMode) var presentationMode
-    @State private var eventTitle: String = ""
-    @State private var startDate: Date = .init()
-
-    @State private var showCountStyleSheet = false
-    @State private var showCreateBackgroundSheet = false
 
     @ObservedObject private var event: Event
 
+    @State private var showCountStyleSheet = false
+    @State private var showCreateBackgroundSheet = false
+    @State private var showDeleteAlert = false
+
+    private let isEdit: Bool
+
     init(editEvent: Event? = nil) {
         self.event = editEvent ?? .init()
+        self.isEdit = (editEvent != nil)
     }
     
     var body: some View {
@@ -33,20 +35,20 @@ struct CreateView: View {
                             .aspectRatio(contentMode: .fit)
                             .padding(.horizontal, 50)
                             .overlay(
-                                    ZStack {
-                                        Circle()
-                                            .frame(width: 70)
-                                            .foregroundColor(.init(white: 0.9))
-                                            .shadow(radius: 4)
-                                        Image(systemName: "camera.fill")
-                                            .foregroundColor(.black)
-                                    }
-                                    .onTapGesture {
-                                        showCreateBackgroundSheet.toggle()
-                                    }
-                                    .sheet(isPresented: $showCreateBackgroundSheet) {
-                                        CreateBackgroundView(event: event)
-                                    }
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 70)
+                                        .foregroundColor(.init(white: 0.9))
+                                        .shadow(radius: 4)
+                                    Image(systemName: "camera.fill")
+                                        .foregroundColor(.black)
+                                }
+                                .onTapGesture {
+                                    showCreateBackgroundSheet = true
+                                }
+                                .sheet(isPresented: $showCreateBackgroundSheet) {
+                                    CreateBackgroundView(event: event)
+                                }
                             )
                             .padding(.bottom, 24)
 
@@ -72,7 +74,10 @@ struct CreateView: View {
 
                     event.pinnedDateType.style.map { style in
 
-                        Button(action: { showCountStyleSheet.toggle() }) {
+                        Button(action: {
+                            showCountStyleSheet = true
+
+                        }) {
                             HStack {
                                 Image(systemName: "hourglass")
                                     .padding(.horizontal, 3)
@@ -104,6 +109,32 @@ struct CreateView: View {
                                 ),
                                 in: ...Date(),
                                 displayedComponents: [.date]
+                            )
+                        }
+                    }
+
+                    if isEdit {
+                        Spacer()
+                        Button(action: {
+                            showDeleteAlert = true
+                        }) {
+                            HStack {
+                                Spacer()
+                                Image(systemName: "trash")
+                                Text("Delete This Event")
+                                Spacer()
+                            }
+                            .foregroundColor(.red)
+                        }
+                        .alert(isPresented: $showDeleteAlert) {
+                            Alert(
+                                title: Text("Delete Event"),
+                                message: Text("Are you sure you want to delete this event?"),
+                                primaryButton: .cancel(),
+                                secondaryButton: .destructive(Text("Delete")) {
+                                    // DOTO: Delete
+                                    presentationMode.wrappedValue.dismiss()
+                                }
                             )
                         }
                     }
