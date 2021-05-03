@@ -134,7 +134,7 @@ struct EventCreateView: View {
                                 message: Text("Are you sure you want to delete this event?"),
                                 primaryButton: .cancel(),
                                 secondaryButton: .destructive(Text("Delete")) {
-                                    // DOTO: Delete
+                                    PersistenceController.shared.delete(event)
                                     presentationMode.wrappedValue.dismiss()
                                 }
                             )

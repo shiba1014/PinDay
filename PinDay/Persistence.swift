@@ -155,4 +155,19 @@ struct PersistenceController {
             print("Failed to fetch: \(event)")
         }
     }
+
+    func delete(_ event: Event) {
+
+        let context = container.viewContext
+        let request: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
+        request.fetchLimit = 1
+
+        do {
+            let entities = try context.fetch(request)
+            let entity = entities[0]
+            context.delete(entity)
+        } catch {
+            print("Failed to fetch: \(event)")
+        }
+    }
 }
