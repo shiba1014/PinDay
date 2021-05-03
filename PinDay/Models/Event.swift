@@ -20,53 +20,38 @@ class Event: ObservableObject, Identifiable {
         !title.isEmpty && title.count <= Self.maxTitleCount
     }
 
-            var description: String {
-                switch self {
-                case .countDown: return "Count Down"
-                case .progress: return "Progress"
-                }
-            }
-
-            static let allCases: [Self] = [.countDown, .progress(from: Date().beginning())]
-        }
-
-        case past(date: Date)
-        case future(date: Date, style: FutureCountStyle)
-
-        var date: Date {
-            switch self {
-            case .past(let date):
-                return date
-            case .future(let date, _):
-                return date
-            }
-        }
-
-        var startDate: Date? {
-            switch self {
-            case .past:
-                return nil
-            case .future(_, let style):
-                if case .progress(let from) = style {
-                    return from
-                }
-                return nil
-            }
-        }
-
-        var style: FutureCountStyle? {
-            switch self {
-            case .past:
-                return nil
-            case .future(_, let style):
-                return style
-            }
-        }
+    init() {
+        self.id = .init()
+        self.title = ""
+        self.pinnedDateType = .past(date: Date())
+        self.backgroundStyle = .color(.gray)
+        self.createdAt = Date()
     }
 
-    enum BackgroundStyle {
-        case color(Color)
-        case image(Image)
+    init(data: Item) throws {
+        guard let id = data.id,
+              let title = data.title,
+              let pinnedDate = data.pinnedDate,
+              let createdAt = data.createdAt
+        else {
+            fatalError("Couldn't initialize data: \(data)")
+        }
+
+        if let colorData = data.backgroundColor, let color = Color.decode(colorData) {
+            self.backgroundStyle = .color(color)
+        }
+        else if let imageData = data.backgroundImage, let image = Image.decode(imageData) {
+            self.backgroundStyle = .image(image)
+        }
+        else {
+            fatalError("Either color or image must heve valid value: \(data)")
+        }
+
+        self.id = id
+        self.title = title
+        self.pinnedDateType = .create(pinnedDate: pinnedDate, startDate: data.startDate)
+        self.backgroundStyle = .color(.gray)
+        self.createdAt = createdAt
     }
 
     func update(pinnedDate: Date) {
