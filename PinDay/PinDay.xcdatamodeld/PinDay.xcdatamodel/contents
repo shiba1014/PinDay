@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+    <entity name="EventData" representedClassName="EventData" syncable="YES" codeGenerationType="class">
         <attribute name="backgroundColor" optional="YES" attributeType="Binary"/>
         <attribute name="backgroundImage" optional="YES" attributeType="Binary"/>
         <attribute name="countStyle" optional="YES" attributeType="String"/>
@@ -11,6 +11,6 @@
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="EventData" positionX="-63" positionY="-18" width="128" height="149"/>
     </elements>
 </model>

@@ -15,7 +15,7 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
 
         for i in 0..<10 {
-            let newItem = Item(context: viewContext)
+            let newItem = EventData(context: viewContext)
             newItem.id = UUID()
             newItem.createdAt = Date()
 
