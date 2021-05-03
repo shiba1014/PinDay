@@ -1,5 +1,5 @@
 //
-//  CreateView.swift
+//  EventCreateView.swift
 //  PinDay
 //
 //  Created by shiba on 2021/04/13.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateView: View {
+struct EventCreateView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
@@ -164,8 +164,8 @@ struct CreateView: View {
     }
 }
 
-struct CreateView_Previews: PreviewProvider {
+struct EventCreateView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateView(eventCreateType: .constant(.new))
+        EventCreateView(eventCreateType: .constant(.new))
     }
 }

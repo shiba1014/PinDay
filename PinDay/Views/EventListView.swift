@@ -54,9 +54,9 @@ struct EventListView: View {
                         .sheet(item: $eventCreateType) { type in
                             switch type {
                             case .new:
-                                CreateView(eventCreateType: $eventCreateType)
+                                EventCreateView(eventCreateType: $eventCreateType)
                             case .edit(let event):
-                                CreateView(editEvent: event, eventCreateType: $eventCreateType)
+                                EventCreateView(editEvent: event, eventCreateType: $eventCreateType)
                             }
                         }
                     }
