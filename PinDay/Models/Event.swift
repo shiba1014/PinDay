@@ -50,7 +50,6 @@ class Event: ObservableObject, Identifiable {
         self.id = id
         self.title = title
         self.pinnedDateType = .create(pinnedDate: pinnedDate, startDate: data.startDate)
-        self.backgroundStyle = .color(.gray)
         self.createdAt = createdAt
     }
 

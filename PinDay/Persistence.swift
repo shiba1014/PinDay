@@ -23,13 +23,13 @@ struct PersistenceController {
                 let date = Date().fixed(month: 1, day: 1)
                 newItem.title = "\(date.year)"
                 newItem.pinnedDate = date
-                newItem.backgroundColor = Data.encode(.red)
+                newItem.backgroundColor = Data.encode(.orange)
             }
             else if i%3 == 1 {
                 let date = Date().fixed(month: 1, day: 1).added(year: 1)
                 newItem.title = "New Year"
                 newItem.pinnedDate = date
-                newItem.backgroundColor = Data.encode(.blue)
+                newItem.backgroundColor = Data.encode(.yellow)
             }
             else {
                 let date = Date().fixed(month: 12, day: 31)

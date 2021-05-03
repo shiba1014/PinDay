@@ -9,26 +9,29 @@ import SwiftUI
 
 struct EventListView: View {
 
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        entity: EventData.entity(),
+        sortDescriptors: [.init(keyPath: \EventData.createdAt, ascending: true)],
+        animation: .default
+    )
+    private var entities: FetchedResults<EventData>
+
     @State private var eventCreateType: EventCreateType? = nil
     @State private var selectedEvent: Event? = nil
 
     private static let spacing: CGFloat = 16
     private let gridItems = [GridItem(spacing: Self.spacing), GridItem(spacing: Self.spacing)]
-    private let events: [Event] = (0...6).map { i in
-        if i%3 == 0 { return .pastMock }
-        else if i%3 == 1 { return .countDownMock }
-        else { return .progressMock }
-    }
 
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: gridItems, spacing: Self.spacing) {
-                    ForEach(events.indices) { i in
+                    ForEach(entities.compactMap { try? Event(data: $0) }, id: \Event.id) { event in
                         Button(action: {
-                            selectedEvent = events[i]
+                            selectedEvent = event
                         }) {
-                            EventSummaryView(event: events[i], size: .small)
+                            EventSummaryView(event: event, size: .small)
                                 .aspectRatio(1, contentMode: .fill)
                         }
                         .fullScreenCover(item: $selectedEvent) { event in
@@ -69,5 +72,6 @@ struct EventListView: View {
 struct EventListView_Previews: PreviewProvider {
     static var previews: some View {
         EventListView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
