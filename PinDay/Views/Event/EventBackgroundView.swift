@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EventBackgroundView: View {
+
     private static let radius: CGFloat = 24
     let style: Event.BackgroundStyle
     let size: EventViewSize
@@ -27,7 +28,7 @@ struct EventBackgroundView: View {
                     endPoint: .bottom
                 )
             )
-            .clipShape(RoundedRectangle(cornerRadius: Self.radius))
+            .clipShape(RoundedRectangle(cornerRadius: Self.radius, style: .continuous))
     }
 
     @ViewBuilder
@@ -44,6 +45,7 @@ struct EventBackgroundView: View {
                 image
                     .resizable()
                     .fitToAspectRatio(size.aspectRatio)
+
             case .fullscreen:
                 Rectangle()
                     .fill(Color.clear)
