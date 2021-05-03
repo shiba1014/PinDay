@@ -37,10 +37,10 @@ class Event: ObservableObject, Identifiable {
             fatalError("Invalid data: \(data)")
         }
 
-        if let colorData = data.backgroundColor, let color = Color.decode(colorData) {
+        if let colorData = data.backgroundColor, let color = UIColor.decode(colorData) {
             self.backgroundStyle = .color(color)
         }
-        else if let imageData = data.backgroundImage, let image = Image.decode(imageData) {
+        else if let imageData = data.backgroundImage, let image = UIImage.decode(imageData) {
             self.backgroundStyle = .image(image)
         }
         else {
@@ -185,8 +185,8 @@ extension Event {
     }
 
     enum BackgroundStyle {
-        case color(Color)
-        case image(Image)
+        case color(UIColor)
+        case image(UIImage)
     }
 
     enum CountStyleError: String, Error {

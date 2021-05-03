@@ -24,13 +24,13 @@ struct CreateBackgroundView: View {
                     selectedColor: .init(
                         get: {
                             if case .color(let color) = event.backgroundStyle {
-                                return color
+                                return Color(color)
                             }
                             return nil
                         },
                         set: { color in
                             guard let color = color else { return }
-                            event.backgroundStyle = .color(color)
+                            event.backgroundStyle = .color(UIColor(color))
                         }
                     )
                 )
@@ -56,7 +56,7 @@ struct CreateBackgroundView: View {
                         selectedImage: .init(
                             get: { .init() },
                             set: { image in
-                                event.backgroundStyle = .image(Image(uiImage: image))
+                                event.backgroundStyle = .image(image)
                             }
                         )
                     )

@@ -37,12 +37,12 @@ struct EventBackgroundView: View {
 
         case .color(let color):
             Rectangle()
-                .fill(color)
+                .fill(Color(color))
 
         case .image(let image):
             switch size {
             case .small, .medium:
-                image
+                Image(uiImage: image)
                     .resizable()
                     .fitToAspectRatio(size.aspectRatio)
 
@@ -50,7 +50,7 @@ struct EventBackgroundView: View {
                 Rectangle()
                     .fill(Color.clear)
                     .background(
-                        image
+                        Image(uiImage: image)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                     )

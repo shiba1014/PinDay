@@ -23,20 +23,20 @@ struct PersistenceController {
                 let date = Date().fixed(month: 1, day: 1)
                 entity.title = "\(date.year)"
                 entity.pinnedDate = date
-                entity.backgroundColor = Data.encode(.orange)
+                entity.backgroundColor = Data.encode(color: .systemOrange)
             }
             else if i%3 == 1 {
                 let date = Date().fixed(month: 1, day: 1).added(year: 1)
                 entity.title = "New Year"
                 entity.pinnedDate = date
-                entity.backgroundColor = Data.encode(.yellow)
+                entity.backgroundColor = Data.encode(color: .systemYellow)
             }
             else {
                 let date = Date().fixed(month: 12, day: 31)
                 entity.title = "\(date.year)"
                 entity.pinnedDate = date
                 entity.startDate = Date().fixed(month: 1, day: 1)
-                entity.backgroundColor = Data.encode(.pink)
+                entity.backgroundColor = Data.encode(color: .systemPink)
             }
         }
         do {

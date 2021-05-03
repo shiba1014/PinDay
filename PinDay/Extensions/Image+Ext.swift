@@ -37,11 +37,4 @@ extension Image {
     func fitToAspectRatio(_ aspectRatio: CGFloat) -> some View {
         self.resizable().modifier(FitToAspectRatio(aspectRatio))
     }
-
-    static func decode(_ data: Data) -> Image? {
-        if let uiImage = UIImage(data: data) {
-            return Image(uiImage: uiImage)
-        }
-        return nil
-    }
 }
