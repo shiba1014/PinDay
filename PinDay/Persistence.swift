@@ -116,4 +116,43 @@ struct PersistenceController {
 
         save()
     }
+
+    func update(_ event: Event) {
+
+        let context = container.viewContext
+        let request: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
+        request.fetchLimit = 1
+
+        do {
+            let entities = try context.fetch(request)
+            let entity = entities[0]
+
+            entity.title = event.title
+            entity.createdAt = event.createdAt
+
+            switch event.pinnedDateType {
+
+            case .past(let date):
+                entity.pinnedDate = date
+
+            case .future(let date, let style):
+                entity.pinnedDate = date
+                if case .progress(let from) = style {
+                    entity.startDate = from
+                }
+            }
+
+            switch event.backgroundStyle {
+            case .color(let color):
+                entity.backgroundColor = Data.encode(color: color)
+            case .image(let image):
+                entity.backgroundImage = Data.encode(image: image)
+            }
+
+            save()
+
+        } catch {
+            print("Failed to fetch: \(event)")
+        }
+    }
 }

@@ -53,7 +53,7 @@ struct EventPreviewView: View {
                     case .new:
                         PersistenceController.shared.save(event)
                     case .edit:
-                        break
+                        PersistenceController.shared.update(event)
                     case .none:
                         break
                     }
