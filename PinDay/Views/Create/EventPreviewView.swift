@@ -48,7 +48,16 @@ struct EventPreviewView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Save") {
-                    // TODO: Save
+
+                    switch eventCreateType {
+                    case .new:
+                        PersistenceController.shared.save(event)
+                    case .edit:
+                        break
+                    case .none:
+                        break
+                    }
+
                     eventCreateType = nil
                 }
             }

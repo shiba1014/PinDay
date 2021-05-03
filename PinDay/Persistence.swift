@@ -74,4 +74,46 @@ struct PersistenceController {
             }
         })
     }
+    
+    func save() {
+        let context = container.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                print("Failed to save: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func save(_ event: Event) {
+
+        let context = container.viewContext
+
+        let entity = EventEntity(context: context)
+        entity.id = event.id
+        entity.title = event.title
+        entity.createdAt = event.createdAt
+
+        switch event.pinnedDateType {
+
+        case .past(let date):
+            entity.pinnedDate = date
+
+        case .future(let date, let style):
+            entity.pinnedDate = date
+            if case .progress(let from) = style {
+                entity.startDate = from
+            }
+        }
+
+        switch event.backgroundStyle {
+        case .color(let color):
+            entity.backgroundColor = Data.encode(color: color)
+        case .image(let image):
+            entity.backgroundImage = Data.encode(image: image)
+        }
+
+        save()
+    }
 }
