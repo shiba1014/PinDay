@@ -19,6 +19,7 @@
 		525B1F27263407F500D22B32 /* SelectColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F26263407F500D22B32 /* SelectColorView.swift */; };
 		527A9B4A262B45AB0062EB07 /* SelectCountStyleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */; };
 		527A9B4E262F1DA50062EB07 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B4D262F1DA50062EB07 /* Date+Ext.swift */; };
+		528BE03026414977006449CA /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE02F26414977006449CA /* UIColor+Ext.swift */; };
 		52B3F8CA263FEF20001DC736 /* CoreData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B3F8C9263FEF20001DC736 /* CoreData+Ext.swift */; };
 		52C680AF262F2A2F00BEF355 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C680AE262F2A2F00BEF355 /* Event.swift */; };
 		52F3760D263836C50074990C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3760C263836C50074990C /* ImagePicker.swift */; };
@@ -45,6 +46,7 @@
 		525B1F26263407F500D22B32 /* SelectColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorView.swift; sourceTree = "<group>"; };
 		527A9B49262B45AB0062EB07 /* SelectCountStyleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountStyleListView.swift; sourceTree = "<group>"; };
 		527A9B4D262F1DA50062EB07 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		528BE02F26414977006449CA /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		52B3F8C9263FEF20001DC736 /* CoreData+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Ext.swift"; sourceTree = "<group>"; };
 		52C680AE262F2A2F00BEF355 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		52F3760C263836C50074990C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				527A9B4D262F1DA50062EB07 /* Date+Ext.swift */,
 				52199E77263D7DF90077181D /* View+Ext.swift */,
 				52B3F8C9263FEF20001DC736 /* CoreData+Ext.swift */,
+				528BE02F26414977006449CA /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				52199E78263D7DF90077181D /* View+Ext.swift in Sources */,
 				B6E91269261C85E200D58C5B /* EventListView.swift in Sources */,
 				5219E97D2625618D0004FFC0 /* EventCreateView.swift in Sources */,
+				528BE03026414977006449CA /* UIColor+Ext.swift in Sources */,
 				525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */,
 				52F37610263843050074990C /* Image+Ext.swift in Sources */,
 				5229B30B263FA31A00AAD93E /* EventCreateType.swift in Sources */,

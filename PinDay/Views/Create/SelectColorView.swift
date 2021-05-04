@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct SelectColorView: View {
-    private let colors: [Color] = [.red, .orange, .yellow, .green, .blue, .purple, .pink, .gray, .black]
-    @Binding var selectedColor: Color?
+    @Binding var selectedColor: UIColor?
 
     var body: some View {
         LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem(), GridItem(), GridItem()], spacing: 8) {
-            ForEach(colors, id: \.self) { color in
+            ForEach(UIColor.scheme, id: \.self) { color in
                 Circle()
-                    .foregroundColor(color)
+                    .foregroundColor(Color(color))
                     .aspectRatio(contentMode: .fit)
                     .padding(5)
                     .overlay(

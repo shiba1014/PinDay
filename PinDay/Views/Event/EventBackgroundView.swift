@@ -20,8 +20,8 @@ struct EventBackgroundView: View {
                 LinearGradient(
                     gradient: Gradient(
                         stops: [
-                            .init(color: .clear, location: 0.2),
-                            .init(color: Color.black.opacity(0.5), location: 1.0)
+                            .init(color: .clear, location: 0.0),
+                            .init(color: Color(UIColor.black).opacity(0.3), location: 1.0)
                         ]
                     ),
                     startPoint: .top,
