@@ -62,7 +62,12 @@ struct EventListView: View {
                 }
             }
             .sheet(item: $eventCreateType) { type in
-                EventCreateView(eventCreateType: $eventCreateType)
+                switch type {
+                case .new:
+                    EventCreateView(eventCreateType: $eventCreateType)
+                case .edit(let event):
+                    EventCreateView(editEvent: event, eventCreateType: $eventCreateType)
+                }
             }
         }
     }

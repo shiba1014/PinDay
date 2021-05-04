@@ -20,11 +20,13 @@ struct EventCreateView: View {
 
     private let isEdit: Bool
 
-    init(eventCreateType: Binding<EventCreateType?>) {
+    // Receive editEvent because eventCreateType is not correct value at first time.
+    init(editEvent: Event? = nil, eventCreateType: Binding<EventCreateType?>) {
 
         self._eventCreateType = eventCreateType
-        if case .edit(let event) = eventCreateType.wrappedValue {
-            self.event = Event.copy(event)
+
+        if let editEvent = editEvent {
+            self.event = Event.copy(editEvent)
             self.isEdit = true
         } else {
             self.event = .init()
