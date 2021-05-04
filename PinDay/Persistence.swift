@@ -119,6 +119,7 @@ struct PersistenceController {
 
         let context = container.viewContext
         let request: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", event.id as CVarArg)
         request.fetchLimit = 1
 
         do {
@@ -157,6 +158,7 @@ struct PersistenceController {
 
         let context = container.viewContext
         let request: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", event.id as CVarArg)
         request.fetchLimit = 1
 
         do {
