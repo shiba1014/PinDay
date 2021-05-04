@@ -113,6 +113,8 @@ struct PersistenceController {
         case .image(let image):
             entity.backgroundImage = Data.encode(image: image)
         }
+
+        save()
     }
 
     func update(_ event: Event) {
@@ -148,10 +150,11 @@ struct PersistenceController {
                 entity.backgroundImage = Data.encode(image: image)
             }
 
-
         } catch {
             print("Failed to fetch: \(event)")
         }
+
+        save()
     }
 
     func delete(_ event: Event) {
@@ -168,5 +171,7 @@ struct PersistenceController {
         } catch {
             print("Failed to fetch: \(event)")
         }
+
+        save()
     }
 }
