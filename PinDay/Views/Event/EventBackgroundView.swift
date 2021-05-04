@@ -16,23 +16,22 @@ struct EventBackgroundView: View {
     var body: some View {
 
         buildBackgroundView()
-            .overlay(
-                LinearGradient(
-                    gradient: Gradient(
-                        stops: [
-                            .init(color: .clear, location: 0.0),
-                            .init(color: Color(UIColor.black).opacity(0.3), location: 1.0)
-                        ]
-                    ),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            )
             .clipShape(RoundedRectangle(cornerRadius: Self.radius, style: .continuous))
     }
 
     @ViewBuilder
     private func buildBackgroundView() -> some View {
+        let gradientNode = LinearGradient(
+            gradient: Gradient(
+                stops: [
+                    .init(color: .clear, location: 0.0),
+                    .init(color: Color.black.opacity(0.5), location: 1.0)
+                ]
+            ),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+
         switch style {
 
         case .color(let color):
@@ -45,6 +44,7 @@ struct EventBackgroundView: View {
                 Image(uiImage: image)
                     .resizable()
                     .fitToAspectRatio(size.aspectRatio)
+                    .overlay(gradientNode)
 
             case .fullscreen:
                 Rectangle()
@@ -54,6 +54,7 @@ struct EventBackgroundView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                     )
+                    .overlay(gradientNode)
             }
         }
     }
