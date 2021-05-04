@@ -86,7 +86,7 @@ struct PersistenceController {
         }
     }
 
-    func save(_ event: Event) {
+    func create(_ event: Event) {
 
         let context = container.viewContext
 
@@ -113,8 +113,6 @@ struct PersistenceController {
         case .image(let image):
             entity.backgroundImage = Data.encode(image: image)
         }
-
-        save()
     }
 
     func update(_ event: Event) {
@@ -149,7 +147,6 @@ struct PersistenceController {
                 entity.backgroundImage = Data.encode(image: image)
             }
 
-            save()
 
         } catch {
             print("Failed to fetch: \(event)")

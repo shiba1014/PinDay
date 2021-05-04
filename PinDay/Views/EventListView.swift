@@ -23,6 +23,7 @@ struct EventListView: View {
     private static let spacing: CGFloat = 16
     private let gridItems = [GridItem(spacing: Self.spacing), GridItem(spacing: Self.spacing)]
 
+    // Ref: https://www.hackingwithswift.com/forums/swiftui/using-sheet-and-fullscreencover-together/4258
     var body: some View {
         ZStack {
             EmptyView()

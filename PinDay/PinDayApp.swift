@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct PinDayApp: App {
+
+    // Ref: https://www.hackingwithswift.com/quick-start/swiftui/how-to-configure-core-data-to-work-with-swiftui
+    @Environment(\.scenePhase) var scenePhase
     
     init() {
         let appearance = UINavigationBarAppearance()
@@ -29,6 +32,9 @@ struct PinDayApp: App {
         WindowGroup {
             EventListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        }
+        .onChange(of: scenePhase) { _ in
+            persistenceController.save()
         }
         
     }

@@ -51,7 +51,7 @@ struct EventPreviewView: View {
 
                     switch eventCreateType {
                     case .new:
-                        PersistenceController.shared.save(event)
+                        PersistenceController.shared.create(event)
                     case .edit:
                         PersistenceController.shared.update(event)
                     case .none:
