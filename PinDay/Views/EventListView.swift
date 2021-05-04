@@ -24,46 +24,45 @@ struct EventListView: View {
     private let gridItems = [GridItem(spacing: Self.spacing), GridItem(spacing: Self.spacing)]
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVGrid(columns: gridItems, spacing: Self.spacing) {
-                    ForEach(entities.compactMap { try? Event(data: $0) }, id: \Event.id) { event in
-                        Button(action: {
-                            selectedEvent = event
-                        }) {
-                            EventSummaryView(event: event, size: .small)
-                                .aspectRatio(1, contentMode: .fill)
-                        }
-                        .fullScreenCover(item: $selectedEvent) { event in
-                            EventDetailView(event: event, eventCreateType: $eventCreateType)
-                        }
-                    }
+        ZStack {
+            EmptyView()
+                .fullScreenCover(item: $selectedEvent) { event in
+                    EventDetailView(event: event, eventCreateType: $eventCreateType)
                 }
-                .padding()
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigation) {
-                        Button(action: {}) {
-                            Image(systemName: "slider.horizontal.3")
+
+            NavigationView {
+                ScrollView {
+                    LazyVGrid(columns: gridItems, spacing: Self.spacing) {
+                        ForEach(entities.compactMap { try? Event(data: $0) }, id: \Event.id) { event in
+                            Button(action: {
+                                selectedEvent = event
+                            }) {
+                                EventSummaryView(event: event, size: .small)
+                                    .aspectRatio(1, contentMode: .fill)
+                            }
                         }
                     }
-                    
-                    ToolbarItem(placement: .primaryAction) {
-                        Button(action: {
-                            eventCreateType = .new
-                        }) {
-                            Image(systemName: "plus")
+                    .padding()
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            Button(action: {}) {
+                                Image(systemName: "slider.horizontal.3")
+                            }
                         }
-                        .sheet(item: $eventCreateType) { type in
-                            switch type {
-                            case .new:
-                                EventCreateView(eventCreateType: $eventCreateType)
-                            case .edit(let event):
-                                EventCreateView(editEvent: event, eventCreateType: $eventCreateType)
+
+                        ToolbarItem(placement: .primaryAction) {
+                            Button(action: {
+                                eventCreateType = .new
+                            }) {
+                                Image(systemName: "plus")
                             }
                         }
                     }
                 }
+            }
+            .sheet(item: $eventCreateType) { type in
+                EventCreateView(eventCreateType: $eventCreateType)
             }
         }
     }

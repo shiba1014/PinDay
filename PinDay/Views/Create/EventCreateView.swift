@@ -20,10 +20,16 @@ struct EventCreateView: View {
 
     private let isEdit: Bool
 
-    init(editEvent: Event? = nil, eventCreateType: Binding<EventCreateType?>) {
-        self.event = editEvent ?? .init()
+    init(eventCreateType: Binding<EventCreateType?>) {
+
         self._eventCreateType = eventCreateType
-        self.isEdit = (editEvent != nil)
+        if case .edit(let event) = eventCreateType.wrappedValue {
+            self.event = Event.copy(event)
+            self.isEdit = true
+        } else {
+            self.event = .init()
+            self.isEdit = false
+        }
     }
     
     var body: some View {
@@ -154,7 +160,9 @@ struct EventCreateView: View {
                 }
 
                 ToolbarItem(placement: .primaryAction) {
-                    NavigationLink(destination: EventPreviewView(event: event, eventCreateType: $eventCreateType)) {
+                    NavigationLink(
+                        destination: EventPreviewView(event: event, eventCreateType: $eventCreateType)
+                    ) {
                         Image(systemName: "chevron.forward")
                     }
                     .disabled(!event.isValid)

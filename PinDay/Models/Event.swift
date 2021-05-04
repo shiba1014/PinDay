@@ -20,12 +20,16 @@ class Event: ObservableObject, Identifiable {
         !title.isEmpty && title.count <= Self.maxTitleCount
     }
 
-    init() {
-        self.id = .init()
-        self.title = ""
-        self.pinnedDateType = .past(date: Date())
-        self.backgroundStyle = .color(.gray)
-        self.createdAt = Date()
+    convenience init() {
+        self.init(id: .init(), title: "", pinnedDateType: .past(date: Date()), backgroundStyle: .color(.gray), createdAt:  Date())
+    }
+
+    init(id: UUID, title: String, pinnedDateType: PinnedDateType, backgroundStyle: BackgroundStyle, createdAt: Date) {
+        self.id = id
+        self.title = title
+        self.pinnedDateType = pinnedDateType
+        self.backgroundStyle = backgroundStyle
+        self.createdAt = createdAt
     }
 
     init(data: EventEntity) throws {
@@ -111,6 +115,10 @@ class Event: ObservableObject, Identifiable {
                     .padding(.top, 4)
             }
         }
+    }
+
+    static func copy(_ event: Event) -> Event {
+        Event(id: event.id, title: event.title, pinnedDateType: event.pinnedDateType, backgroundStyle: event.backgroundStyle, createdAt: event.createdAt)
     }
 }
 
