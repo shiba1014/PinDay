@@ -243,18 +243,25 @@ struct NewEventCreateView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject private var draft: EventDraft = .init()
+    @ObservedObject private var draft: EventDraft
+    @Binding var eventCreateType: NewEventCreateType?
 
     @State private var showCountStyleSheet = false
     @State private var showCreateBackgroundSheet = false
     @State private var showDeleteAlert = false
 
-    init(editEvent: EventEntity? = nil) {
+    private let isEdit: Bool
+
+    init(editEvent: EventEntity? = nil, eventCreateType: Binding<NewEventCreateType?>) {
         if let editEvent = editEvent {
-            draft.title = editEvent.title
-            draft.pinnedDate = editEvent.pinnedDate
-            draft.startDate = editEvent.startDate
+            self.draft = editEvent.createDraft()
+            self.isEdit = true
         }
+        else {
+            self.draft = .init()
+            self.isEdit = false
+        }
+        self._eventCreateType = eventCreateType
     }
 
     var body: some View {
@@ -339,32 +346,31 @@ struct NewEventCreateView: View {
                         }
                     }
 
-//
-//                    if isEdit {
-//                        Spacer()
-//                        Button(action: {
-//                            showDeleteAlert = true
-//                        }) {
-//                            HStack {
-//                                Spacer()
-//                                Image(systemName: "trash")
-//                                Text("Delete This Event")
-//                                Spacer()
-//                            }
-//                            .foregroundColor(.red)
-//                        }
-//                        .alert(isPresented: $showDeleteAlert) {
-//                            Alert(
-//                                title: Text("Delete Event"),
-//                                message: Text("Are you sure you want to delete this event?"),
-//                                primaryButton: .cancel(),
-//                                secondaryButton: .destructive(Text("Delete")) {
+                    if isEdit {
+                        Spacer()
+                        Button(action: {
+                            showDeleteAlert = true
+                        }) {
+                            HStack {
+                                Spacer()
+                                Image(systemName: "trash")
+                                Text("Delete This Event")
+                                Spacer()
+                            }
+                            .foregroundColor(.red)
+                        }
+                        .alert(isPresented: $showDeleteAlert) {
+                            Alert(
+                                title: Text("Delete Event"),
+                                message: Text("Are you sure you want to delete this event?"),
+                                primaryButton: .cancel(),
+                                secondaryButton: .destructive(Text("Delete")) {
 //                                    PersistenceController.shared.delete(event)
-//                                    presentationMode.wrappedValue.dismiss()
-//                                }
-//                            )
-//                        }
-//                    }
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            )
+                        }
+                    }
                 }
                 .listStyle(PlainListStyle())
             }

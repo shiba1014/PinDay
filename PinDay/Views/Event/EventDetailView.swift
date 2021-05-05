@@ -73,7 +73,7 @@ struct NewEventDetailView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var entity: EventEntity
-//    @Binding var eventCreateType: EventCreateType?
+    @Binding var eventCreateType: NewEventCreateType?
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
@@ -101,7 +101,7 @@ struct NewEventDetailView: View {
             Spacer()
 
             Button(action: {
-//                eventCreateType = .edit(event: event)
+                eventCreateType = .edit(entity: entity)
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "square.and.pencil")

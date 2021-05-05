@@ -17,7 +17,7 @@ struct EventListView: View {
     )
     private var entities: FetchedResults<EventEntity>
 
-    @State private var eventCreateType: EventCreateType? = nil
+    @State private var eventCreateType: NewEventCreateType? = nil
     @State private var selectedEntity: EventEntity? = nil
     @State private var eventViewSize: EventViewSize = .small
 
@@ -28,8 +28,7 @@ struct EventListView: View {
         ZStack {
             EmptyView()
                 .fullScreenCover(item: $selectedEntity) { entity in
-//                    EventDetailView(event: event, eventCreateType: $eventCreateType)
-                    NewEventDetailView(entity: entity)
+                    NewEventDetailView(entity: entity, eventCreateType: $eventCreateType)
                 }
 
             NavigationView {
@@ -68,9 +67,9 @@ struct EventListView: View {
             .sheet(item: $eventCreateType) { type in
                 switch type {
                 case .new:
-                    NewEventCreateView()
+                    NewEventCreateView(eventCreateType: $eventCreateType)
                 case .edit(let event):
-                    EventCreateView(editEvent: event, eventCreateType: $eventCreateType)
+                    NewEventCreateView(editEvent: event, eventCreateType: $eventCreateType)
                 }
             }
         }

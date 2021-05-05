@@ -16,3 +16,15 @@ enum EventCreateType: Identifiable {
         }
     }
 }
+
+enum NewEventCreateType: Identifiable {
+    case new
+    case edit(entity: EventEntity)
+
+    var id: Int {
+        switch self {
+        case .new: return 0
+        case .edit: return 1
+        }
+    }
+}

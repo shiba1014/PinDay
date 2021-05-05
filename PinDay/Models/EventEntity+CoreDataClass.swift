@@ -13,7 +13,7 @@ import SwiftUI
 @objc(EventEntity)
 public class EventEntity: NSManagedObject {
 
-    var color: Color = .clear
+    var color: Color?
     var image: Image?
 
     override public init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
@@ -29,5 +29,26 @@ public class EventEntity: NSManagedObject {
            let uiImage = UIImage(data: imageData) {
             image = Image(uiImage: uiImage)
         }
+    }
+
+    func createDraft() -> EventDraft {
+
+        let draft = EventDraft(
+            title: title,
+            pinnedDate: pinnedDate,
+            startDate: startDate
+        )
+
+        if let colorData = backgroundColor,
+           let uiColor = UIColor.decode(colorData) {
+            draft.backgroundStyle = .color(uiColor)
+        }
+
+        if let imageData = backgroundImage,
+           let uiImage = UIImage(data: imageData) {
+            draft.backgroundStyle = .image(uiImage)
+        }
+
+        return draft
     }
 }
