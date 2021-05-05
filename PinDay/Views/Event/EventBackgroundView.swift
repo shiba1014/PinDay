@@ -13,50 +13,33 @@ struct EventBackgroundView: View {
     let style: Event.BackgroundStyle
     let size: EventViewSize
 
+    private let gradientNode = LinearGradient(
+        gradient: Gradient(
+            stops: [
+                .init(color: .clear, location: 0.0),
+                .init(color: Color.black.opacity(0.5), location: 1.0)
+            ]
+        ),
+        startPoint: .top,
+        endPoint: .bottom
+    )
+
     var body: some View {
+        Rectangle()
+            .fill(style.color)
+            .background(
+                style.image.map {
+                    $0.resizable().aspectRatio(contentMode: .fill)
+                }
+            )
+            .if(size != .fullscreen) {
+                $0.aspectRatio(size.aspectRatio, contentMode: .fit)
 
-        buildBackgroundView()
-            .clipShape(RoundedRectangle(cornerRadius: Self.radius, style: .continuous))
-    }
-
-    @ViewBuilder
-    private func buildBackgroundView() -> some View {
-        let gradientNode = LinearGradient(
-            gradient: Gradient(
-                stops: [
-                    .init(color: .clear, location: 0.0),
-                    .init(color: Color.black.opacity(0.5), location: 1.0)
-                ]
-            ),
-            startPoint: .top,
-            endPoint: .bottom
-        )
-
-        switch style {
-
-        case .color(let color):
-            Rectangle()
-                .fill(Color(color))
-
-        case .image(let image):
-            switch size {
-            case .small, .medium:
-                Image(uiImage: image)
-                    .resizable()
-                    .fitToAspectRatio(size.aspectRatio)
-                    .overlay(gradientNode)
-
-            case .fullscreen:
-                Rectangle()
-                    .fill(Color.clear)
-                    .background(
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    )
-                    .overlay(gradientNode)
             }
-        }
+            .if(style.image != nil) {
+                $0.overlay(gradientNode)
+            }
+            .clipShape(RoundedRectangle(cornerRadius: Self.radius, style: .continuous))
     }
 }
 

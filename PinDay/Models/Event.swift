@@ -195,6 +195,20 @@ extension Event {
     enum BackgroundStyle {
         case color(UIColor)
         case image(UIImage)
+
+        var color: Color {
+            switch self {
+            case .color(let color): return Color(color)
+            case .image: return .clear
+            }
+        }
+
+        var image: Image? {
+            switch self {
+            case .color: return nil
+            case .image(let image): return Image(uiImage: image)
+            }
+        }
     }
 
     enum CountStyleError: String, Error {

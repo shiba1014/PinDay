@@ -18,16 +18,7 @@ struct EventPreviewView: View {
         VStack {
             Picker(
                 "Preview Size",
-                selection:
-                    .init(
-                        get: { previewSize },
-                        set: { size in
-                            withAnimation {
-                                previewSize = size
-                            }
-
-                        }
-                    )
+                selection: $previewSize
             ) {
                 ForEach(EventViewSize.allCases, id: \.self) { size in
                     Text(size.description)
@@ -36,10 +27,9 @@ struct EventPreviewView: View {
             .pickerStyle(SegmentedPickerStyle())
 
             EventSummaryView(event: event, size: previewSize)
-                .if(previewSize == .small) {
-                    $0.padding(.horizontal, 100)
-                }
+                .padding(.horizontal, previewSize == .small ? 100 : 0)
                 .padding(.top)
+                .animation(.spring())
 
             Spacer()
         }

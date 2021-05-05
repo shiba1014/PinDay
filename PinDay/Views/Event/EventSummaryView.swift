@@ -43,9 +43,6 @@ struct EventSummaryView: View {
             }
             .padding(size.padding)
         }
-        .if(size != .fullscreen) {
-            $0.aspectRatio(size.aspectRatio, contentMode: .fit)
-        }
     }
 }
 
