@@ -155,7 +155,7 @@ struct EventCreateView: View {
 
                 ToolbarItem(placement: .primaryAction) {
                     NavigationLink(
-                        destination: EventPreviewView(draft: draft)
+                        destination: EventPreviewView(draft: draft, eventCreateType: $eventCreateType)
                     ) {
                         Image(systemName: "chevron.forward")
                     }
