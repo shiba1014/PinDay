@@ -1,5 +1,5 @@
 //
-//  EventEntity+CoreDataProperties.swift
+//  Event+CoreDataProperties.swift
 //  PinDay
 //
 //  Created by shiba on 2021/05/05.
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension EventEntity {
+extension Event {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<EventEntity> {
-        return NSFetchRequest<EventEntity>(entityName: "EventEntity")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Event> {
+        return NSFetchRequest<Event>(entityName: "Event")
     }
 
     @NSManaged public var id: UUID
@@ -26,6 +26,6 @@ extension EventEntity {
 
 }
 
-extension EventEntity : Identifiable {
+extension Event : Identifiable {
 
 }

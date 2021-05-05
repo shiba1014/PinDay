@@ -1,5 +1,5 @@
 //
-//  EventEntity+CoreDataClass.swift
+//  Event+CoreDataClass.swift
 //  PinDay
 //
 //  Created by shiba on 2021/05/05.
@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 import SwiftUI
 
-@objc(EventEntity)
-public class EventEntity: NSManagedObject {
+@objc(Event)
+public class Event: NSManagedObject {
 
     var color: Color?
     var image: Image?

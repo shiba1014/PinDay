@@ -16,7 +16,7 @@ struct EventCreateView: View {
     @State private var showCreateBackgroundSheet = false
     @State private var showDeleteAlert = false
 
-    init(editEvent: EventEntity? = nil, eventCreateType: Binding<EventCreateType?>) {
+    init(editEvent: Event? = nil, eventCreateType: Binding<EventCreateType?>) {
         if let editEvent = editEvent {
             self.draft = editEvent.createDraft()
         }

@@ -10,12 +10,12 @@ import SwiftUI
 struct EventDetailView: View {
 
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var entity: EventEntity
+    @ObservedObject var event: Event
     @Binding var eventCreateType: EventCreateType?
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-            EventSummaryView(entity: entity, size: .fullscreen)
+            EventSummaryView(event: event, size: .fullscreen)
                 .ignoresSafeArea()
 
             buildToolBar()
@@ -39,7 +39,7 @@ struct EventDetailView: View {
             Spacer()
 
             Button(action: {
-                eventCreateType = .edit(entity: entity)
+                eventCreateType = .edit(event: event )
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "square.and.pencil")

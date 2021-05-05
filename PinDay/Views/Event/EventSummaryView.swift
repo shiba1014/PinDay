@@ -43,8 +43,8 @@ struct EventSummaryView: View {
         self.size = size
     }
 
-    init(entity: EventEntity, size: EventViewSize) {
-        self.init(title: entity.title, pinnedDate: entity.pinnedDate, startDate: entity.startDate, color: entity.color, image: entity.image, size: size)
+    init(event: Event, size: EventViewSize) {
+        self.init(title: event.title, pinnedDate: event.pinnedDate, startDate: event.startDate, color: event.color, image: event.image, size: size)
     }
 
     init(draft: EventDraft, size: EventViewSize) {

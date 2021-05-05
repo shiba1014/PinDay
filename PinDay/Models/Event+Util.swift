@@ -52,7 +52,7 @@ enum EventViewSize: CaseIterable {
 
 enum EventCreateType: Identifiable {
     case new
-    case edit(entity: EventEntity)
+    case edit(event: Event)
 
     var id: Int {
         switch self {

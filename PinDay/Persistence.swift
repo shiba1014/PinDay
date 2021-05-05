@@ -15,28 +15,28 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
 
         for i in 0..<10 {
-            let entity = EventEntity(context: viewContext)
-            entity.id = UUID()
-            entity.createdAt = Date()
+            let event = Event(context: viewContext)
+            event.id = UUID()
+            event.createdAt = Date()
 
             if i%3 == 0 {
                 let date = Date().fixed(month: 1, day: 1)
-                entity.title = "\(date.year)"
-                entity.pinnedDate = date
-                entity.backgroundColor = Data.encode(color: .orange)
+                event.title = "\(date.year)"
+                event.pinnedDate = date
+                event.backgroundColor = Data.encode(color: .orange)
             }
             else if i%3 == 1 {
                 let date = Date().fixed(month: 1, day: 1).added(year: 1)
-                entity.title = "New Year"
-                entity.pinnedDate = date
-                entity.backgroundColor = Data.encode(color: .yellow)
+                event.title = "New Year"
+                event.pinnedDate = date
+                event.backgroundColor = Data.encode(color: .yellow)
             }
             else {
                 let date = Date().fixed(month: 12, day: 31)
-                entity.title = "\(date.year)"
-                entity.pinnedDate = date
-                entity.startDate = Date().fixed(month: 1, day: 1)
-                entity.backgroundColor = Data.encode(color: .pink)
+                event.title = "\(date.year)"
+                event.pinnedDate = date
+                event.startDate = Date().fixed(month: 1, day: 1)
+                event.backgroundColor = Data.encode(color: .pink)
             }
         }
         do {
@@ -88,20 +88,20 @@ struct PersistenceController {
 
     func create(from draft: EventDraft) {
 
-        let event = EventEntity(context: container.viewContext)
+        let event = Event(context: container.viewContext)
         event.id = UUID()
         event.createdAt = Date()
         event.override(with: draft)
         save()
     }
 
-    func update(_ event: EventEntity, with draft: EventDraft) {
+    func update(_ event: Event, with draft: EventDraft) {
 
         event.override(with: draft)
         save()
     }
 
-    func delete(_ event: EventEntity) {
+    func delete(_ event: Event) {
         container.viewContext.delete(event)
         save()
     }

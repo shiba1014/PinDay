@@ -11,14 +11,14 @@ struct EventListView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        entity: EventEntity.entity(),
-        sortDescriptors: [.init(keyPath: \EventEntity.createdAt, ascending: true)],
+        entity: Event.entity(),
+        sortDescriptors: [.init(keyPath: \Event.createdAt, ascending: true)],
         animation: .default
     )
-    private var entities: FetchedResults<EventEntity>
+    private var events: FetchedResults<Event>
 
     @State private var eventCreateType: EventCreateType? = nil
-    @State private var selectedEntity: EventEntity? = nil
+    @State private var selectedEvent: Event? = nil
     @State private var eventViewSize: EventViewSize = .small
 
     private static let spacing: CGFloat = 16
@@ -27,18 +27,18 @@ struct EventListView: View {
     var body: some View {
         ZStack {
             EmptyView()
-                .fullScreenCover(item: $selectedEntity) { entity in
-                    EventDetailView(entity: entity, eventCreateType: $eventCreateType)
+                .fullScreenCover(item: $selectedEvent) { event in
+                    EventDetailView(event: event, eventCreateType: $eventCreateType)
                 }
 
             NavigationView {
                 ScrollView {
                     LazyVGrid(columns: eventViewSize.gridLayout(spacing: Self.spacing), spacing: Self.spacing) {
-                        ForEach(entities.indices) { i in
+                        ForEach(events.indices) { i in
                             Button(action: {
-                                selectedEntity = entities[i]
+                                selectedEvent = events[i]
                             }) {
-                                EventSummaryView(entity: entities[i], size: eventViewSize)
+                                EventSummaryView(event: events[i], size: eventViewSize)
                             }
                         }
                     }
