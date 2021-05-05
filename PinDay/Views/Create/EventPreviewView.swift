@@ -41,9 +41,9 @@ struct EventPreviewView: View {
                 Button("Save") {
                     switch eventCreateType {
                     case .new:
-                        break
+                        PersistenceController.shared.create(from: draft)
                     case .edit(let entity):
-                        break
+                        PersistenceController.shared.update(entity, with: draft)
                     case .none:
                         break
                     }

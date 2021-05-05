@@ -9,8 +9,6 @@ import SwiftUI
 
 struct EventCreateView: View {
 
-    @Environment(\.presentationMode) var presentationMode
-
     @ObservedObject private var draft: EventDraft
     @Binding var eventCreateType: EventCreateType?
 
@@ -18,16 +16,12 @@ struct EventCreateView: View {
     @State private var showCreateBackgroundSheet = false
     @State private var showDeleteAlert = false
 
-    private let isEdit: Bool
-
     init(editEvent: EventEntity? = nil, eventCreateType: Binding<EventCreateType?>) {
         if let editEvent = editEvent {
             self.draft = editEvent.createDraft()
-            self.isEdit = true
         }
         else {
             self.draft = .init()
-            self.isEdit = false
         }
         self._eventCreateType = eventCreateType
     }
@@ -114,29 +108,33 @@ struct EventCreateView: View {
                         }
                     }
 
-                    if isEdit {
-                        Spacer()
-                        Button(action: {
-                            showDeleteAlert = true
-                        }) {
-                            HStack {
+                    eventCreateType.map { type in
+                        Group {
+                            if case .edit(let event) = type {
                                 Spacer()
-                                Image(systemName: "trash")
-                                Text("Delete This Event")
-                                Spacer()
-                            }
-                            .foregroundColor(.red)
-                        }
-                        .alert(isPresented: $showDeleteAlert) {
-                            Alert(
-                                title: Text("Delete Event"),
-                                message: Text("Are you sure you want to delete this event?"),
-                                primaryButton: .cancel(),
-                                secondaryButton: .destructive(Text("Delete")) {
-//                                    PersistenceController.shared.delete(event)
-                                    presentationMode.wrappedValue.dismiss()
+                                Button(action: {
+                                    showDeleteAlert = true
+                                }) {
+                                    HStack {
+                                        Spacer()
+                                        Image(systemName: "trash")
+                                        Text("Delete This Event")
+                                        Spacer()
+                                    }
+                                    .foregroundColor(.red)
                                 }
-                            )
+                                .alert(isPresented: $showDeleteAlert) {
+                                    Alert(
+                                        title: Text("Delete Event"),
+                                        message: Text("Are you sure you want to delete this event?"),
+                                        primaryButton: .cancel(),
+                                        secondaryButton: .destructive(Text("Delete")) {
+                                            eventCreateType = nil
+                                            PersistenceController.shared.delete(event)
+                                        }
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -146,7 +144,7 @@ struct EventCreateView: View {
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss()
+                        eventCreateType = nil
                     }) {
                         Image(systemName: "xmark")
                     }
