@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="EventEntity" representedClassName="EventEntity" syncable="YES" codeGenerationType="class">
+    <entity name="EventEntity" representedClassName="EventEntity" syncable="YES">
         <attribute name="backgroundColor" optional="YES" attributeType="Binary"/>
         <attribute name="backgroundImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
