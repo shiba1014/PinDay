@@ -77,7 +77,7 @@ struct NewEventDetailView: View {
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-            NewEventSummaryView(entity: entity, size: .constant(.fullscreen))
+            NewEventSummaryView(entity: entity, size: .fullscreen)
                 .ignoresSafeArea()
 
             buildToolBar()
@@ -111,16 +111,6 @@ struct NewEventDetailView: View {
                     .frame(width: 44, height: 44)
                     .foregroundColor(.white)
             }
-        }
-    }
-
-    private func buildContent() -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(entity.title ?? "")
-                .font(Font.title2.weight(.medium))
-                .foregroundColor(.white)
-
-            entity.buildContentView(size: .fullscreen)
         }
     }
 }

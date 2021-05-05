@@ -66,3 +66,63 @@ struct SelectCountStyleListView_Previews: PreviewProvider {
     }
 }
 
+struct NewSelectCountStyleListView: View {
+
+    enum CountStyle: String, CaseIterable {
+        case countDown
+        case progress
+
+        var description: String {
+            switch self {
+            case .countDown: return "Count Down"
+            case .progress: return "Progress"
+            }
+        }
+
+        var preview: NewEventSummaryView {
+            switch self {
+            case .countDown: return .countDownMock(size: .small)
+            case .progress: return .progressMock(size: .small)
+            }
+        }
+    }
+
+    @Environment(\.presentationMode) var presentationMode
+
+    @Binding var startDate: Date?
+    @State var selectedStyle: CountStyle = .countDown
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                HStack {
+                    ForEach(CountStyle.allCases, id: \.self) { style in
+                        VStack {
+                            style.preview
+                            Text(style.description)
+                        }
+                            .padding()
+                            .onTapGesture {
+                                self.selectedStyle = style
+                                switch style {
+                                case .countDown:
+                                    self.startDate = nil
+                                case .progress:
+                                    self.startDate = Date()
+                                }
+                            }
+                            .background(self.selectedStyle == style ? Color(UIColor.tertiarySystemFill) : Color.clear)
+                    }
+                }
+
+                Spacer()
+            }
+            .navigationBarTitle("", displayMode: .inline)
+            .toolbar {
+                Button("Done") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
+    }
+}

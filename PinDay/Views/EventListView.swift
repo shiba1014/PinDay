@@ -39,7 +39,7 @@ struct EventListView: View {
                             Button(action: {
                                 selectedEntity = entities[i]
                             }) {
-                                NewEventSummaryView(entity: entities[i], size: $eventViewSize)
+                                NewEventSummaryView(entity: entities[i], size: eventViewSize)
                             }
                         }
                     }
@@ -68,7 +68,7 @@ struct EventListView: View {
             .sheet(item: $eventCreateType) { type in
                 switch type {
                 case .new:
-                    EventCreateView(eventCreateType: $eventCreateType)
+                    NewEventCreateView()
                 case .edit(let event):
                     EventCreateView(editEvent: event, eventCreateType: $eventCreateType)
                 }

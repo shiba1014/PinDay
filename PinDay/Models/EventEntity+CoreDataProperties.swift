@@ -16,13 +16,13 @@ extension EventEntity {
         return NSFetchRequest<EventEntity>(entityName: "EventEntity")
     }
 
+    @NSManaged public var id: UUID
+    @NSManaged public var createdAt: Date
+    @NSManaged public var title: String
+    @NSManaged public var pinnedDate: Date
+    @NSManaged public var startDate: Date?
     @NSManaged public var backgroundColor: Data?
     @NSManaged public var backgroundImage: Data?
-    @NSManaged public var createdAt: Date?
-    @NSManaged public var id: UUID?
-    @NSManaged public var pinnedDate: Date?
-    @NSManaged public var startDate: Date?
-    @NSManaged public var title: String?
 
 }
 

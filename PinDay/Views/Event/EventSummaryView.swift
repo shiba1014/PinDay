@@ -55,23 +55,101 @@ struct EventSummaryView_Previews: PreviewProvider {
 
 struct NewEventSummaryView: View {
 
-    private static let radius: CGFloat = 24
+    private let radius: CGFloat = 24
 
-    var entity: EventEntity
-    @Binding var size: EventViewSize
+    static func pastMock(size: EventViewSize) -> NewEventSummaryView {
+        let date = Date().fixed(month: 1, day: 1)
+        return .init(
+            title: "\(date.year)",
+            pinnedDate: date,
+            startDate: nil,
+            color: Color(.yellow),
+            image: nil,
+            size: size
+        )
+    }
+
+    static func countDownMock(size: EventViewSize) -> NewEventSummaryView {
+        let date = Date().fixed(month: 1, day: 1).added(year: 1)
+        return .init(
+            title: "New Year",
+            pinnedDate: date,
+            startDate: nil,
+            color: Color(.purple),
+            image: nil,
+            size: size
+        )
+    }
+
+    static func progressMock(size: EventViewSize) -> NewEventSummaryView {
+        let date = Date().fixed(month: 12, day: 31)
+        return .init(
+            title: "\(date.year)",
+            pinnedDate: date,
+            startDate: Date().fixed(month: 1, day: 1),
+            color: Color(.orange),
+            image: nil,
+            size: size
+        )
+    }
+
+    private let title: String
+    private let pinnedDate: Date
+    private let startDate: Date?
+    private let color: Color?
+    private let image: Image?
+    private let size: EventViewSize
+
+    private init(title: String, pinnedDate: Date, startDate: Date?, color: Color?, image: Image?, size: EventViewSize) {
+        self.title = title
+        self.pinnedDate = pinnedDate
+        self.startDate = startDate
+        self.color = color
+        self.image = image
+        self.size = size
+    }
+
+    init(entity: EventEntity, size: EventViewSize) {
+        self.init(title: entity.title, pinnedDate: entity.pinnedDate, startDate: entity.startDate, color: entity.color, image: entity.image, size: size)
+    }
+
+    init(draft: EventDraft, size: EventViewSize) {
+        self.init(title: draft.title, pinnedDate: draft.pinnedDate, startDate: draft.startDate, color: draft.color, image: draft.image, size: size)
+    }
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
-            NewBackgroundView(eventViewSize: $size, entity: entity)
+            NewBackgroundView(color: color, image: image, size: size)
 
             VStack(alignment: .leading, spacing: size.spacing) {
-                Text(entity.title ?? "")
+                Text(title)
                     .font(size.titleFont)
                     .foregroundColor(.white)
 
-                entity.buildContentView(size: size)
+                buildContentView()
             }
             .padding(size.padding)
+        }
+    }
+
+    @ViewBuilder
+    func buildContentView() -> some View {
+        Group {
+            if pinnedDate.isFuture() {
+                if let startDate = startDate {
+                    CircularDayProgressView(start: startDate, end: pinnedDate, size: size)
+                }
+                else {
+                    Text("\(pinnedDate.calcDayDiff()) days left")
+                        .font(size.bodyFont)
+                        .foregroundColor(.white)
+                }
+            }
+            else {
+                Text("\(Date().calcDayDiff(from: pinnedDate)) days ago")
+                    .font(size.bodyFont)
+                    .foregroundColor(.white)
+            }
         }
     }
 }

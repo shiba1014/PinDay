@@ -51,8 +51,19 @@ struct EventBackgroundView_Previews: PreviewProvider {
 
 struct NewBackgroundView: View {
 
-    @Binding var eventViewSize: EventViewSize
-    var entity: EventEntity
+    private var size: EventViewSize
+    private var color: Color?
+    private var image: Image?
+
+    init(color: Color?, image: Image?, size: EventViewSize) {
+        self.color = color
+        self.image = image
+        self.size = size
+    }
+
+    init(draft: EventDraft, size: EventViewSize) {
+        self.init(color: draft.color, image: draft.image, size: size)
+    }
 
     private let radius: CGFloat = 24
     private let gradientNode = LinearGradient(
@@ -68,17 +79,17 @@ struct NewBackgroundView: View {
 
     var body: some View {
         Rectangle()
-            .fill(entity.color)
+            .fill(color ?? .clear)
             .background(
-                entity.image.map {
+                image.map {
                     $0.resizable().aspectRatio(contentMode: .fill)
                 }
             )
-            .if(eventViewSize != .fullscreen) {
-                $0.aspectRatio(eventViewSize.aspectRatio, contentMode: .fit)
+            .if(size != .fullscreen) {
+                $0.aspectRatio(size.aspectRatio, contentMode: .fit)
 
             }
-            .if(entity.image != nil) {
+            .if(image != nil) {
                 $0.overlay(gradientNode)
             }
             .clipShape(RoundedRectangle(cornerRadius: radius, style: .continuous))

@@ -32,30 +32,30 @@ class Event: ObservableObject, Identifiable {
         self.createdAt = createdAt
     }
 
-    init(data: EventEntity) throws {
-        guard let id = data.id,
-              let title = data.title,
-              let pinnedDate = data.pinnedDate,
-              let createdAt = data.createdAt
-        else {
-            fatalError("Invalid data: \(data)")
-        }
-
-        if let colorData = data.backgroundColor, let color = UIColor.decode(colorData) {
-            self.backgroundStyle = .color(color)
-        }
-        else if let imageData = data.backgroundImage, let image = UIImage.decode(imageData) {
-            self.backgroundStyle = .image(image)
-        }
-        else {
-            fatalError("Either color or image must heve valid value: \(data)")
-        }
-
-        self.id = id
-        self.title = title
-        self.pinnedDateType = .create(pinnedDate: pinnedDate, startDate: data.startDate)
-        self.createdAt = createdAt
-    }
+//    init(data: EventEntity) throws {
+//        guard let id = data.id,
+//              let title = data.title,
+//              let pinnedDate = data.pinnedDate,
+//              let createdAt = data.createdAt
+//        else {
+//            fatalError("Invalid data: \(data)")
+//        }
+//
+//        if let colorData = data.backgroundColor, let color = UIColor.decode(colorData) {
+//            self.backgroundStyle = .color(color)
+//        }
+//        else if let imageData = data.backgroundImage, let image = UIImage.decode(imageData) {
+//            self.backgroundStyle = .image(image)
+//        }
+//        else {
+//            fatalError("Either color or image must heve valid value: \(data)")
+//        }
+//
+//        self.id = id
+//        self.title = title
+//        self.pinnedDateType = .create(pinnedDate: pinnedDate, startDate: data.startDate)
+//        self.createdAt = createdAt
+//    }
 
     func update(pinnedDate: Date) {
 

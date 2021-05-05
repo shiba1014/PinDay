@@ -30,27 +30,4 @@ public class EventEntity: NSManagedObject {
             image = Image(uiImage: uiImage)
         }
     }
-
-    @ViewBuilder
-    func buildContentView(size: EventViewSize) -> some View {
-        pinnedDate.map { pinnedDate in
-            Group {
-                if pinnedDate.isFuture() {
-                    if let startDate = startDate {
-                        CircularDayProgressView(start: startDate, end: pinnedDate, size: size)
-                    }
-                    else {
-                        Text("\(pinnedDate.calcDayDiff()) days left")
-                            .font(size.bodyFont)
-                            .foregroundColor(.white)
-                    }
-                }
-                else {
-                    Text("\(Date().calcDayDiff(from: pinnedDate)) days ago")
-                        .font(size.bodyFont)
-                        .foregroundColor(.white)
-                }
-            }
-        }
-    }
 }
