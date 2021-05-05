@@ -18,36 +18,39 @@ struct EventListView: View {
     private var entities: FetchedResults<EventEntity>
 
     @State private var eventCreateType: EventCreateType? = nil
-    @State private var selectedEvent: Event? = nil
+    @State private var selectedEntity: EventEntity? = nil
+    @State private var eventViewSize: EventViewSize = .small
 
     private static let spacing: CGFloat = 16
-    private let gridItems = [GridItem(spacing: Self.spacing), GridItem(spacing: Self.spacing)]
 
     // Ref: https://www.hackingwithswift.com/forums/swiftui/using-sheet-and-fullscreencover-together/4258
     var body: some View {
         ZStack {
             EmptyView()
-                .fullScreenCover(item: $selectedEvent) { event in
-                    EventDetailView(event: event, eventCreateType: $eventCreateType)
+                .fullScreenCover(item: $selectedEntity) { entity in
+//                    EventDetailView(event: event, eventCreateType: $eventCreateType)
+                    NewEventDetailView(entity: entity)
                 }
 
             NavigationView {
                 ScrollView {
-                    LazyVGrid(columns: gridItems, spacing: Self.spacing) {
-                        ForEach(entities.compactMap { try? Event(data: $0) }, id: \Event.id) { event in
+                    LazyVGrid(columns: eventViewSize.gridLayout(spacing: Self.spacing), spacing: Self.spacing) {
+                        ForEach(entities.indices) { i in
                             Button(action: {
-                                selectedEvent = event
+                                selectedEntity = entities[i]
                             }) {
-                                EventSummaryView(event: event, size: .small)
-                                    .aspectRatio(1, contentMode: .fill)
+                                NewEventSummaryView(entity: entities[i], size: $eventViewSize)
                             }
                         }
                     }
                     .padding()
+                    .animation(.spring())
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .navigation) {
-                            Button(action: {}) {
+                            Button(action: {
+                                eventViewSize = eventViewSize != .small ? .small : .medium
+                            }) {
                                 Image(systemName: "slider.horizontal.3")
                             }
                         }

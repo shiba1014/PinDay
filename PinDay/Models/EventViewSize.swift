@@ -41,4 +41,11 @@ enum EventViewSize: CaseIterable {
         case .fullscreen: return .title
         }
     }
+
+    func gridLayout(spacing: CGFloat) -> [GridItem] {
+        switch self {
+        case .small: return [.init(spacing: spacing), .init(spacing: spacing)]
+        case .medium, .fullscreen: return [.init(spacing: spacing)]
+        }
+    }
 }

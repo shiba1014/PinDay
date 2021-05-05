@@ -48,3 +48,39 @@ struct EventBackgroundView_Previews: PreviewProvider {
         EventBackgroundView(style: .color(.gray), size: .small)
     }
 }
+
+struct NewBackgroundView: View {
+
+    @Binding var eventViewSize: EventViewSize
+    var entity: EventEntity
+
+    private let radius: CGFloat = 24
+    private let gradientNode = LinearGradient(
+        gradient: Gradient(
+            stops: [
+                .init(color: .clear, location: 0.0),
+                .init(color: Color.black.opacity(0.5), location: 1.0)
+            ]
+        ),
+        startPoint: .top,
+        endPoint: .bottom
+    )
+
+    var body: some View {
+        Rectangle()
+            .fill(entity.color)
+            .background(
+                entity.image.map {
+                    $0.resizable().aspectRatio(contentMode: .fill)
+                }
+            )
+            .if(eventViewSize != .fullscreen) {
+                $0.aspectRatio(eventViewSize.aspectRatio, contentMode: .fit)
+
+            }
+            .if(entity.image != nil) {
+                $0.overlay(gradientNode)
+            }
+            .clipShape(RoundedRectangle(cornerRadius: radius, style: .continuous))
+    }
+}

@@ -68,3 +68,59 @@ struct EventDetailView_Previews: PreviewProvider {
         EventDetailView(event: .countDownMock, eventCreateType: .constant(nil))
     }
 }
+
+struct NewEventDetailView: View {
+
+    @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var entity: EventEntity
+//    @Binding var eventCreateType: EventCreateType?
+
+    var body: some View {
+        ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
+            NewEventSummaryView(entity: entity, size: .constant(.fullscreen))
+                .ignoresSafeArea()
+
+            buildToolBar()
+                .padding(8)
+        }
+    }
+
+    private func buildToolBar() -> some View {
+        HStack {
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(12)
+                    .frame(width: 44, height: 44)
+                    .foregroundColor(.white)
+            }
+
+            Spacer()
+
+            Button(action: {
+//                eventCreateType = .edit(event: event)
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "square.and.pencil")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(12)
+                    .frame(width: 44, height: 44)
+                    .foregroundColor(.white)
+            }
+        }
+    }
+
+    private func buildContent() -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(entity.title ?? "")
+                .font(Font.title2.weight(.medium))
+                .foregroundColor(.white)
+
+            entity.buildContentView(size: .fullscreen)
+        }
+    }
+}

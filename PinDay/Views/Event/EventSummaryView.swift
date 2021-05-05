@@ -52,3 +52,26 @@ struct EventSummaryView_Previews: PreviewProvider {
             .padding()
     }
 }
+
+struct NewEventSummaryView: View {
+
+    private static let radius: CGFloat = 24
+
+    var entity: EventEntity
+    @Binding var size: EventViewSize
+
+    var body: some View {
+        ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
+            NewBackgroundView(eventViewSize: $size, entity: entity)
+
+            VStack(alignment: .leading, spacing: size.spacing) {
+                Text(entity.title ?? "")
+                    .font(size.titleFont)
+                    .foregroundColor(.white)
+
+                entity.buildContentView(size: size)
+            }
+            .padding(size.padding)
+        }
+    }
+}
