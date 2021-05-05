@@ -67,3 +67,9 @@ struct SelectCountStyleListView: View {
         }
     }
 }
+
+struct SelectCountStyleListView_Previews: PreviewProvider {
+    static var previews: some View {
+        SelectCountStyleListView(startDate: .constant(nil))
+    }
+}

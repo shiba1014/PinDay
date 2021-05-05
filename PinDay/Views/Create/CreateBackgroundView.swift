@@ -75,3 +75,9 @@ struct CreateBackgroundView: View {
         }
     }
 }
+
+struct CreateBackgroundView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreateBackgroundView(draft: .countdownMock)
+    }
+}

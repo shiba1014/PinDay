@@ -165,3 +165,9 @@ struct EventCreateView: View {
         }
     }
 }
+
+struct EventCreateView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventCreateView(eventCreateType: .constant(.new))
+    }
+}

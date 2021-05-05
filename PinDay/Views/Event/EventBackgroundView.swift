@@ -53,3 +53,9 @@ struct EventBackgroundView: View {
             .clipShape(RoundedRectangle(cornerRadius: radius, style: .continuous))
     }
 }
+
+struct EventBackgroundView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventBackgroundView(draft: .countdownMock, size: .small)
+    }
+}

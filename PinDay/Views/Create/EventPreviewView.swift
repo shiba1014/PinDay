@@ -43,3 +43,9 @@ struct EventPreviewView: View {
         }
     }
 }
+
+struct EventPreviewView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventPreviewView(draft: .progressMock)
+    }
+}

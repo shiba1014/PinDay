@@ -87,3 +87,9 @@ struct EventSummaryView: View {
         }
     }
 }
+
+struct EventSummaryView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventSummaryView(draft: .countdownMock, size: .small)
+    }
+}
