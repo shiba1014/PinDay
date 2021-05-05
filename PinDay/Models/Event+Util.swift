@@ -1,8 +1,8 @@
 //
-//  EventViewSize.swift
+//  Event+Util.swift
 //  PinDay
 //
-//  Created by shiba on 2021/05/01.
+//  Created by shiba on 2021/04/21.
 //
 
 import SwiftUI
@@ -46,6 +46,18 @@ enum EventViewSize: CaseIterable {
         switch self {
         case .small: return [.init(spacing: spacing), .init(spacing: spacing)]
         case .medium, .fullscreen: return [.init(spacing: spacing)]
+        }
+    }
+}
+
+enum EventCreateType: Identifiable {
+    case new
+    case edit(entity: EventEntity)
+
+    var id: Int {
+        switch self {
+        case .new: return 0
+        case .edit: return 1
         }
     }
 }

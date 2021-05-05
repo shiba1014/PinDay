@@ -10,74 +10,12 @@ import SwiftUI
 struct EventDetailView: View {
 
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var event: Event
+    @ObservedObject var entity: EventEntity
     @Binding var eventCreateType: EventCreateType?
 
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-            EventSummaryView(event: event, size: .fullscreen)
-                .ignoresSafeArea()
-
-            buildToolBar()
-                .padding(8)
-        }
-    }
-
-    private func buildToolBar() -> some View {
-        HStack {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "xmark")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding(12)
-                    .frame(width: 44, height: 44)
-                    .foregroundColor(.white)
-            }
-
-            Spacer()
-
-            Button(action: {
-                eventCreateType = .edit(event: event)
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "square.and.pencil")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding(12)
-                    .frame(width: 44, height: 44)
-                    .foregroundColor(.white)
-            }
-        }
-    }
-
-    private func buildContent() -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(event.title)
-                .font(Font.title2.weight(.medium))
-                .foregroundColor(.white)
-
-            event.makeCounterView(size: .fullscreen)
-        }
-    }
-}
-
-struct EventDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventDetailView(event: .countDownMock, eventCreateType: .constant(nil))
-    }
-}
-
-struct NewEventDetailView: View {
-
-    @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var entity: EventEntity
-    @Binding var eventCreateType: NewEventCreateType?
-
-    var body: some View {
-        ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-            NewEventSummaryView(entity: entity, size: .fullscreen)
+            EventSummaryView(entity: entity, size: .fullscreen)
                 .ignoresSafeArea()
 
             buildToolBar()
