@@ -60,18 +60,25 @@ struct EventSummaryView: View {
                     .font(size.titleFont)
                     .foregroundColor(.white)
 
-                buildContentView()
+                buildSummaryView()
+
+                if size == .fullscreen {
+                    buildDetailText()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                }
             }
             .padding(size.padding)
         }
     }
 
     @ViewBuilder
-    func buildContentView() -> some View {
+    func buildSummaryView() -> some View {
         Group {
             if pinnedDate.isFuture() {
                 if let startDate = startDate {
                     CircularDayProgressView(start: startDate, end: pinnedDate, size: size)
+                        .padding(.vertical, 4)
                 }
                 else {
                     Text("\(pinnedDate.calcDayDiff()) days left")
@@ -86,10 +93,19 @@ struct EventSummaryView: View {
             }
         }
     }
+
+    func buildDetailText() -> Text {
+        if let startDate = startDate {
+            return Text("from \(startDate.localized) to \(pinnedDate.localized)")
+        }
+        else {
+            return Text(pinnedDate.localized)
+        }
+    }
 }
 
 struct EventSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        EventSummaryView(draft: .countdownMock, size: .small)
+        EventSummaryView(draft: .progressMock, size: .fullscreen)
     }
 }

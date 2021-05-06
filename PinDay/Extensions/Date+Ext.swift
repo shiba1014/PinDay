@@ -54,4 +54,10 @@ public extension Date {
         let current = Date().calcDayDiff(from: from)
         return Float(current) / Float(whole)
     }
+
+    var localized: String {
+        let df = DateFormatter()
+        df.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMd", options: 0, locale: .current)
+        return df.string(from: self)
+    }
 }
