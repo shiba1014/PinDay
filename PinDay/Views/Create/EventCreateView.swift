@@ -42,7 +42,7 @@ struct EventCreateView: View {
                                         .foregroundColor(.init(white: 0.9))
                                         .shadow(radius: 4)
                                     Image(systemName: "camera.fill")
-                                        .foregroundColor(.black)
+                                        .foregroundColor(Color(.appBlack))
                                 }
                                 .onTapGesture {
                                     showCreateBackgroundSheet = true
@@ -60,7 +60,7 @@ struct EventCreateView: View {
                         .multilineTextAlignment(.center)
                         .font(.title)
                         Text("\(draft.title.count) / \(EventDraft.maxTitleCount)")
-                            .foregroundColor(draft.title.count > EventDraft.maxTitleCount ? .red : .secondary)
+                            .foregroundColor(draft.title.count > EventDraft.maxTitleCount ? Color(.appRed) : .secondary)
                     }
                     .padding()
 
@@ -125,7 +125,7 @@ struct EventCreateView: View {
                                         Text("Delete This Event")
                                         Spacer()
                                     }
-                                    .foregroundColor(.red)
+                                    .foregroundColor(Color(.appRed))
                                 }
                                 .alert(isPresented: $showDeleteAlert) {
                                     Alert(

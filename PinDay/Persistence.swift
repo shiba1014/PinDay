@@ -19,25 +19,17 @@ struct PersistenceController {
             event.id = UUID()
             event.createdAt = Date()
 
+            let draft: EventDraft
             if i%3 == 0 {
-                let date = Date().fixed(month: 1, day: 1)
-                event.title = "\(date.year)"
-                event.pinnedDate = date
-                event.backgroundColor = Data.encode(color: .orange)
+                draft = .pastMock
             }
             else if i%3 == 1 {
-                let date = Date().fixed(month: 1, day: 1).added(year: 1)
-                event.title = "New Year"
-                event.pinnedDate = date
-                event.backgroundColor = Data.encode(color: .yellow)
+                draft = .countdownMock
             }
             else {
-                let date = Date().fixed(month: 12, day: 31)
-                event.title = "\(date.year)"
-                event.pinnedDate = date
-                event.startDate = Date().fixed(month: 1, day: 1)
-                event.backgroundColor = Data.encode(color: .pink)
+                draft = .progressMock
             }
+            event.override(with: draft)
         }
         do {
             try viewContext.save()

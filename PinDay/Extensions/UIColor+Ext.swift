@@ -9,29 +9,29 @@ import UIKit
 
 extension UIColor {
 
-    static let red: UIColor = UIColor(named: "Red")!
+    static let appRed: UIColor = UIColor(named: "Red")!
 
-    static let orange: UIColor = UIColor(named: "Orange")!
+    static let appOrange: UIColor = UIColor(named: "Orange")!
 
-    static let yellow: UIColor = UIColor(named: "Yellow")!
+    static let appYellow: UIColor = UIColor(named: "Yellow")!
 
-    static let lime: UIColor = UIColor(named: "Lime")!
+    static let appLime: UIColor = UIColor(named: "Lime")!
 
-    static let green: UIColor = UIColor(named: "Green")!
+    static let appGreen: UIColor = UIColor(named: "Green")!
 
-    static let mint: UIColor = UIColor(named: "Mint")!
+    static let appMint: UIColor = UIColor(named: "Mint")!
 
-    static let blue: UIColor = UIColor(named: "Blue")!
+    static let appBlue: UIColor = UIColor(named: "Blue")!
 
-    static let lilac: UIColor = UIColor(named: "Lilac")!
+    static let appLilac: UIColor = UIColor(named: "Lilac")!
 
-    static let purple: UIColor = UIColor(named: "Purple")!
+    static let appPurple: UIColor = UIColor(named: "Purple")!
 
-    static let pink: UIColor = UIColor(named: "Pink")!
+    static let appPink: UIColor = UIColor(named: "Pink")!
 
-    static let gray: UIColor = UIColor(named: "Gray")!
+    static let appGray: UIColor = UIColor(named: "Gray")!
 
-    static let black: UIColor = UIColor(named: "Black")!
+    static let appBlack: UIColor = UIColor(named: "Black")!
 
-    static let scheme: [UIColor] = [.red, .orange, .yellow, .lime, .green, .mint, .blue, .lilac, .purple, .pink, .gray, .black]
+    static let scheme: [UIColor] = [.appRed, .appOrange, .appYellow, .appLime, .appGreen, .appMint, .appBlue, .appLilac, .appPurple, .appPink, .appGray, .appBlack]
 }

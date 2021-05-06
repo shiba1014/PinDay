@@ -57,7 +57,7 @@ class EventDraft: ObservableObject {
         title: String = "",
         pinnedDate: Date = .init(),
         startDate: Date? = nil,
-        backgroundStyle: BackgroundStyle = .color(.gray)
+        backgroundStyle: BackgroundStyle = .color(.appGray)
     ) {
         self.title = title
         self.pinnedDate = pinnedDate
@@ -74,7 +74,7 @@ extension EventDraft {
             title: "\(date.year)",
             pinnedDate: date,
             startDate: nil,
-            backgroundStyle: .color(.yellow)
+            backgroundStyle: .color(.appYellow)
         )
     }()
 
@@ -84,7 +84,7 @@ extension EventDraft {
             title: "New Year",
             pinnedDate: date,
             startDate: nil,
-            backgroundStyle: .color(.purple)
+            backgroundStyle: .color(.appPurple)
         )
     }()
 
@@ -95,7 +95,7 @@ extension EventDraft {
             title: "\(date.year)",
             pinnedDate: date,
             startDate: startDate,
-            backgroundStyle: .color(.orange)
+            backgroundStyle: .color(.appOrange)
         )
     }()
 }
