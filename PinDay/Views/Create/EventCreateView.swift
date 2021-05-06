@@ -67,7 +67,7 @@ struct EventCreateView: View {
                     HStack {
                         Image(systemName: "calendar")
                         DatePicker(
-                            "Date",
+                            "Pinned Date",
                             selection: $draft.pinnedDate,
                             displayedComponents: [.date]
                         )
@@ -83,7 +83,11 @@ struct EventCreateView: View {
                                     .padding(.horizontal, 3)
                                 Text("Count Style")
                                 Spacer()
-                                Text(draft.startDate != nil ? "Progress" : "Count Down")
+                                Text(
+                                    draft.startDate != nil
+                                        ? SelectCountStyleListView.CountStyle.progress.description
+                                        : SelectCountStyleListView.CountStyle.countDown.description
+                                )
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(Color(UIColor.tertiaryLabel))
                             }
