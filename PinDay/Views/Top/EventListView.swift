@@ -19,7 +19,8 @@ struct EventListView: View {
 
     @State private var eventCreateType: EventCreateType? = nil
     @State private var selectedEvent: Event? = nil
-    @State private var eventViewSize: EventViewSize = .small
+
+    @ObservedObject var userSettings: UserSettings = .init()
 
     private static let spacing: CGFloat = 16
 
@@ -33,12 +34,12 @@ struct EventListView: View {
 
             NavigationView {
                 ScrollView {
-                    LazyVGrid(columns: eventViewSize.gridLayout(spacing: Self.spacing), spacing: Self.spacing) {
-                        ForEach(events) { event in
+                    LazyVGrid(columns: userSettings.eventViewSize.gridLayout(spacing: Self.spacing), spacing: Self.spacing) {
+                        FilteredEventList(sortOption: userSettings.sortOption) { event in
                             Button(action: {
                                 selectedEvent = event
                             }) {
-                                EventSummaryView(event: event, size: eventViewSize)
+                                EventSummaryView(event: event, size: userSettings.eventViewSize)
                             }
                         }
                     }
@@ -47,9 +48,29 @@ struct EventListView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .navigation) {
-                            Button(action: {
-                                eventViewSize = eventViewSize != .small ? .small : .medium
-                            }) {
+                            Menu {
+                                Menu("Event Size") {
+                                    Picker(
+                                        "Event Size",
+                                        selection: $userSettings.eventViewSize
+                                    ) {
+                                        ForEach([EventViewSize.small, EventViewSize.medium], id: \.self) { size in
+                                            Text(size.description)
+                                        }
+                                    }
+                                }
+
+                                Menu("Sort By") {
+                                    Picker(
+                                        "Sort Options",
+                                        selection: $userSettings.sortOption
+                                    ) {
+                                        ForEach(SortOption.allCases, id: \.self) { option in
+                                            Text(option.description)
+                                        }
+                                    }
+                                }
+                            } label: {
                                 Image(systemName: "slider.horizontal.3")
                             }
                         }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum EventViewSize: CaseIterable {
+enum EventViewSize: Int, CaseIterable {
     case small
     case medium
     case fullscreen
