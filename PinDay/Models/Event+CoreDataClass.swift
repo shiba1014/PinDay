@@ -13,22 +13,31 @@ import SwiftUI
 @objc(Event)
 public class Event: NSManagedObject {
 
-    var color: Color?
-    var image: Image?
+    private var cachedColor: Color?
+    private var cachedImage: Image?
 
-    override public init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-
-        super.init(entity: entity, insertInto: context)
-
+    var color: Color? {
+        if let color = cachedColor {
+            return color
+        }
         if let colorData = backgroundColor,
            let uiColor = UIColor.decode(colorData) {
-            color = Color(uiColor)
+            cachedColor = Color(uiColor)
+            cachedImage = nil
         }
+        return cachedColor
+    }
 
-        if let imageData = backgroundImage,
-           let uiImage = UIImage(data: imageData) {
-            image = Image(uiImage: uiImage)
+    var image: Image? {
+        if let image = cachedImage {
+            return image
         }
+        if let imageData = backgroundImage,
+           let image = UIImage.decode(imageData) {
+            cachedColor = nil
+            cachedImage = Image(uiImage: image)
+        }
+        return cachedImage
     }
 
     func createDraft() -> EventDraft {
@@ -60,7 +69,9 @@ public class Event: NSManagedObject {
         switch draft.backgroundStyle {
         case .color(let color):
             backgroundColor = Data.encode(color: color)
+            backgroundImage = nil
         case .image(let image):
+            backgroundColor = nil
             backgroundImage = Data.encode(image: image)
         }
     }

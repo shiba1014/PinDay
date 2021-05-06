@@ -34,11 +34,11 @@ struct EventListView: View {
             NavigationView {
                 ScrollView {
                     LazyVGrid(columns: eventViewSize.gridLayout(spacing: Self.spacing), spacing: Self.spacing) {
-                        ForEach(events.indices) { i in
+                        ForEach(events) { event in
                             Button(action: {
-                                selectedEvent = events[i]
+                                selectedEvent = event
                             }) {
-                                EventSummaryView(event: events[i], size: eventViewSize)
+                                EventSummaryView(event: event, size: eventViewSize)
                             }
                         }
                     }
