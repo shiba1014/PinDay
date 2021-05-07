@@ -72,8 +72,9 @@ struct PinDayWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             PinDayWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Event")
+        .description("Count down or count up to your event.")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
