@@ -45,7 +45,11 @@ struct PersistenceController {
     let container: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
+
         container = NSPersistentCloudKitContainer(name: "PinDay")
+        let storeURL = FileManager.appGroupContainerURL.appendingPathComponent("PinDay.sqlite")
+        container.persistentStoreDescriptions = [.init(url: storeURL)]
+
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -97,4 +101,8 @@ struct PersistenceController {
         container.viewContext.delete(event)
         save()
     }
+}
+
+extension FileManager {
+    static let appGroupContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.shiba1014.PinDay")!
 }

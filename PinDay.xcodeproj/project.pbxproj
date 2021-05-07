@@ -81,6 +81,8 @@
 		523AA22F264563B00039EC70 /* PinDayWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = PinDayWidget.intentdefinition; sourceTree = "<group>"; };
 		523AA230264563B10039EC70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		523AA232264563B10039EC70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		523AA23C264564690039EC70 /* PinDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinDay.entitlements; sourceTree = "<group>"; };
+		523AA23D264564B00039EC70 /* PinDayWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinDayWidgetExtension.entitlements; sourceTree = "<group>"; };
 		524C6EE32643D8E300EE8F20 /* FilteredEventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredEventList.swift; sourceTree = "<group>"; };
 		524C6EE62643DB8700EE8F20 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		525B1F23263308B300D22B32 /* CreateBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBackgroundView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		523AA22C264563B00039EC70 /* PinDayWidget */ = {
 			isa = PBXGroup;
 			children = (
+				523AA23D264564B00039EC70 /* PinDayWidgetExtension.entitlements */,
 				523AA22D264563B00039EC70 /* PinDayWidget.swift */,
 				523AA22F264563B00039EC70 /* PinDayWidget.intentdefinition */,
 				523AA230264563B10039EC70 /* Assets.xcassets */,
@@ -243,6 +246,7 @@
 				B6E9126F261C85E400D58C5B /* Persistence.swift */,
 				B6E91274261C85E400D58C5B /* Info.plist */,
 				B6E91271261C85E400D58C5B /* PinDay.xcdatamodeld */,
+				523AA23C264564690039EC70 /* PinDay.entitlements */,
 				B6E9126C261C85E400D58C5B /* Preview Content */,
 			);
 			path = PinDay;
@@ -410,6 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PinDayWidget/PinDayWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U6JP7S27NV;
 				INFOPLIST_FILE = PinDayWidget/Info.plist;
@@ -432,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PinDayWidget/PinDayWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U6JP7S27NV;
 				INFOPLIST_FILE = PinDayWidget/Info.plist;
@@ -571,6 +577,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PinDay/PinDay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PinDay/Preview Content\"";
 				DEVELOPMENT_TEAM = U6JP7S27NV;
@@ -594,6 +601,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PinDay/PinDay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PinDay/Preview Content\"";
 				DEVELOPMENT_TEAM = U6JP7S27NV;
