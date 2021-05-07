@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import WidgetKit
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -44,6 +45,7 @@ struct PersistenceController {
         if context.hasChanges {
             do {
                 try context.save()
+                WidgetCenter.shared.reloadAllTimelines()
             } catch {
                 print("Failed to save: \(error.localizedDescription)")
             }
