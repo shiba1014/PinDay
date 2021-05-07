@@ -11,6 +11,8 @@ import Intents
 
 struct Provider: IntentTimelineProvider {
 
+    typealias Entry = SimpleEntry
+
     let events: [Event]
 
     init() {
@@ -47,14 +49,6 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
     let event: Event?
     let configuration: ConfigurationIntent
-}
-
-struct PinDayWidgetEntryView : View {
-    var entry: Provider.Entry
-
-    var body: some View {
-        Text(entry.event?.title ?? "None")
-    }
 }
 
 @main
