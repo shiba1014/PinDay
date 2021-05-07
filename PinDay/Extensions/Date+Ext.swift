@@ -21,13 +21,16 @@ public extension Date {
     }
 
     // Ref: https://dev.classmethod.jp/articles/utility-extension-date/
-    func fixed(year: Int? = nil, month: Int? = nil, day: Int? = nil) -> Date {
+    func fixed(year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> Date {
         let calendar = Calendar.gregorian
 
         var comp = DateComponents()
         comp.year = year ?? calendar.component(.year, from: self)
         comp.month = month ?? calendar.component(.month, from: self)
         comp.day = day ?? calendar.component(.day, from: self)
+        comp.hour = hour ?? calendar.component(.hour, from: self)
+        comp.minute = minute ?? calendar.component(.minute, from: self)
+        comp.second = second ?? calendar.component(.second, from: self)
         return calendar.date(from: comp)!
     }
 

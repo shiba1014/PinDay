@@ -34,8 +34,8 @@ struct Provider: IntentTimelineProvider {
         var entries: [EventEntry] = []
         let event = events.first { $0.id.uuidString == configuration.event?.identifier } ?? .snapshot
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
+        let currentDate = Date().fixed(minute:0, second: 0)
+        for hourOffset in 1 ..< 24 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = EventEntry(date: entryDate, event: event, configuration: configuration)
             entries.append(entry)
@@ -48,7 +48,7 @@ struct Provider: IntentTimelineProvider {
 
 struct EventEntry: TimelineEntry {
     let date: Date
-    let event: Event?
+    let event: Event
     let configuration: SelectEventIntent
 }
 
@@ -59,7 +59,7 @@ extension Event {
         event.id = UUID()
         event.title = "\(date.year)"
         event.pinnedDate = date
-        event.backgroundColor = Data.encode(color: .appOrange)
+        event.backgroundColor = Data.encode(color: .appGray)
         event.createdAt = Date()
         return event
     }()
@@ -92,7 +92,7 @@ struct PinDayWidget: Widget {
 
 struct PinDayWidget_Previews: PreviewProvider {
     static var previews: some View {
-        PinDayWidgetEntryView(entry: EventEntry(date: Date(), event: nil, configuration: SelectEventIntent()))
+        PinDayWidgetEntryView(entry: EventEntry(date: Date(), event: .snapshot, configuration: SelectEventIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

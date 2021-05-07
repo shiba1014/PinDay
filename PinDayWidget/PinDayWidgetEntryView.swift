@@ -10,10 +10,16 @@ import SwiftUI
 
 struct PinDayWidgetEntryView : View {
     var entry: Provider.Entry
+    let event: Event
+
+    init(entry: Provider.Entry) {
+        self.entry = entry
+        self.event = entry.event
+    }
 
     var body: some View {
 
-        entry.event.map { event in
+
             ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
                 Rectangle()
@@ -47,7 +53,6 @@ struct PinDayWidgetEntryView : View {
                 }
                 .padding()
             }
-        }
     }
 
     @ViewBuilder
