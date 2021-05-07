@@ -51,6 +51,7 @@ extension PersistenceController {
 
     func update(_ event: Event, with draft: EventDraft) {
 
+        event.clearCache()
         event.override(with: draft)
         save()
     }

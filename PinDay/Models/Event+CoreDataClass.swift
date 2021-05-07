@@ -39,4 +39,9 @@ public class Event: NSManagedObject {
         }
         return cachedImage
     }
+
+    func clearCache() {
+        cachedColor = nil
+        cachedImage = nil
+    }
 }

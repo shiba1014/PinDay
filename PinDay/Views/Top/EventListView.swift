@@ -10,12 +10,6 @@ import SwiftUI
 struct EventListView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        entity: Event.entity(),
-        sortDescriptors: [.init(keyPath: \Event.createdAt, ascending: true)],
-        animation: .default
-    )
-    private var events: FetchedResults<Event>
 
     @State private var eventCreateType: EventCreateType? = nil
     @State private var selectedEvent: Event? = nil
