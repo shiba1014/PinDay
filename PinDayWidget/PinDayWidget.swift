@@ -10,12 +10,20 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+
+    let events: [Event]
+
+    init() {
+        events = (try? PersistenceController.shared.fetchAllEvents()) ??  []
+    }
+
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+
+        SimpleEntry(date: Date(), event: events.first, configuration: ConfigurationIntent())
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
+        let entry = SimpleEntry(date: Date(), event: events.first, configuration: configuration)
         completion(entry)
     }
 
@@ -26,7 +34,7 @@ struct Provider: IntentTimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+            let entry = SimpleEntry(date: entryDate, event: events.first, configuration: configuration)
             entries.append(entry)
         }
 
@@ -37,6 +45,7 @@ struct Provider: IntentTimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let event: Event?
     let configuration: ConfigurationIntent
 }
 
@@ -44,7 +53,7 @@ struct PinDayWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        Text(entry.event?.title ?? "None")
     }
 }
 
@@ -63,7 +72,7 @@ struct PinDayWidget: Widget {
 
 struct PinDayWidget_Previews: PreviewProvider {
     static var previews: some View {
-        PinDayWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        PinDayWidgetEntryView(entry: SimpleEntry(date: Date(), event: nil, configuration: ConfigurationIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

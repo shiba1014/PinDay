@@ -99,3 +99,41 @@ extension EventDraft {
         )
     }()
 }
+
+extension Event {
+    func createDraft() -> EventDraft {
+
+        let draft = EventDraft(
+            title: title,
+            pinnedDate: pinnedDate,
+            startDate: startDate
+        )
+
+        if let colorData = backgroundColor,
+           let uiColor = UIColor.decode(colorData) {
+            draft.backgroundStyle = .color(uiColor)
+        }
+
+        if let imageData = backgroundImage,
+           let uiImage = UIImage(data: imageData) {
+            draft.backgroundStyle = .image(uiImage)
+        }
+
+        return draft
+    }
+
+    func override(with draft: EventDraft) {
+        title = draft.title
+        pinnedDate = draft.pinnedDate
+        startDate = draft.startDate
+
+        switch draft.backgroundStyle {
+        case .color(let color):
+            backgroundColor = Data.encode(color: color)
+            backgroundImage = nil
+        case .image(let image):
+            backgroundColor = nil
+            backgroundImage = Data.encode(image: image)
+        }
+    }
+}

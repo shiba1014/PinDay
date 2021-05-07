@@ -20,6 +20,12 @@
 		523AA233264563B10039EC70 /* PinDayWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 523AA22F264563B00039EC70 /* PinDayWidget.intentdefinition */; };
 		523AA234264563B10039EC70 /* PinDayWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 523AA22F264563B00039EC70 /* PinDayWidget.intentdefinition */; };
 		523AA237264563B10039EC70 /* PinDayWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 523AA226264563B00039EC70 /* PinDayWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		523AA23E2645679D0039EC70 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E9126F261C85E400D58C5B /* Persistence.swift */; };
+		523AA240264568290039EC70 /* PersistenceController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523AA23F264568290039EC70 /* PersistenceController+Ext.swift */; };
+		523AA241264568710039EC70 /* PinDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6E91271261C85E400D58C5B /* PinDay.xcdatamodeld */; };
+		523AA24226456AAE0039EC70 /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE05326427EFE006449CA /* Event+CoreDataClass.swift */; };
+		523AA24326456AB70039EC70 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE05426427EFE006449CA /* Event+CoreDataProperties.swift */; };
+		523AA24426456ABE0039EC70 /* CoreData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B3F8C9263FEF20001DC736 /* CoreData+Ext.swift */; };
 		524C6EE42643D8E300EE8F20 /* FilteredEventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C6EE32643D8E300EE8F20 /* FilteredEventList.swift */; };
 		524C6EE72643DB8700EE8F20 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C6EE62643DB8700EE8F20 /* UserSettings.swift */; };
 		525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F23263308B300D22B32 /* CreateBackgroundView.swift */; };
@@ -83,6 +89,7 @@
 		523AA232264563B10039EC70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		523AA23C264564690039EC70 /* PinDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinDay.entitlements; sourceTree = "<group>"; };
 		523AA23D264564B00039EC70 /* PinDayWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinDayWidgetExtension.entitlements; sourceTree = "<group>"; };
+		523AA23F264568290039EC70 /* PersistenceController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Ext.swift"; sourceTree = "<group>"; };
 		524C6EE32643D8E300EE8F20 /* FilteredEventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredEventList.swift; sourceTree = "<group>"; };
 		524C6EE62643DB8700EE8F20 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		525B1F23263308B300D22B32 /* CreateBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBackgroundView.swift; sourceTree = "<group>"; };
@@ -187,6 +194,7 @@
 				52199E77263D7DF90077181D /* View+Ext.swift */,
 				52B3F8C9263FEF20001DC736 /* CoreData+Ext.swift */,
 				528BE02F26414977006449CA /* UIColor+Ext.swift */,
+				523AA23F264568290039EC70 /* PersistenceController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,7 +368,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523AA24326456AB70039EC70 /* Event+CoreDataProperties.swift in Sources */,
+				523AA241264568710039EC70 /* PinDay.xcdatamodeld in Sources */,
+				523AA23E2645679D0039EC70 /* Persistence.swift in Sources */,
+				523AA24226456AAE0039EC70 /* Event+CoreDataClass.swift in Sources */,
 				523AA22E264563B00039EC70 /* PinDayWidget.swift in Sources */,
+				523AA24426456ABE0039EC70 /* CoreData+Ext.swift in Sources */,
 				523AA233264563B10039EC70 /* PinDayWidget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +388,7 @@
 				B6E91273261C85E400D58C5B /* PinDay.xcdatamodeld in Sources */,
 				528BE05D2642DC8C006449CA /* EventDraft.swift in Sources */,
 				5229A905263D342300E793F4 /* EventBackgroundView.swift in Sources */,
+				523AA240264568290039EC70 /* PersistenceController+Ext.swift in Sources */,
 				B6E91B622622F6AC00D58C5B /* EventSummaryView.swift in Sources */,
 				524C6EE42643D8E300EE8F20 /* FilteredEventList.swift in Sources */,
 				52199E71263D74B90077181D /* EventPreviewView.swift in Sources */,
