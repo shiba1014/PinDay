@@ -31,6 +31,15 @@
 		523AA24926456E8C0039EC70 /* PinDayWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523AA24726456E450039EC70 /* PinDayWidgetEntryView.swift */; };
 		523AA24A26456FA00039EC70 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE02F26414977006449CA /* UIColor+Ext.swift */; };
 		523AA24B2645700D0039EC70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126A261C85E400D58C5B /* Assets.xcassets */; };
+		523AA252264575F80039EC70 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523AA251264575F80039EC70 /* Intents.framework */; };
+		523AA255264575F80039EC70 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523AA254264575F80039EC70 /* IntentHandler.swift */; };
+		523AA259264575F80039EC70 /* PinDayIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 523AA250264575F80039EC70 /* PinDayIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		523AA25E264576160039EC70 /* PinDayWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 523AA22F264563B00039EC70 /* PinDayWidget.intentdefinition */; };
+		523AA25F2645771F0039EC70 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E9126F261C85E400D58C5B /* Persistence.swift */; };
+		523AA260264577280039EC70 /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE05326427EFE006449CA /* Event+CoreDataClass.swift */; };
+		523AA2612645772B0039EC70 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE05426427EFE006449CA /* Event+CoreDataProperties.swift */; };
+		523AA262264577330039EC70 /* PinDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6E91271261C85E400D58C5B /* PinDay.xcdatamodeld */; };
+		523AA263264577470039EC70 /* CoreData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B3F8C9263FEF20001DC736 /* CoreData+Ext.swift */; };
 		524C6EE42643D8E300EE8F20 /* FilteredEventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C6EE32643D8E300EE8F20 /* FilteredEventList.swift */; };
 		524C6EE72643DB8700EE8F20 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C6EE62643DB8700EE8F20 /* UserSettings.swift */; };
 		525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F23263308B300D22B32 /* CreateBackgroundView.swift */; };
@@ -62,6 +71,13 @@
 			remoteGlobalIDString = 523AA225264563B00039EC70;
 			remoteInfo = PinDayWidgetExtension;
 		};
+		523AA257264575F80039EC70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6E9125B261C85E200D58C5B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 523AA24F264575F80039EC70;
+			remoteInfo = PinDayIntents;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,6 +88,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				523AA237264563B10039EC70 /* PinDayWidgetExtension.appex in Embed App Extensions */,
+				523AA259264575F80039EC70 /* PinDayIntents.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +113,11 @@
 		523AA23D264564B00039EC70 /* PinDayWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinDayWidgetExtension.entitlements; sourceTree = "<group>"; };
 		523AA23F264568290039EC70 /* PersistenceController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Ext.swift"; sourceTree = "<group>"; };
 		523AA24726456E450039EC70 /* PinDayWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDayWidgetEntryView.swift; sourceTree = "<group>"; };
+		523AA250264575F80039EC70 /* PinDayIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PinDayIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		523AA251264575F80039EC70 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		523AA254264575F80039EC70 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		523AA256264575F80039EC70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		523AA25D264575FF0039EC70 /* PinDayIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PinDayIntents.entitlements; sourceTree = "<group>"; };
 		524C6EE32643D8E300EE8F20 /* FilteredEventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredEventList.swift; sourceTree = "<group>"; };
 		524C6EE62643DB8700EE8F20 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		525B1F23263308B300D22B32 /* CreateBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBackgroundView.swift; sourceTree = "<group>"; };
@@ -131,6 +153,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		523AA24D264575F80039EC70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				523AA252264575F80039EC70 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6E91260261C85E200D58C5B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +186,7 @@
 			children = (
 				523AA228264563B00039EC70 /* WidgetKit.framework */,
 				523AA22A264563B00039EC70 /* SwiftUI.framework */,
+				523AA251264575F80039EC70 /* Intents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,6 +202,16 @@
 				523AA232264563B10039EC70 /* Info.plist */,
 			);
 			path = PinDayWidget;
+			sourceTree = "<group>";
+		};
+		523AA253264575F80039EC70 /* PinDayIntents */ = {
+			isa = PBXGroup;
+			children = (
+				523AA25D264575FF0039EC70 /* PinDayIntents.entitlements */,
+				523AA254264575F80039EC70 /* IntentHandler.swift */,
+				523AA256264575F80039EC70 /* Info.plist */,
+			);
+			path = PinDayIntents;
 			sourceTree = "<group>";
 		};
 		524C6EE22643D8CC00EE8F20 /* Top */ = {
@@ -236,6 +277,7 @@
 			children = (
 				B6E91265261C85E200D58C5B /* PinDay */,
 				523AA22C264563B00039EC70 /* PinDayWidget */,
+				523AA253264575F80039EC70 /* PinDayIntents */,
 				523AA227264563B00039EC70 /* Frameworks */,
 				B6E91264261C85E200D58C5B /* Products */,
 			);
@@ -246,6 +288,7 @@
 			children = (
 				B6E91263261C85E200D58C5B /* PinDay.app */,
 				523AA226264563B00039EC70 /* PinDayWidgetExtension.appex */,
+				523AA250264575F80039EC70 /* PinDayIntents.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -295,6 +338,23 @@
 			productReference = 523AA226264563B00039EC70 /* PinDayWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		523AA24F264575F80039EC70 /* PinDayIntents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 523AA25A264575F80039EC70 /* Build configuration list for PBXNativeTarget "PinDayIntents" */;
+			buildPhases = (
+				523AA24C264575F80039EC70 /* Sources */,
+				523AA24D264575F80039EC70 /* Frameworks */,
+				523AA24E264575F80039EC70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PinDayIntents;
+			productName = PinDayIntents;
+			productReference = 523AA250264575F80039EC70 /* PinDayIntents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B6E91262261C85E200D58C5B /* PinDay */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6E91277261C85E400D58C5B /* Build configuration list for PBXNativeTarget "PinDay" */;
@@ -308,6 +368,7 @@
 			);
 			dependencies = (
 				523AA236264563B10039EC70 /* PBXTargetDependency */,
+				523AA258264575F80039EC70 /* PBXTargetDependency */,
 			);
 			name = PinDay;
 			productName = PinDay;
@@ -324,6 +385,9 @@
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					523AA225264563B00039EC70 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					523AA24F264575F80039EC70 = {
 						CreatedOnToolsVersion = 12.5;
 					};
 					B6E91262261C85E200D58C5B = {
@@ -346,6 +410,7 @@
 			targets = (
 				B6E91262261C85E200D58C5B /* PinDay */,
 				523AA225264563B00039EC70 /* PinDayWidgetExtension */,
+				523AA24F264575F80039EC70 /* PinDayIntents */,
 			);
 		};
 /* End PBXProject section */
@@ -357,6 +422,13 @@
 			files = (
 				523AA24B2645700D0039EC70 /* Assets.xcassets in Resources */,
 				523AA231264563B10039EC70 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		523AA24E264575F80039EC70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +459,20 @@
 				523AA22E264563B00039EC70 /* PinDayWidget.swift in Sources */,
 				523AA24426456ABE0039EC70 /* CoreData+Ext.swift in Sources */,
 				523AA233264563B10039EC70 /* PinDayWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		523AA24C264575F80039EC70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				523AA2612645772B0039EC70 /* Event+CoreDataProperties.swift in Sources */,
+				523AA25F2645771F0039EC70 /* Persistence.swift in Sources */,
+				523AA262264577330039EC70 /* PinDay.xcdatamodeld in Sources */,
+				523AA255264575F80039EC70 /* IntentHandler.swift in Sources */,
+				523AA260264577280039EC70 /* Event+CoreDataClass.swift in Sources */,
+				523AA263264577470039EC70 /* CoreData+Ext.swift in Sources */,
+				523AA25E264576160039EC70 /* PinDayWidget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +518,11 @@
 			target = 523AA225264563B00039EC70 /* PinDayWidgetExtension */;
 			targetProxy = 523AA235264563B10039EC70 /* PBXContainerItemProxy */;
 		};
+		523AA258264575F80039EC70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 523AA24F264575F80039EC70 /* PinDayIntents */;
+			targetProxy = 523AA257264575F80039EC70 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -474,6 +565,48 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shiba1014.PinDay.PinDayWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		523AA25B264575F80039EC70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PinDayIntents/PinDayIntents.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U6JP7S27NV;
+				INFOPLIST_FILE = PinDayIntents/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shiba1014.PinDay.PinDayIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		523AA25C264575F80039EC70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PinDayIntents/PinDayIntents.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U6JP7S27NV;
+				INFOPLIST_FILE = PinDayIntents/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shiba1014.PinDay.PinDayIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -653,6 +786,15 @@
 			buildConfigurations = (
 				523AA239264563B10039EC70 /* Debug */,
 				523AA23A264563B10039EC70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		523AA25A264575F80039EC70 /* Build configuration list for PBXNativeTarget "PinDayIntents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				523AA25B264575F80039EC70 /* Debug */,
+				523AA25C264575F80039EC70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

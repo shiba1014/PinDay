@@ -12,6 +12,7 @@ import Intents
 struct Provider: IntentTimelineProvider {
 
     typealias Entry = EventEntry
+    typealias Intent = SelectEventIntent
 
     let events: [Event]
 
@@ -21,15 +22,15 @@ struct Provider: IntentTimelineProvider {
 
     func placeholder(in context: Context) -> EventEntry {
 
-        EventEntry(date: Date(), event: .mock, configuration: ConfigurationIntent())
+        EventEntry(date: Date(), event: .mock, configuration: SelectEventIntent())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (EventEntry) -> ()) {
+    func getSnapshot(for configuration: SelectEventIntent, in context: Context, completion: @escaping (EventEntry) -> ()) {
         let entry = EventEntry(date: Date(), event: .mock, configuration: configuration)
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: SelectEventIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [EventEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
@@ -48,7 +49,7 @@ struct Provider: IntentTimelineProvider {
 struct EventEntry: TimelineEntry {
     let date: Date
     let event: Event?
-    let configuration: ConfigurationIntent
+    let configuration: SelectEventIntent
 }
 
 extension Event {
@@ -69,7 +70,7 @@ struct PinDayWidget: Widget {
     let kind: String = "PinDayWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: SelectEventIntent.self, provider: Provider()) { entry in
             PinDayWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Event")
@@ -80,7 +81,7 @@ struct PinDayWidget: Widget {
 
 struct PinDayWidget_Previews: PreviewProvider {
     static var previews: some View {
-        PinDayWidgetEntryView(entry: EventEntry(date: Date(), event: nil, configuration: ConfigurationIntent()))
+        PinDayWidgetEntryView(entry: EventEntry(date: Date(), event: nil, configuration: SelectEventIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
