@@ -29,6 +29,8 @@
 		523AA24526456CEF0039EC70 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52199E77263D7DF90077181D /* View+Ext.swift */; };
 		523AA24626456DBD0039EC70 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9B4D262F1DA50062EB07 /* Date+Ext.swift */; };
 		523AA24926456E8C0039EC70 /* PinDayWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523AA24726456E450039EC70 /* PinDayWidgetEntryView.swift */; };
+		523AA24A26456FA00039EC70 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE02F26414977006449CA /* UIColor+Ext.swift */; };
+		523AA24B2645700D0039EC70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E9126A261C85E400D58C5B /* Assets.xcassets */; };
 		524C6EE42643D8E300EE8F20 /* FilteredEventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C6EE32643D8E300EE8F20 /* FilteredEventList.swift */; };
 		524C6EE72643DB8700EE8F20 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C6EE62643DB8700EE8F20 /* UserSettings.swift */; };
 		525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B1F23263308B300D22B32 /* CreateBackgroundView.swift */; };
@@ -353,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523AA24B2645700D0039EC70 /* Assets.xcassets in Resources */,
 				523AA231264563B10039EC70 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +380,7 @@
 				523AA24526456CEF0039EC70 /* View+Ext.swift in Sources */,
 				523AA24326456AB70039EC70 /* Event+CoreDataProperties.swift in Sources */,
 				523AA241264568710039EC70 /* PinDay.xcdatamodeld in Sources */,
+				523AA24A26456FA00039EC70 /* UIColor+Ext.swift in Sources */,
 				523AA24926456E8C0039EC70 /* PinDayWidgetEntryView.swift in Sources */,
 				523AA23E2645679D0039EC70 /* Persistence.swift in Sources */,
 				523AA24226456AAE0039EC70 /* Event+CoreDataClass.swift in Sources */,
