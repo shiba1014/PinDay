@@ -14,14 +14,7 @@ struct Provider: IntentTimelineProvider {
     typealias Entry = EventEntry
     typealias Intent = SelectEventIntent
 
-    let events: [Event]
-
-    init() {
-        events = (try? PersistenceController.shared.fetchAllEvents()) ??  []
-    }
-
     func placeholder(in context: Context) -> EventEntry {
-
         EventEntry(date: Date(), event: .placeholder, configuration: SelectEventIntent())
     }
 
@@ -31,6 +24,7 @@ struct Provider: IntentTimelineProvider {
     }
 
     func getTimeline(for configuration: SelectEventIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let events = (try? PersistenceController.shared.fetchAllEvents()) ??  []
         var entries: [EventEntry] = []
         let event = events.first { $0.id.uuidString == configuration.event?.identifier } ?? .snapshot
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
@@ -60,7 +54,7 @@ extension Event {
         let event = Event.init(entity: Event.entity(), insertInto: nil)
         let date = Date().fixed(month: 1, day: 1).added(year: 1).beginning()
         event.id = UUID()
-        event.title = "\(date.year)"
+        event.title = "\(date.year-1)"
         event.pinnedDate = date
         event.backgroundColor = Data.encode(color: .appGray)
         event.createdAt = Date()
