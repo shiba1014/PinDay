@@ -80,6 +80,7 @@ struct PinDayWidget: Widget {
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: SelectEventIntent.self, provider: Provider()) { entry in
             PinDayWidgetEntryView(entry: entry)
+                .widgetURL(URL(string: "pinday://deeplink?from=widget&id=\(entry.event.id)"))
         }
         .configurationDisplayName("Event")
         .description("Count down or count up to your event.")

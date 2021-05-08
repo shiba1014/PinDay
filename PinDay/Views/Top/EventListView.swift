@@ -87,7 +87,19 @@ struct EventListView: View {
                     EventCreateView(editEvent: event, eventCreateType: $eventCreateType)
                 }
             }
+            .onOpenURL { url in
+                guard let uuidStr = url.queryValue(for: "id") ,
+                      let event = PersistenceController.shared.fetchEvent(uuidStr) else { return }
+                selectedEvent = event
+            }
         }
+    }
+}
+
+extension URL {
+    func queryValue(for key: String) -> String? {
+        let queryItems = URLComponents(string: absoluteString)?.queryItems
+        return queryItems?.filter { $0.name == key }.compactMap { $0.value }.first
     }
 }
 

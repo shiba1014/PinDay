@@ -56,6 +56,18 @@ struct PersistenceController {
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         return try container.viewContext.fetch(request)
     }
+
+    func fetchEvent(_ uuidStr: String) -> Event? {
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        request.predicate = .init(format: "id = %@", uuidStr)
+        do {
+            let result = try container.viewContext.fetch(request)
+            return result.first
+        } catch {
+            print("Failed to fetch: \(error.localizedDescription)")
+            return nil
+        }
+    }
 }
 
 extension FileManager {
