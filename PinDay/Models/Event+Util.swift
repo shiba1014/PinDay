@@ -37,8 +37,8 @@ enum EventViewSize: Int, CaseIterable {
 
     var bodyFont: Font {
         switch self {
-        case .small, .medium: return .body
-        case .fullscreen: return .title
+        case .small, .medium: return .body.bold()
+        case .fullscreen: return .title.bold()
         }
     }
 

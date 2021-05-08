@@ -70,13 +70,13 @@ struct PinDayWidgetEntryView : View {
                 }
                 else {
                     Text("\(event.pinnedDate.calcDayDiff()) days left")
-                        .font(.body)
+                        .font(.body.bold())
                         .foregroundColor(.white)
                 }
             }
             else {
                 Text("\(Date().calcDayDiff(from: event.pinnedDate)) days ago")
-                    .font(.body)
+                    .font(.body.bold())
                     .foregroundColor(.white)
             }
         }
