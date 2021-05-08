@@ -58,7 +58,7 @@ struct EventEntry: TimelineEntry {
 extension Event {
     static let placeholder: Event = {
         let event = Event.init(entity: Event.entity(), insertInto: nil)
-        let date = Date().fixed(month: 12, day: 31).beginning()
+        let date = Date().fixed(month: 1, day: 1).added(year: 1).beginning()
         event.id = UUID()
         event.title = "\(date.year)"
         event.pinnedDate = date
@@ -69,11 +69,11 @@ extension Event {
 
     static let snapshot: Event = {
         let event = Event.init(entity: Event.entity(), insertInto: nil)
-        let date = Date().fixed(month: 12, day: 31).beginning()
+        let date = Date().fixed(month: 1, day: 1).added(year: 1).beginning()
         event.id = UUID()
         event.title = "\(date.year)"
         event.pinnedDate = date
-        event.backgroundColor = Data.encode(color: .appOrange)
+        event.backgroundColor = Data.encode(color: .appRed)
         event.createdAt = Date()
         return event
     }()

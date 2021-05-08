@@ -69,7 +69,7 @@ class EventDraft: ObservableObject {
 // MARK: Mock
 extension EventDraft {
     static let pastMock: EventDraft = {
-        let date = Date().fixed(month: 12, day: 31)
+        let date = Date().fixed(month: 1, day: 1).beginning()
         return EventDraft(
             title: "\(date.year)",
             pinnedDate: date,
@@ -79,7 +79,7 @@ extension EventDraft {
     }()
 
     static let countdownMock: EventDraft = {
-        let date = Date().fixed(month: 12, day: 31)
+        let date = Date().fixed(month: 1, day: 1).added(year: 1).beginning()
         return EventDraft(
             title: "New Year",
             pinnedDate: date,
@@ -89,8 +89,8 @@ extension EventDraft {
     }()
 
     static let progressMock: EventDraft = {
-        let date = Date().fixed(month: 12, day: 31)
-        let startDate = Date().fixed(month: 1, day: 1)
+        let date = Date().fixed(month: 12, day: 31).beginning()
+        let startDate = Date().fixed(month: 1, day: 1).beginning()
         return EventDraft(
             title: "\(date.year)",
             pinnedDate: date,
