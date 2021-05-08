@@ -31,7 +31,16 @@ struct SelectCountStyleListView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @Binding var startDate: Date?
-    @State var selectedStyle: CountStyle = .countDown
+    @State private var selectedStyle: CountStyle
+
+    init(startDate: Binding<Date?>) {
+        self._startDate = startDate
+        self._selectedStyle = State<CountStyle>(
+            initialValue: (startDate.wrappedValue == nil)
+                ? .countDown
+                : .progress
+        )
+    }
 
     var body: some View {
         NavigationView {

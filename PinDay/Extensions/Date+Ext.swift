@@ -16,8 +16,12 @@ public extension Date {
         Calendar.gregorian.startOfDay(for: self)
     }
 
+    func isToday() -> Bool {
+        self.beginning() == Date().beginning()
+    }
+
     func isFuture(than date: Date = .init()) -> Bool {
-        Calendar.gregorian.startOfDay(for: self) > Calendar.gregorian.startOfDay(for: date)
+        self.beginning() > date.beginning()
     }
 
     // Ref: https://dev.classmethod.jp/articles/utility-extension-date/

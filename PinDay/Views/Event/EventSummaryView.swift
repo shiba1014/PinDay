@@ -75,7 +75,12 @@ struct EventSummaryView: View {
     @ViewBuilder
     func buildSummaryView() -> some View {
         Group {
-            if pinnedDate.isFuture() {
+            if pinnedDate.isToday() {
+                Text("Today")
+                    .font(size.bodyFont)
+                    .foregroundColor(.white)
+            }
+            else if pinnedDate.isFuture() {
                 if let startDate = startDate {
                     CircularDayProgressView(start: startDate, end: pinnedDate, size: size)
                         .padding(.vertical, 4)
