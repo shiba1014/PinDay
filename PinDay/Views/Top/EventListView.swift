@@ -11,9 +11,15 @@ struct EventListView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
 
+    @FetchRequest(
+        entity: Event.entity(),
+        sortDescriptors: [],
+        animation: .default
+    )
+    private var events: FetchedResults<Event>
+
     @State private var eventCreateType: EventCreateType? = nil
     @State private var selectedEvent: Event? = nil
-
     @ObservedObject var userSettings: UserSettings = .init()
 
     private static let spacing: CGFloat = 16
@@ -29,7 +35,9 @@ struct EventListView: View {
             NavigationView {
                 ScrollView {
                     LazyVGrid(columns: userSettings.eventViewSize.gridLayout(spacing: Self.spacing), spacing: Self.spacing) {
-                        FilteredEventList(sortOption: userSettings.sortOption) { event in
+                        ForEach(
+                            events.sorted(by: { userSettings.sortOption.sort($0, $1) })
+                        ) { event in
                             Button(action: {
                                 selectedEvent = event
                             }) {
@@ -91,6 +99,20 @@ struct EventListView: View {
                 guard let uuidStr = url.queryValue(for: "id") ,
                       let event = PersistenceController.shared.fetchEvent(uuidStr) else { return }
                 selectedEvent = event
+            }
+
+            if events.isEmpty {
+                VStack(alignment: .center, spacing: 16) {
+                    Image("Logo")
+                        .resizable()
+                        .frame(width: 100, height: 100)
+
+                    Text("There is no event.")
+
+                    Text("Let's pin your important day.")
+                        .font(.caption)
+                }
+                .foregroundColor(.secondary)
             }
         }
     }

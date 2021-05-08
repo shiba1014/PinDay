@@ -53,3 +53,22 @@ extension UserDefaults {
         }
     }
 }
+
+enum SortOption: Int, CaseIterable {
+    case dateCreated
+    case pinnedDate
+
+    var description: String {
+        switch self {
+        case .dateCreated: return "Date Created"
+        case .pinnedDate: return "Pinned Date"
+        }
+    }
+
+    func sort(_ e1: Event, _ e2: Event) -> Bool {
+        switch self {
+        case .dateCreated: return e1.createdAt < e2.createdAt
+        case .pinnedDate: return e1.pinnedDate < e2.pinnedDate
+        }
+    }
+}
