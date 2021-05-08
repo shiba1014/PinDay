@@ -34,11 +34,14 @@ struct Provider: IntentTimelineProvider {
         var entries: [EventEntry] = []
         let event = events.first { $0.id.uuidString == configuration.event?.identifier } ?? .snapshot
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date().fixed(minute:0, second: 0)
-        for hourOffset in 1 ..< 24 {
+        var currentDate = Date()
+        for hourOffset in 0 ..< 24 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = EventEntry(date: entryDate, event: event, configuration: configuration)
             entries.append(entry)
+            if hourOffset == 0 {
+                currentDate = currentDate.fixed(minute:0, second: 0)
+            }
         }
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
