@@ -121,7 +121,7 @@ struct WidgetCircularDayProgressView: View {
             .frame(width: 40, height: 40)
 
             Text("\(Int(progress*100))%")
-                .font(.body)
+                .font(.body.bold())
                 .foregroundColor(.white)
 
         }
