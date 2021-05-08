@@ -64,7 +64,7 @@ struct EventSummaryView: View {
 
                 if size == .fullscreen {
                     buildDetailText()
-                        .font(.title2)
+                        .font(.body)
                         .foregroundColor(.white)
                 }
             }
