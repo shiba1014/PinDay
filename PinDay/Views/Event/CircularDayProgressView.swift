@@ -33,19 +33,13 @@ fileprivate extension EventViewSize {
 
 struct CircularDayProgressView: View {
 
-    let start: Date
-    let end: Date
-    let size: EventViewSize
-
-    private let timer = Timer.publish(every: 3600, on: .current, in: .common).autoconnect()
-
-    @State private var progress: Float
+    private let size: EventViewSize
+    private let progress: Double
 
     init(start: Date, end: Date, size: EventViewSize) {
-        self.start = start
-        self.end = end
         self.size = size
-        _progress = State<Float>(initialValue: Date.calcProgress(from: start, to: end))
+        let now = Date()
+        progress = (now - start) / (end - start)
     }
 
     var body: some View {
@@ -70,13 +64,9 @@ struct CircularDayProgressView: View {
             }
             .frame(width: size.square, height: size.square)
 
-            Text("\(Int(progress*100))%")
+            Text("\(Int(round(progress*100)))%")
                 .font(size.bodyFont)
                 .foregroundColor(.white)
-
-        }
-        .onReceive(timer) { _ in
-            progress = Date.calcProgress(from: start, to: end)
         }
     }
 }

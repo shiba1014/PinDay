@@ -8,10 +8,20 @@
 import Foundation
 
 public extension Calendar {
-    static let gregorian = Calendar.init(identifier: .gregorian)
+    static let gregorian: Calendar = {
+        var calendar = Calendar.init(identifier: .gregorian)
+        calendar.locale = .current
+        calendar.timeZone = .current
+        return calendar
+    }()
 }
 
 public extension Date {
+
+    static func - (lhs: Date, rhs: Date) -> TimeInterval {
+        lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+    }
+
     func beginning() -> Date {
         Calendar.gregorian.startOfDay(for: self)
     }
@@ -27,13 +37,7 @@ public extension Date {
     }
 
     func calcDayDiff(from date: Date = .init()) -> Int {
-        return Calendar.gregorian.dateComponents([.day], from: date, to: self).day!
-    }
-
-    static func calcProgress(from: Date, to: Date) -> Float {
-        let whole = to.calcDayDiff(from: from)
-        let current = Date().calcDayDiff(from: from)
-        return Float(current) / Float(whole)
+        Calendar.gregorian.dateComponents([.day], from: date.beginning(), to: self.beginning()).day!
     }
 
     // Ref: https://dev.classmethod.jp/articles/utility-extension-date/
@@ -66,6 +70,7 @@ public extension Date {
 
     var localized: String {
         let df = DateFormatter()
+        df.timeZone = .current
         df.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMd", options: 0, locale: .current)
         return df.string(from: self)
     }

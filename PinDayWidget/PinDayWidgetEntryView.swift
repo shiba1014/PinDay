@@ -9,8 +9,9 @@ import WidgetKit
 import SwiftUI
 
 struct PinDayWidgetEntryView : View {
+
     var entry: Provider.Entry
-    let event: Event
+    private let event: Event
 
     init(entry: Provider.Entry) {
         self.entry = entry
@@ -19,44 +20,43 @@ struct PinDayWidgetEntryView : View {
 
     var body: some View {
 
+        ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
-            ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
-
-                Rectangle()
-                    .fill(event.color ?? .clear)
-                    .background(
-                        event.image.map {
-                            $0.resizable().aspectRatio(contentMode: .fill)
-                        }
-                    )
-                    .if(event.image != nil) {
-                        $0.overlay(
-                            LinearGradient(
-                                gradient: Gradient(
-                                    stops: [
-                                        .init(color: .clear, location: 0.0),
-                                        .init(color: Color.black.opacity(0.5), location: 1.0)
-                                    ]
-                                ),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
+            Rectangle()
+                .fill(event.color ?? .clear)
+                .background(
+                    event.image.map {
+                        $0.resizable().aspectRatio(contentMode: .fill)
                     }
-
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(event.title)
-                        .font(Font.title2.weight(.medium))
-                        .foregroundColor(.white)
-
-                    buildSummaryView(event)
+                )
+                .if(event.image != nil) {
+                    $0.overlay(
+                        LinearGradient(
+                            gradient: Gradient(
+                                stops: [
+                                    .init(color: .clear, location: 0.0),
+                                    .init(color: Color.black.opacity(0.5), location: 1.0)
+                                ]
+                            ),
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
                 }
-                .padding()
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text(event.title)
+                    .font(Font.title2.weight(.medium))
+                    .foregroundColor(.white)
+
+                buildSummaryView()
             }
+            .padding()
+        }
     }
 
     @ViewBuilder
-    func buildSummaryView(_ event: Event) -> some View {
+    func buildSummaryView() -> some View {
         Group {
             if event.pinnedDate.isToday() {
                 Text("Today")
@@ -65,17 +65,17 @@ struct PinDayWidgetEntryView : View {
             }
             else if event.pinnedDate.isFuture() {
                 if let startDate = event.startDate {
-                    WidgetCircularDayProgressView(start: startDate, end: event.pinnedDate)
+                    WidgetCircularDayProgressView(start: startDate, end: event.pinnedDate, now: entry.date)
                         .padding(.vertical, 4)
                 }
                 else {
-                    Text("\(event.pinnedDate.calcDayDiff()) days left")
+                    Text("\(event.pinnedDate.calcDayDiff(from: entry.date)) days left")
                         .font(.body.bold())
                         .foregroundColor(.white)
                 }
             }
             else {
-                Text("\(Date().calcDayDiff(from: event.pinnedDate)) days ago")
+                Text("\(entry.date.calcDayDiff(from: event.pinnedDate)) days ago")
                     .font(.body.bold())
                     .foregroundColor(.white)
             }
@@ -85,17 +85,10 @@ struct PinDayWidgetEntryView : View {
 
 struct WidgetCircularDayProgressView: View {
 
-    let start: Date
-    let end: Date
+    private var progress: Double
 
-    private let timer = Timer.publish(every: 3600, on: .current, in: .common).autoconnect()
-
-    @State private var progress: Float
-
-    init(start: Date, end: Date) {
-        self.start = start
-        self.end = end
-        _progress = State<Float>(initialValue: Date.calcProgress(from: start, to: end))
+    init(start: Date, end: Date, now: Date) {
+        progress = (now - start) / (end - start)
     }
 
     var body: some View {
@@ -120,13 +113,10 @@ struct WidgetCircularDayProgressView: View {
             }
             .frame(width: 40, height: 40)
 
-            Text("\(Int(progress*100))%")
+            Text("\(Int(round(progress*100)))%")
                 .font(.body.bold())
                 .foregroundColor(.white)
 
-        }
-        .onReceive(timer) { _ in
-            progress = Date.calcProgress(from: start, to: end)
         }
     }
 }

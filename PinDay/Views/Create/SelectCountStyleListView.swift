@@ -58,7 +58,7 @@ struct SelectCountStyleListView: View {
                                 case .countDown:
                                     self.startDate = nil
                                 case .progress:
-                                    self.startDate = Date()
+                                    self.startDate = Date().beginning()
                                 }
                             }
                             .background(self.selectedStyle == style ? Color(UIColor.tertiarySystemFill) : Color.clear)
