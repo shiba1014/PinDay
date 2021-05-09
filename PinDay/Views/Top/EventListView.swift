@@ -20,6 +20,7 @@ struct EventListView: View {
 
     @State private var eventCreateType: EventCreateType? = nil
     @State private var selectedEvent: Event? = nil
+    @State private var showTipsView: Bool = false
     @ObservedObject var userSettings: UserSettings = .init()
 
     private static let spacing: CGFloat = 16
@@ -45,31 +46,44 @@ struct EventListView: View {
                             }
                         }
                     }
+                    .sheet(isPresented: $showTipsView, content: {
+                        TipsView()
+                    })
                     .padding()
                     .animation(.spring())
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .navigation) {
                             Menu {
-                                Menu("Event Size") {
-                                    Picker(
-                                        "Event Size",
-                                        selection: $userSettings.eventViewSize
-                                    ) {
-                                        ForEach([EventViewSize.small, EventViewSize.medium], id: \.self) { size in
-                                            Text(size.description)
+                                Section {
+                                    Menu("Event Size") {
+                                        Picker(
+                                            "Event Size",
+                                            selection: $userSettings.eventViewSize
+                                        ) {
+                                            ForEach([EventViewSize.small, EventViewSize.medium], id: \.self) { size in
+                                                Text(size.description)
+                                            }
+                                        }
+                                    }
+
+                                    Menu("Sort By") {
+                                        Picker(
+                                            "Sort Options",
+                                            selection: $userSettings.sortOption
+                                        ) {
+                                            ForEach(SortOption.allCases, id: \.self) { option in
+                                                Text(option.description)
+                                            }
                                         }
                                     }
                                 }
-
-                                Menu("Sort By") {
-                                    Picker(
-                                        "Sort Options",
-                                        selection: $userSettings.sortOption
-                                    ) {
-                                        ForEach(SortOption.allCases, id: \.self) { option in
-                                            Text(option.description)
-                                        }
+                                Section {
+                                    Button(action: {
+                                        showTipsView = true
+                                    }) {
+                                        Image(systemName: "pin.fill")
+                                        Text("Tips")
                                     }
                                 }
                             } label: {
