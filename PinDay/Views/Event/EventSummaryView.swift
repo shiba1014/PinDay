@@ -34,6 +34,9 @@ struct EventSummaryView: View {
     private let image: Image?
     private let size: EventViewSize
 
+    @State private var now: Date = .init()
+    private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+
     private init(title: String, pinnedDate: Date, startDate: Date?, color: Color?, image: Image?, size: EventViewSize) {
         self.title = title
         self.pinnedDate = pinnedDate
@@ -70,6 +73,9 @@ struct EventSummaryView: View {
             }
             .padding(size.padding)
         }
+        .onReceive(timer) { _ in
+            now = Date()
+        }
     }
 
     @ViewBuilder
@@ -82,17 +88,17 @@ struct EventSummaryView: View {
             }
             else if pinnedDate.isFuture() {
                 if let startDate = startDate {
-                    CircularDayProgressView(start: startDate, end: pinnedDate, size: size)
+                    CircularDayProgressView(start: startDate, end: pinnedDate, now: now, size: size)
                         .padding(.vertical, 4)
                 }
                 else {
-                    Text("\(pinnedDate.calcDayDiff()) days left")
+                    Text("\(pinnedDate.calcDayDiff(from: now)) days left")
                         .font(size.bodyFont)
                         .foregroundColor(.white)
                 }
             }
             else {
-                Text("\(Date().calcDayDiff(from: pinnedDate)) days ago")
+                Text("\(now.calcDayDiff(from: pinnedDate)) days ago")
                     .font(size.bodyFont)
                     .foregroundColor(.white)
             }

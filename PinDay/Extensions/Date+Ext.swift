@@ -54,13 +54,16 @@ public extension Date {
         return calendar.date(from: comp)!
     }
 
-    func added(year: Int = 0, month: Int = 0, day: Int = 0) -> Date {
+    func added(year: Int = 0, month: Int = 0, day: Int = 0, hour: Int = 0, minute: Int = 0, second: Int = 0) -> Date {
         let calendar = Calendar.gregorian
 
         var comp = DateComponents()
         comp.year = year + calendar.component(.year, from: self)
         comp.month = month + calendar.component(.month, from: self)
         comp.day = day + calendar.component(.day, from: self)
+        comp.hour = hour + calendar.component(.hour, from: self)
+        comp.minute = minute + calendar.component(.minute, from: self)
+        comp.second = second + calendar.component(.second, from: self)
         return calendar.date(from: comp)!
     }
 

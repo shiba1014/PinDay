@@ -36,9 +36,8 @@ struct CircularDayProgressView: View {
     private let size: EventViewSize
     private let progress: Double
 
-    init(start: Date, end: Date, size: EventViewSize) {
+    init(start: Date, end: Date, now: Date, size: EventViewSize) {
         self.size = size
-        let now = Date()
         progress = (now - start) / (end - start)
     }
 
@@ -76,6 +75,7 @@ struct CircularDayProgressView_Previews: PreviewProvider {
         CircularDayProgressView(
             start: Date().fixed(month: 1, day: 1),
             end: Date().fixed(month: 12, day: 31),
+            now: Date(),
             size: .fullscreen
         )
         .preferredColorScheme(.dark)
