@@ -19,7 +19,7 @@ struct Provider: IntentTimelineProvider {
     }
 
     func getSnapshot(for configuration: SelectEventIntent, in context: Context, completion: @escaping (EventEntry) -> ()) {
-        let entry = EventEntry(date: Date(), event: .snapshot, configuration: configuration)
+        let entry = EventEntry(date: Date(), event: .snapshot, configuration: SelectEventIntent())
         completion(entry)
     }
 
