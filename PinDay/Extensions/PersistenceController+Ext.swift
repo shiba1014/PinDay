@@ -46,18 +46,15 @@ extension PersistenceController {
         event.id = UUID()
         event.createdAt = Date()
         event.override(with: draft)
-        save()
     }
 
     func update(_ event: Event, with draft: EventDraft) {
 
         event.clearCache()
         event.override(with: draft)
-        save()
     }
 
     func delete(_ event: Event) {
         container.viewContext.delete(event)
-        save()
     }
 }
