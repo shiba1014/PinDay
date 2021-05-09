@@ -32,8 +32,7 @@ public extension Date {
     }
 
     func isFuture(than date: Date = .init()) -> Bool {
-        let diff = self.calcDayDiff(from: date)
-        return diff > 0
+        self > date
     }
 
     func calcDayDiff(from date: Date = .init()) -> Int {

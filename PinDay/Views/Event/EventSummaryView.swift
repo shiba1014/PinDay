@@ -34,6 +34,7 @@ struct EventSummaryView: View {
     private let image: Image?
     private let size: EventViewSize
 
+    @State private var showSmartText: Bool = false
     @State private var now: Date = .init()
     private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
@@ -63,7 +64,23 @@ struct EventSummaryView: View {
                     .font(size.titleFont)
                     .foregroundColor(.white)
 
-                buildSummaryView()
+                HStack {
+                    if showSmartText {
+                        buildSmartSummaryView()
+                    }
+                    else {
+                        buildSummaryView()
+                    }
+                    if size == .fullscreen {
+                        Spacer()
+                        Button(action: {
+                            showSmartText.toggle()
+                        }) {
+                            Image(systemName: showSmartText ? "lightbulb.fill" : "lightbulb")
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
 
                 if size == .fullscreen {
                     buildDetailText()
@@ -105,12 +122,25 @@ struct EventSummaryView: View {
         }
     }
 
-    func buildDetailText() -> Text {
-        if let startDate = startDate {
-            return Text("from \(startDate.localized) to \(pinnedDate.localized)")
+    func buildSmartSummaryView() -> Text {
+        if pinnedDate.isFuture() {
+            return Text("\(pinnedDate, style: .relative) left")
+                .font(size.bodyFont)
+                .foregroundColor(.white)
         }
         else {
-            return Text(pinnedDate.localized)
+            return Text("\(pinnedDate, style: .relative) ago")
+                .font(size.bodyFont)
+                .foregroundColor(.white)
+        }
+    }
+
+    func buildDetailText() -> Text {
+        if let startDate = startDate {
+            return Text("\(startDate, style: .date) - \(pinnedDate, style: .date)")
+        }
+        else {
+            return Text(pinnedDate, style: .date)
         }
     }
 }
