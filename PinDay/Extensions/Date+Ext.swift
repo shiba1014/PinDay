@@ -17,11 +17,23 @@ public extension Date {
     }
 
     func isToday() -> Bool {
-        self.beginning() == Date().beginning()
+        let diff = self.calcDayDiff(from: Date())
+        return diff == 0
     }
 
     func isFuture(than date: Date = .init()) -> Bool {
-        self.beginning() > date.beginning()
+        let diff = self.calcDayDiff(from: date)
+        return diff > 0
+    }
+
+    func calcDayDiff(from date: Date = .init()) -> Int {
+        return Calendar.gregorian.dateComponents([.day], from: date, to: self).day!
+    }
+
+    static func calcProgress(from: Date, to: Date) -> Float {
+        let whole = to.calcDayDiff(from: from)
+        let current = Date().calcDayDiff(from: from)
+        return Float(current) / Float(whole)
     }
 
     // Ref: https://dev.classmethod.jp/articles/utility-extension-date/
@@ -50,16 +62,6 @@ public extension Date {
 
     var year: Int {
         Calendar.gregorian.component(.year, from: self)
-    }
-
-    func calcDayDiff(from date: Date = .init()) -> Int {
-        return Calendar.gregorian.dateComponents([.day], from: date, to: self).day!
-    }
-
-    static func calcProgress(from: Date, to: Date) -> Float {
-        let whole = to.calcDayDiff(from: from)
-        let current = Date().calcDayDiff(from: from)
-        return Float(current) / Float(whole)
     }
 
     var localized: String {

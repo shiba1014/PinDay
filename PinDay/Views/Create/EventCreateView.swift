@@ -68,7 +68,10 @@ struct EventCreateView: View {
                         Image(systemName: "calendar")
                         DatePicker(
                             "Pinned Date",
-                            selection: $draft.pinnedDate,
+                            selection: .init(
+                                get: { draft.pinnedDate },
+                                set: { draft.pinnedDate = $0.beginning() }
+                            ),
                             displayedComponents: [.date]
                         )
                     }
@@ -104,7 +107,7 @@ struct EventCreateView: View {
                                 "Start Date",
                                 selection: .init(
                                     get: { startDate },
-                                    set: { self.draft.startDate = $0 }
+                                    set: { self.draft.startDate = $0.beginning() }
                                 ),
                                 in: ...Date(),
                                 displayedComponents: [.date]

@@ -55,7 +55,7 @@ class EventDraft: ObservableObject {
 
     init(
         title: String = "",
-        pinnedDate: Date = .init(),
+        pinnedDate: Date = .init().beginning(),
         startDate: Date? = nil,
         backgroundStyle: BackgroundStyle = .color(.appGray)
     ) {
