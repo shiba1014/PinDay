@@ -16,12 +16,16 @@ struct EventCreateView: View {
     @State private var showCreateBackgroundSheet = false
     @State private var showDeleteAlert = false
 
+    let navigationBarTitle: String
+
     init(editEvent: Event? = nil, eventCreateType: Binding<EventCreateType?>) {
         if let editEvent = editEvent {
             self.draft = editEvent.createDraft()
+            self.navigationBarTitle = "Edit"
         }
         else {
             self.draft = .init()
+            self.navigationBarTitle = "Create"
         }
         self._eventCreateType = eventCreateType
     }
@@ -147,7 +151,7 @@ struct EventCreateView: View {
                 }
                 .listStyle(PlainListStyle())
             }
-            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarTitle(navigationBarTitle, displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button(action: {
