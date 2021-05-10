@@ -88,7 +88,7 @@ struct PinDayWidgetEntryView : View {
     @ViewBuilder
     func buildSummaryView(_ event: WidgetEvent) -> some View {
         Group {
-            if event.pinnedDate.isToday() {
+            if Calendar.gregorian.isDateInToday(event.pinnedDate) {
                 Text("Today")
                     .font(.body)
                     .foregroundColor(.white)
@@ -99,13 +99,13 @@ struct PinDayWidgetEntryView : View {
                         .padding(.vertical, 4)
                 }
                 else {
-                    Text("\(event.pinnedDate.calcDayDiff(from: entry.date)) days left")
+                    Text("\(Calendar.gregorian.days(from: Date(), to: event.pinnedDate)) days left")
                         .font(.body.bold())
                         .foregroundColor(.white)
                 }
             }
             else {
-                Text("\(entry.date.calcDayDiff(from: event.pinnedDate)) days ago")
+                Text("\(Calendar.gregorian.days(from: event.pinnedDate, to: Date())) days ago")
                     .font(.body.bold())
                     .foregroundColor(.white)
             }

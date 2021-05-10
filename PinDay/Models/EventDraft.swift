@@ -55,7 +55,7 @@ class EventDraft: ObservableObject {
 
     init(
         title: String = "",
-        pinnedDate: Date = .init().beginning(),
+        pinnedDate: Date = Calendar.gregorian.startOfDay(for: Date()),
         startDate: Date? = nil,
         backgroundStyle: BackgroundStyle = .color(.appGray)
     ) {
@@ -69,9 +69,9 @@ class EventDraft: ObservableObject {
 // MARK: Mock
 extension EventDraft {
     static let pastMock: EventDraft = {
-        let date = Date().fixed(month: 1, day: 1).beginning()
+        let date = Calendar.gregorian.startOfDay(for: Calendar.gregorian.startOfYear(for: Date()))
         return EventDraft(
-            title: "\(date.year)",
+            title: "\(Calendar.gregorian.year(of: date))",
             pinnedDate: date,
             startDate: nil,
             backgroundStyle: .color(.appYellow)
@@ -79,7 +79,7 @@ extension EventDraft {
     }()
 
     static let countdownMock: EventDraft = {
-        let date = Date().fixed(month: 1, day: 1).added(year: 1).beginning()
+        let date = Calendar.gregorian.startOfDay(for: Calendar.gregorian.endOfYear(for: Date()))
         return EventDraft(
             title: "New Year",
             pinnedDate: date,
@@ -89,10 +89,10 @@ extension EventDraft {
     }()
 
     static let progressMock: EventDraft = {
-        let date = Date().fixed(month: 12, day: 31).beginning()
-        let startDate = Date().fixed(month: 1, day: 1).beginning()
+        let date = Calendar.gregorian.startOfDay(for: Calendar.gregorian.endOfYear(for: Date()))
+        let startDate = Calendar.gregorian.startOfDay(for: Calendar.gregorian.startOfYear(for: Date()))
         return EventDraft(
-            title: "\(date.year)",
+            title: "\(Calendar.gregorian.year(of: date))",
             pinnedDate: date,
             startDate: startDate,
             backgroundStyle: .color(.appOrange)

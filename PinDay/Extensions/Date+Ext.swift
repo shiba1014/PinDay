@@ -7,73 +7,47 @@
 
 import Foundation
 
-public extension Calendar {
+extension Date {
+
+    static func - (lhs: Date, rhs: Date) -> TimeInterval {
+        lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+    }
+
+    func isFuture(than date: Date = .init()) -> Bool {
+        self > date
+    }
+}
+
+
+extension Calendar {
+
     static let gregorian: Calendar = {
         var calendar = Calendar.init(identifier: .gregorian)
         calendar.locale = .current
         calendar.timeZone = .current
         return calendar
     }()
-}
 
-public extension Date {
-
-    static func - (lhs: Date, rhs: Date) -> TimeInterval {
-        lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+    func year(of date: Date) -> Int {
+        component(.year, from: date)
     }
 
-    func beginning() -> Date {
-        Calendar.gregorian.startOfDay(for: self)
+    func days(from start: Date, to end: Date) -> Int {
+        dateComponents([.day], from: start, to: end).day!
     }
 
-    func isToday() -> Bool {
-        let diff = self.calcDayDiff(from: Date())
-        return diff == 0
+    func startOfYear(for date: Date) -> Date {
+        let comp = DateComponents(year: year(of: date), month: 1, day: 1)
+        return self.date(from: comp)!
     }
 
-    func isFuture(than date: Date = .init()) -> Bool {
-        self > date
+    func endOfYear(for date: Date) -> Date {
+        let comp = DateComponents(year: 1, day: -1)
+        return self.date(byAdding: comp, to: startOfYear(for: date))!
     }
 
-    func calcDayDiff(from date: Date = .init()) -> Int {
-        Calendar.gregorian.dateComponents([.day], from: date.beginning(), to: self.beginning()).day!
-    }
-
-    // Ref: https://dev.classmethod.jp/articles/utility-extension-date/
-    func fixed(year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> Date {
-        let calendar = Calendar.gregorian
-
-        var comp = DateComponents()
-        comp.year = year ?? calendar.component(.year, from: self)
-        comp.month = month ?? calendar.component(.month, from: self)
-        comp.day = day ?? calendar.component(.day, from: self)
-        comp.hour = hour ?? calendar.component(.hour, from: self)
-        comp.minute = minute ?? calendar.component(.minute, from: self)
-        comp.second = second ?? calendar.component(.second, from: self)
-        return calendar.date(from: comp)!
-    }
-
-    func added(year: Int = 0, month: Int = 0, day: Int = 0, hour: Int = 0, minute: Int = 0, second: Int = 0) -> Date {
-        let calendar = Calendar.gregorian
-
-        var comp = DateComponents()
-        comp.year = year + calendar.component(.year, from: self)
-        comp.month = month + calendar.component(.month, from: self)
-        comp.day = day + calendar.component(.day, from: self)
-        comp.hour = hour + calendar.component(.hour, from: self)
-        comp.minute = minute + calendar.component(.minute, from: self)
-        comp.second = second + calendar.component(.second, from: self)
-        return calendar.date(from: comp)!
-    }
-
-    var year: Int {
-        Calendar.gregorian.component(.year, from: self)
-    }
-
-    var localized: String {
-        let df = DateFormatter()
-        df.timeZone = .current
-        df.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMd", options: 0, locale: .current)
-        return df.string(from: self)
+    func oclock(of date: Date) -> Date {
+        let comp = dateComponents([.year, .month, .day, .hour], from: date)
+        return self.date(from: comp)!
     }
 }

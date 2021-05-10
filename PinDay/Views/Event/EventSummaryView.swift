@@ -98,7 +98,7 @@ struct EventSummaryView: View {
     @ViewBuilder
     func buildSummaryView() -> some View {
         Group {
-            if pinnedDate.isToday() {
+            if Calendar.gregorian.isDateInToday(pinnedDate) {
                 Text("Today")
                     .font(size.bodyFont)
                     .foregroundColor(.white)
@@ -109,13 +109,13 @@ struct EventSummaryView: View {
                         .padding(.vertical, 4)
                 }
                 else {
-                    Text("\(pinnedDate.calcDayDiff(from: now)) days left")
+                    Text("\(Calendar.gregorian.days(from: Date(), to: pinnedDate)) days left")
                         .font(size.bodyFont)
                         .foregroundColor(.white)
                 }
             }
             else {
-                Text("\(now.calcDayDiff(from: pinnedDate)) days ago")
+                Text("\(Calendar.gregorian.days(from: pinnedDate, to: Date())) days ago")
                     .font(size.bodyFont)
                     .foregroundColor(.white)
             }
@@ -137,7 +137,11 @@ struct EventSummaryView: View {
 
     func buildDetailText() -> Text {
         if let startDate = startDate {
-            return Text("\(startDate, style: .date) - \(pinnedDate, style: .date)")
+            let df = DateIntervalFormatter()
+            df.locale = .current
+            df.timeZone = .current
+            df.dateTemplate = "ydMMM"
+            return Text("\(df.string(from: startDate, to: pinnedDate))")
         }
         else {
             return Text(pinnedDate, style: .date)

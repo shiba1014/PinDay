@@ -72,9 +72,9 @@ struct CircularDayProgressView: View {
 
 struct CircularDayProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        CircularDayProgressView(
-            start: Date().fixed(month: 1, day: 1),
-            end: Date().fixed(month: 12, day: 31),
+        return CircularDayProgressView(
+            start: Calendar.gregorian.startOfDay(for: Calendar.gregorian.startOfYear(for: Date())),
+            end: Calendar.gregorian.startOfDay(for: Calendar.gregorian.endOfYear(for: Date())),
             now: Date(),
             size: .fullscreen
         )

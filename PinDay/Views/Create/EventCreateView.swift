@@ -74,7 +74,7 @@ struct EventCreateView: View {
                             "Pinned Date",
                             selection: .init(
                                 get: { draft.pinnedDate },
-                                set: { draft.pinnedDate = $0.beginning() }
+                                set: { draft.pinnedDate = Calendar.gregorian.startOfDay(for: $0) }
                             ),
                             displayedComponents: [.date]
                         )
@@ -111,7 +111,7 @@ struct EventCreateView: View {
                                 "Start Date",
                                 selection: .init(
                                     get: { startDate },
-                                    set: { self.draft.startDate = $0.beginning() }
+                                    set: { self.draft.startDate = Calendar.gregorian.startOfDay(for: $0) }
                                 ),
                                 in: ...Date(),
                                 displayedComponents: [.date]

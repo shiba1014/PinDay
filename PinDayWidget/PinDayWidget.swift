@@ -28,12 +28,12 @@ struct Provider: IntentTimelineProvider {
         var entries: [EventEntry] = []
         let event = events.first { $0.id.uuidString == configuration.event?.identifier }?.toWidgetEvent()
         var currentDate = Date()
-        for hourOffset in 0 ..< 3 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+        for hourOffset in 0 ..< 24 {
+            let entryDate = Calendar.gregorian.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = EventEntry(date: entryDate, event: event)
             entries.append(entry)
             if hourOffset == 0 {
-                currentDate = currentDate.fixed(minute:0, second: 0)
+                currentDate = Calendar.gregorian.oclock(of: currentDate)
             }
         }
 
@@ -77,10 +77,10 @@ struct WidgetEvent {
     var image: Image?
 
     static let snapshot: WidgetEvent = {
-        let date = Date().fixed(month: 1, day: 1).added(year: 1).beginning()
+        let date = Calendar.gregorian.startOfDay(for: Calendar.gregorian.endOfYear(for: Date()))
         return WidgetEvent(
             id: UUID(),
-            title: "\(date.year)",
+            title: "\(Calendar.gregorian.year(of: date))",
             pinnedDate: date,
             startDate: nil,
             color: Color(.appRed),

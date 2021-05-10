@@ -58,7 +58,7 @@ struct SelectCountStyleListView: View {
                                 case .countDown:
                                     self.startDate = nil
                                 case .progress:
-                                    self.startDate = Date().beginning()
+                                    self.startDate = Calendar.gregorian.startOfDay(for: Date())
                                 }
                             }
                             .background(self.selectedStyle == style ? Color(UIColor.tertiarySystemFill) : Color.clear)
