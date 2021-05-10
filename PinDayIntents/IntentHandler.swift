@@ -16,14 +16,14 @@ class IntentHandler: INExtension, SelectEventIntentHandling {
         return self
     }
 
-    func resolveEvent(for intent: SelectEventIntent, with completion: @escaping (WidgetEventResolutionResult) -> Void) {
+    func resolveEvent(for intent: SelectEventIntent, with completion: @escaping (EventInfoResolutionResult) -> Void) {
 
     }
 
-    func provideEventOptionsCollection(for intent: SelectEventIntent, with completion: @escaping (INObjectCollection<WidgetEvent>?, Error?) -> Void) {
+    func provideEventOptionsCollection(for intent: SelectEventIntent, with completion: @escaping (INObjectCollection<EventInfo>?, Error?) -> Void) {
         do {
             let events = try PersistenceController.shared.fetchAllEvents()
-            let items: [WidgetEvent] = events.map {
+            let items: [EventInfo] = events.map {
                 .init(identifier: $0.id.uuidString, display: $0.title)
             }
             let collections = INObjectCollection(items: items)

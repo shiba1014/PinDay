@@ -45,7 +45,7 @@
 					<key>INIntentParameterName</key>
 					<string>event</string>
 					<key>INIntentParameterObjectType</key>
-					<string>WidgetEvent</string>
+					<string>EventInfo</string>
 					<key>INIntentParameterObjectTypeNamespace</key>
 					<string>88xZPY</string>
 					<key>INIntentParameterPromptDialogs</key>
@@ -123,13 +123,13 @@
 	<array>
 		<dict>
 			<key>INTypeDisplayName</key>
-			<string>Widget Event</string>
+			<string>Event Info</string>
 			<key>INTypeDisplayNameID</key>
 			<string>tVYLvA</string>
 			<key>INTypeLastPropertyTag</key>
 			<integer>99</integer>
 			<key>INTypeName</key>
-			<string>WidgetEvent</string>
+			<string>EventInfo</string>
 			<key>INTypeProperties</key>
 			<array>
 				<dict>
