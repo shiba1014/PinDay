@@ -26,7 +26,7 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: SelectEventIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let events = (try? PersistenceController.shared.fetchAllEvents()) ??  []
         var entries: [EventEntry] = []
-        let event = events.first { $0.id.uuidString == configuration.event?.identifier } ?? nil
+        let event = events.first { $0.id.uuidString == configuration.event?.identifier }?.toWidgetEvent()
         var currentDate = Date()
         for hourOffset in 0 ..< 3 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
@@ -44,20 +44,7 @@ struct Provider: IntentTimelineProvider {
 
 struct EventEntry: TimelineEntry {
     let date: Date
-    let event: Event?
-}
-
-extension Event {
-    static let snapshot: Event = {
-        let event = Event.init(entity: Event.entity(), insertInto: nil)
-        let date = Date().fixed(month: 1, day: 1).added(year: 1).beginning()
-        event.id = UUID()
-        event.title = "\(date.year)"
-        event.pinnedDate = date
-        event.backgroundColor = Data.encode(color: .appRed)
-        event.createdAt = Date()
-        return event
-    }()
+    let event: WidgetEvent?
 }
 
 @main
@@ -78,5 +65,32 @@ struct PinDayWidget_Previews: PreviewProvider {
     static var previews: some View {
         PinDayWidgetEntryView(entry: .init(date: Date(), event: .snapshot))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
+}
+
+struct WidgetEvent {
+    var id: UUID
+    var title: String
+    var pinnedDate: Date
+    var startDate: Date?
+    var color: Color?
+    var image: Image?
+
+    static let snapshot: WidgetEvent = {
+        let date = Date().fixed(month: 1, day: 1).added(year: 1).beginning()
+        return WidgetEvent(
+            id: UUID(),
+            title: "\(date.year)",
+            pinnedDate: date,
+            startDate: nil,
+            color: Color(.appRed),
+            image: nil
+        )
+    }()
+}
+
+extension Event {
+    func toWidgetEvent() -> WidgetEvent {
+        WidgetEvent(id: id, title: title, pinnedDate: pinnedDate, startDate: startDate, color: color, image: image)
     }
 }

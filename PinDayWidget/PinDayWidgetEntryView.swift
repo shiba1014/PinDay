@@ -11,7 +11,7 @@ import SwiftUI
 struct PinDayWidgetEntryView : View {
 
     var entry: Provider.Entry
-    private let event: Event?
+    private let event: WidgetEvent?
 
     init(entry: Provider.Entry) {
         self.entry = entry
@@ -49,7 +49,7 @@ struct PinDayWidgetEntryView : View {
     }
 
     @ViewBuilder
-    func buildWidgetView(_ event: Event) -> some View {
+    func buildWidgetView(_ event: WidgetEvent) -> some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
             Rectangle()
@@ -86,7 +86,7 @@ struct PinDayWidgetEntryView : View {
     }
 
     @ViewBuilder
-    func buildSummaryView(_ event: Event) -> some View {
+    func buildSummaryView(_ event: WidgetEvent) -> some View {
         Group {
             if event.pinnedDate.isToday() {
                 Text("Today")
