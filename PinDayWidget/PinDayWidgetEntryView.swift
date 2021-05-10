@@ -11,7 +11,7 @@ import SwiftUI
 struct PinDayWidgetEntryView : View {
 
     var entry: Provider.Entry
-    private let event: Event
+    private let event: Event?
 
     init(entry: Provider.Entry) {
         self.entry = entry
@@ -19,7 +19,37 @@ struct PinDayWidgetEntryView : View {
     }
 
     var body: some View {
+        if let event = event {
+            buildWidgetView(event)
+                .widgetURL(URL(string: "pinday://deeplink?from=widget&id=\(event.id)"))
+        }
+        else {
+            buildPlaceholder()
+        }
+    }
 
+    @ViewBuilder
+    func buildPlaceholder() -> some View {
+        ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
+
+            Rectangle()
+                .fill(Color(.gray))
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("PinDay")
+                    .font(Font.title2)
+                    .foregroundColor(.white)
+
+                Text("Please choose your event")
+                    .font(.body)
+                    .foregroundColor(.white)
+            }
+            .padding()
+        }
+    }
+
+    @ViewBuilder
+    func buildWidgetView(_ event: Event) -> some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
             Rectangle()
@@ -49,14 +79,14 @@ struct PinDayWidgetEntryView : View {
                     .font(Font.title2.weight(.medium))
                     .foregroundColor(.white)
 
-                buildSummaryView()
+                buildSummaryView(event)
             }
             .padding()
         }
     }
 
     @ViewBuilder
-    func buildSummaryView() -> some View {
+    func buildSummaryView(_ event: Event) -> some View {
         Group {
             if event.pinnedDate.isToday() {
                 Text("Today")
