@@ -24,12 +24,12 @@ struct PinDayWidgetEntryView : View {
                 .widgetURL(URL(string: "pinday://deeplink?from=widget&id=\(event.id)"))
         }
         else {
-            buildPlaceholder()
+            buildEmptyView()
         }
     }
 
     @ViewBuilder
-    func buildPlaceholder() -> some View {
+    func buildEmptyView() -> some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
 
             Rectangle()
@@ -99,13 +99,13 @@ struct PinDayWidgetEntryView : View {
                         .padding(.vertical, 4)
                 }
                 else {
-                    Text("\(Calendar.gregorian.days(from: Date(), to: event.pinnedDate)) days left")
+                    Text("\(Calendar.gregorian.days(from: entry.date, to: event.pinnedDate)) days left")
                         .font(.body.bold())
                         .foregroundColor(.white)
                 }
             }
             else {
-                Text("\(Calendar.gregorian.days(from: event.pinnedDate, to: Date())) days ago")
+                Text("\(Calendar.gregorian.days(from: event.pinnedDate, to: entry.date)) days ago")
                     .font(.body.bold())
                     .foregroundColor(.white)
             }
