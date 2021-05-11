@@ -7,7 +7,12 @@
 
 import SwiftUI
 
-struct EventCreateView: View {
+struct EventCreateView: View, Equatable {
+
+    // Ref: https://www.hackingwithswift.com/forums/swiftui/how-can-i-make-my-view-stop-unnecessary-rendering-with-using-customtype-for-binding-in-swiftui/6900
+    static func == (lhs: EventCreateView, rhs: EventCreateView) -> Bool {
+        lhs.draft.id == rhs.draft.id
+    }
 
     @ObservedObject var draft: EventDraft
     @Binding var eventCreateType: EventCreateType?
@@ -163,6 +168,6 @@ struct EventCreateView: View {
 
 struct EventCreateView_Previews: PreviewProvider {
     static var previews: some View {
-        EventCreateView(draft: .init(), eventCreateType: .constant(.new))
+        EventCreateView(draft: .init(), eventCreateType: .constant(.new(draft: .init())))
     }
 }

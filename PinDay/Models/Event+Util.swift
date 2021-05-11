@@ -51,7 +51,7 @@ enum EventViewSize: Int, CaseIterable {
 }
 
 enum EventCreateType: Identifiable {
-    case new
+    case new(draft: EventDraft)
     case edit(event: Event)
 
     var id: Int {

@@ -30,6 +30,7 @@ class EventDraft: ObservableObject {
 
     static let maxTitleCount: Int = 15
 
+    let id: UUID
     @Published var title: String
     @Published var pinnedDate: Date
     @Published var startDate: Date?
@@ -54,11 +55,13 @@ class EventDraft: ObservableObject {
     }
 
     init(
+        id: UUID = .init(),
         title: String = "",
         pinnedDate: Date = Calendar.gregorian.startOfDay(for: Date()),
         startDate: Date? = nil,
         backgroundStyle: BackgroundStyle = .color(.appGray)
     ) {
+        self.id = id
         self.title = title
         self.pinnedDate = pinnedDate
         self.startDate = startDate
@@ -104,6 +107,7 @@ extension Event {
     func createDraft() -> EventDraft {
 
         let draft = EventDraft(
+            id: id,
             title: title,
             pinnedDate: pinnedDate,
             startDate: startDate

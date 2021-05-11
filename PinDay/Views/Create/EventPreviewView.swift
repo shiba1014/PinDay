@@ -57,6 +57,6 @@ struct EventPreviewView: View {
 
 struct EventPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        EventPreviewView(draft: .progressMock, eventCreateType: .constant(.new))
+        EventPreviewView(draft: .progressMock, eventCreateType: .constant(.new(draft: .progressMock)))
     }
 }

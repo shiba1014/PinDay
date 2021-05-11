@@ -93,7 +93,9 @@ struct EventListView: View {
 
                         ToolbarItem(placement: .primaryAction) {
                             Button(action: {
-                                eventCreateType = .new
+                                // Create EventDraft instance here
+                                // to prevent re-init create view when updating list view.
+                                eventCreateType = .new(draft: .init())
                             }) {
                                 Image(systemName: "plus")
                             }
@@ -103,8 +105,8 @@ struct EventListView: View {
             }
             .sheet(item: $eventCreateType) { type in
                 switch type {
-                case .new:
-                    EventCreateView(draft: .init(), eventCreateType: $eventCreateType)
+                case .new(let draft):
+                    EventCreateView(draft: draft, eventCreateType: $eventCreateType)
                 case .edit(let event):
                     EventCreateView(draft: event.createDraft(), eventCreateType: $eventCreateType)
                 }
