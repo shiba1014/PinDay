@@ -74,7 +74,9 @@ struct EventSummaryView: View {
                     if size == .fullscreen {
                         Spacer()
                         Button(action: {
-                            showSmartText.toggle()
+                            withAnimation {
+                                showSmartText.toggle()
+                            }
                         }) {
                             Image(systemName: showSmartText ? "lightbulb.fill" : "lightbulb")
                                 .foregroundColor(.white)

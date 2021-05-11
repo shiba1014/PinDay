@@ -60,4 +60,11 @@ enum EventCreateType: Identifiable {
         case .edit: return 1
         }
     }
+
+    var title: String {
+        switch self {
+        case .new: return "Create"
+        case .edit: return "Edit"
+        }
+    }
 }

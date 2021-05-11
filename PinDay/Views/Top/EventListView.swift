@@ -34,7 +34,7 @@ struct EventListView: View {
                 }
 
             NavigationView {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: userSettings.eventViewSize.gridLayout(spacing: Self.spacing), spacing: Self.spacing) {
                         ForEach(
                             events.sorted(by: { userSettings.sortOption.sort($0, $1) })
@@ -104,9 +104,9 @@ struct EventListView: View {
             .sheet(item: $eventCreateType) { type in
                 switch type {
                 case .new:
-                    EventCreateView(eventCreateType: $eventCreateType)
+                    EventCreateView(draft: .init(), eventCreateType: $eventCreateType)
                 case .edit(let event):
-                    EventCreateView(editEvent: event, eventCreateType: $eventCreateType)
+                    EventCreateView(draft: event.createDraft(), eventCreateType: $eventCreateType)
                 }
             }
             .onOpenURL { url in

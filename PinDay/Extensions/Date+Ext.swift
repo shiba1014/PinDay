@@ -18,7 +18,6 @@ extension Date {
     }
 }
 
-
 extension Calendar {
 
     static let gregorian: Calendar = {

@@ -9,26 +9,12 @@ import SwiftUI
 
 struct EventCreateView: View {
 
-    @ObservedObject private var draft: EventDraft
+    @ObservedObject var draft: EventDraft
     @Binding var eventCreateType: EventCreateType?
 
     @State private var showCountStyleSheet = false
     @State private var showCreateBackgroundSheet = false
     @State private var showDeleteAlert = false
-
-    let navigationBarTitle: String
-
-    init(editEvent: Event? = nil, eventCreateType: Binding<EventCreateType?>) {
-        if let editEvent = editEvent {
-            self.draft = editEvent.createDraft()
-            self.navigationBarTitle = "Edit"
-        }
-        else {
-            self.draft = .init()
-            self.navigationBarTitle = "Create"
-        }
-        self._eventCreateType = eventCreateType
-    }
 
     var body: some View {
 
@@ -151,7 +137,7 @@ struct EventCreateView: View {
                 }
                 .listStyle(PlainListStyle())
             }
-            .navigationBarTitle(navigationBarTitle, displayMode: .inline)
+            .navigationBarTitle(eventCreateType?.title ?? "", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button(action: {
@@ -177,6 +163,6 @@ struct EventCreateView: View {
 
 struct EventCreateView_Previews: PreviewProvider {
     static var previews: some View {
-        EventCreateView(eventCreateType: .constant(.new))
+        EventCreateView(draft: .init(), eventCreateType: .constant(.new))
     }
 }
