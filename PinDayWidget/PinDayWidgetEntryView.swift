@@ -90,7 +90,7 @@ struct PinDayWidgetEntryView : View {
         Group {
             if Calendar.gregorian.isDate(event.pinnedDate, inSameDayAs: entry.date) {
                 Text("Today")
-                    .font(.body)
+                    .font(.body.bold())
                     .foregroundColor(.white)
             }
             else if event.pinnedDate > entry.date {

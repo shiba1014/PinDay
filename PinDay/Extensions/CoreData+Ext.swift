@@ -17,7 +17,7 @@ extension Data {
     }
 
     static func encode(image: UIImage) -> Data? {
-        image.jpegData(compressionQuality: 1.0)
+        image.jpegData(compressionQuality: 0.5)
     }
 }
 
