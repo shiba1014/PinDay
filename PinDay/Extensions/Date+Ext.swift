@@ -12,10 +12,6 @@ extension Date {
     static func - (lhs: Date, rhs: Date) -> TimeInterval {
         lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
     }
-
-    func isFuture(than date: Date = .init()) -> Bool {
-        self > date
-    }
 }
 
 extension Calendar {
@@ -32,7 +28,7 @@ extension Calendar {
     }
 
     func days(from start: Date, to end: Date) -> Int {
-        dateComponents([.day], from: start, to: end).day!
+        dateComponents([.day], from: startOfDay(for: start), to: startOfDay(for: end)).day!
     }
 
     func startOfYear(for date: Date) -> Date {

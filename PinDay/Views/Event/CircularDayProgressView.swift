@@ -34,11 +34,11 @@ fileprivate extension EventViewSize {
 struct CircularDayProgressView: View {
 
     private let size: EventViewSize
-    private let progress: Double
+    private let progress: CGFloat
 
     init(start: Date, end: Date, now: Date, size: EventViewSize) {
         self.size = size
-        progress = (now - start) / (end - start)
+        progress = CGFloat(min((now - start) / (end - start), 1.0))
     }
 
     var body: some View {
@@ -50,7 +50,7 @@ struct CircularDayProgressView: View {
                     .foregroundColor(.white)
 
                 Circle()
-                    .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
+                    .trim(from: 0.0, to: progress)
                     .stroke(
                         style: .init(
                             lineWidth: size.lineWidth,

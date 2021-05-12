@@ -88,12 +88,12 @@ struct PinDayWidgetEntryView : View {
     @ViewBuilder
     func buildSummaryView(_ event: WidgetEvent) -> some View {
         Group {
-            if Calendar.gregorian.isDateInToday(event.pinnedDate) {
+            if Calendar.gregorian.isDate(event.pinnedDate, inSameDayAs: entry.date) {
                 Text("Today")
                     .font(.body)
                     .foregroundColor(.white)
             }
-            else if event.pinnedDate.isFuture() {
+            else if event.pinnedDate > entry.date {
                 if let startDate = event.startDate {
                     WidgetCircularDayProgressView(start: startDate, end: event.pinnedDate, now: entry.date)
                         .padding(.vertical, 4)
@@ -115,10 +115,10 @@ struct PinDayWidgetEntryView : View {
 
 struct WidgetCircularDayProgressView: View {
 
-    private var progress: Double
+    private var progress: CGFloat
 
     init(start: Date, end: Date, now: Date) {
-        progress = (now - start) / (end - start)
+        progress = CGFloat(min((now - start) / (end - start), 1.0))
     }
 
     var body: some View {
@@ -130,7 +130,7 @@ struct WidgetCircularDayProgressView: View {
                     .foregroundColor(.white)
 
                 Circle()
-                    .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
+                    .trim(from: 0.0, to: progress)
                     .stroke(
                         style: .init(
                             lineWidth: 7,

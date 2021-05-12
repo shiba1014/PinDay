@@ -71,7 +71,7 @@ struct EventCreateView: View, Equatable {
                         )
                     }
 
-                    if draft.pinnedDate.isFuture() {
+                    if draft.pinnedDate > Date() {
 
                         Button(action: {
                             showCountStyleSheet = true

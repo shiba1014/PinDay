@@ -105,7 +105,7 @@ struct EventSummaryView: View {
                     .font(size.bodyFont)
                     .foregroundColor(.white)
             }
-            else if pinnedDate.isFuture() {
+            else if pinnedDate > Date() {
                 if let startDate = startDate {
                     CircularDayProgressView(start: startDate, end: pinnedDate, now: now, size: size)
                         .padding(.vertical, 4)
@@ -125,7 +125,7 @@ struct EventSummaryView: View {
     }
 
     func buildSmartSummaryView() -> Text {
-        if pinnedDate.isFuture() {
+        if pinnedDate > Date() {
             return Text("\(pinnedDate, style: .relative) left")
                 .font(size.bodyFont)
                 .foregroundColor(.white)
