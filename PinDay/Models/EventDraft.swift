@@ -137,7 +137,7 @@ extension Event {
             backgroundImage = nil
         case .image(let image):
             backgroundColor = nil
-            backgroundImage = Data.encode(image: image)
+            backgroundImage = Data.encode(image: image, in: 1)
         }
     }
 }

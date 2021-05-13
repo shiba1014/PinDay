@@ -27,15 +27,10 @@ struct Provider: IntentTimelineProvider {
         let events = (try? PersistenceController.shared.fetchAllEvents()) ??  []
         var entries: [EventEntry] = []
         let event = events.first { $0.id.uuidString == configuration.event?.identifier }?.toWidgetEvent()
-        var currentDate = Date()
-        for hourOffset in 0 ..< 24 {
-            let entryDate = Calendar.gregorian.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = EventEntry(date: entryDate, event: event)
-            entries.append(entry)
-            if hourOffset == 0 {
-                currentDate = Calendar.gregorian.oclock(of: currentDate)
-            }
-        }
+        let currentDate = Date()
+        entries.append(.init(date: currentDate, event: event))
+        let nextDate = Calendar.gregorian.date(byAdding: .hour, value: 1, to: Calendar.gregorian.oclock(of: currentDate))!
+        entries.append(.init(date: nextDate, event: event))
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)

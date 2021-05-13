@@ -16,8 +16,20 @@ extension Data {
         }
     }
 
-    static func encode(image: UIImage) -> Data? {
-        image.jpegData(compressionQuality: 0.5)
+    static func encode(image: UIImage, in mbSize: Double) -> Data? {
+        var quality: CGFloat = 1.0
+        let minQuality: CGFloat = 0.1
+
+        var data = image.jpegData(compressionQuality: quality)
+        while (data?.mbSize ?? 0) > mbSize && quality > minQuality {
+            quality -= 0.1
+            data = image.jpegData(compressionQuality: quality)
+        }
+        return data
+    }
+
+    var mbSize: Double {
+        Double(count) / 1024 / 1024
     }
 }
 
