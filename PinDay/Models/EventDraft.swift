@@ -72,22 +72,24 @@ class EventDraft: ObservableObject {
 // MARK: Mock
 extension EventDraft {
     static let pastMock: EventDraft = {
-        let date = Calendar.gregorian.startOfDay(for: Calendar.gregorian.startOfYear(for: Date()))
+        let lastWeek = Calendar.gregorian.move(day: -7, from: Date())
+        let date = Calendar.gregorian.startOfDay(for: lastWeek)
         return EventDraft(
-            title: "\(Calendar.gregorian.year(of: date))",
+            title: "Last Week",
             pinnedDate: date,
             startDate: nil,
-            backgroundStyle: .color(.appYellow)
+            backgroundStyle: .color(.appOrange)
         )
     }()
 
     static let countdownMock: EventDraft = {
-        let date = Calendar.gregorian.startOfDay(for: Calendar.gregorian.endOfYear(for: Date()))
+        let nextWeek = Calendar.gregorian.move(day: 7, from: Date())
+        let date = Calendar.gregorian.startOfDay(for: nextWeek)
         return EventDraft(
-            title: "New Year",
+            title: "Next Week",
             pinnedDate: date,
             startDate: nil,
-            backgroundStyle: .color(.appPurple)
+            backgroundStyle: .color(.appLime)
         )
     }()
 
@@ -98,7 +100,7 @@ extension EventDraft {
             title: "\(Calendar.gregorian.year(of: date))",
             pinnedDate: date,
             startDate: startDate,
-            backgroundStyle: .color(.appOrange)
+            backgroundStyle: .color(.appPurple)
         )
     }()
 }

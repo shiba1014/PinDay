@@ -16,10 +16,17 @@ struct EventCreateView: View, Equatable {
 
     @ObservedObject var draft: EventDraft
     @Binding var eventCreateType: EventCreateType?
+    @State private var countStyle: CountStyle
 
     @State private var showCountStyleSheet = false
     @State private var showCreateBackgroundSheet = false
     @State private var showDeleteAlert = false
+
+    init (draft: EventDraft, eventCreateType: Binding<EventCreateType?>) {
+        self.draft = draft
+        self._eventCreateType = eventCreateType
+        self.countStyle = draft.countStyle
+    }
 
     var body: some View {
 
@@ -59,40 +66,29 @@ struct EventCreateView: View, Equatable {
                     }
                     .padding()
 
-                    HStack {
-                        Image(systemName: "calendar")
-                        DatePicker(
-                            "Pinned Date",
-                            selection: .init(
-                                get: { draft.pinnedDate },
-                                set: { draft.pinnedDate = Calendar.gregorian.startOfDay(for: $0) }
-                            ),
-                            displayedComponents: [.date]
-                        )
+                    Button(action: {
+                        showCountStyleSheet = true
+                    }) {
+                        HStack {
+                            Image(systemName: "hourglass")
+                                .padding(.horizontal, 3)
+                            Text("Count Style")
+                            Spacer()
+                            Text(countStyle.description)
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color(UIColor.tertiaryLabel))
+                        }
                     }
-
-                    if draft.pinnedDate > Date() {
-
-                        Button(action: {
-                            showCountStyleSheet = true
-                        }) {
-                            HStack {
-                                Image(systemName: "hourglass")
-                                    .padding(.horizontal, 3)
-                                Text("Count Style")
-                                Spacer()
-                                Text(
-                                    draft.startDate != nil
-                                        ? SelectCountStyleListView.CountStyle.progress.description
-                                        : SelectCountStyleListView.CountStyle.countDown.description
-                                )
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(Color(UIColor.tertiaryLabel))
-                            }
-                        }
-                        .sheet(isPresented: $showCountStyleSheet) {
-                            SelectCountStyleListView(startDate: $draft.startDate)
-                        }
+                    .sheet(isPresented: $showCountStyleSheet) {
+                        SelectCountStyleListView(
+                            countStyle: .init(
+                                get: { countStyle },
+                                set: { style in
+                                    countStyle = style
+                                    draft.update(style)
+                                }
+                            )
+                        )
                     }
 
                     draft.startDate.map { startDate in
@@ -104,10 +100,15 @@ struct EventCreateView: View, Equatable {
                                     get: { startDate },
                                     set: { self.draft.startDate = Calendar.gregorian.startOfDay(for: $0) }
                                 ),
-                                in: ...Date(),
+                                in: ...Calendar.gregorian.move(day: -1, from: draft.pinnedDate),
                                 displayedComponents: [.date]
                             )
                         }
+                    }
+                    
+                    HStack {
+                        Image(systemName: "calendar")
+                        buildPinnedDatePicker()
                     }
 
                     eventCreateType.map { type in
@@ -164,10 +165,67 @@ struct EventCreateView: View, Equatable {
             }
         }
     }
+
+    func buildPinnedDatePicker() -> DatePicker<Text> {
+
+        let title = "Pinned Date"
+        let selection: Binding<Date> = .init(
+            get: { draft.pinnedDate },
+            set: { draft.pinnedDate = Calendar.gregorian.startOfDay(for: $0) }
+        )
+        let comps: DatePicker.Components = [.date]
+
+        switch countStyle {
+        case .countUp:
+            return DatePicker(
+                title,
+                selection: selection,
+                in: ...Date(),
+                displayedComponents: comps
+            )
+
+        case .countDown, .progress:
+            return DatePicker(
+                title,
+                selection: selection,
+                in: Calendar.gregorian.move(day: 1, from: Date())...,
+                displayedComponents: comps
+            )
+        }
+    }
 }
 
 struct EventCreateView_Previews: PreviewProvider {
     static var previews: some View {
         EventCreateView(draft: .init(), eventCreateType: .constant(.new(draft: .init())))
+    }
+}
+
+extension EventDraft {
+    var countStyle: CountStyle {
+        if pinnedDate < Date() {
+            return .countUp
+        }
+        else {
+            return startDate == nil ? .countDown : .progress
+        }
+    }
+
+    func update(_ countStyle: CountStyle) {
+        switch countStyle {
+        case .countUp:
+            pinnedDate = Calendar.gregorian.startOfDay(for: Date())
+            startDate = nil
+
+        case .countDown:
+            let nextWeek = Calendar.gregorian.move(day: 7, from: Date())
+            pinnedDate = Calendar.gregorian.startOfDay(for: nextWeek)
+            startDate = nil
+
+        case .progress:
+            let nextWeek = Calendar.gregorian.move(day: 7, from: Date())
+            pinnedDate = Calendar.gregorian.startOfDay(for: nextWeek)
+            startDate = Calendar.gregorian.startOfDay(for: Date())
+        }
     }
 }

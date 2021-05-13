@@ -9,68 +9,45 @@ import SwiftUI
 
 struct SelectCountStyleListView: View {
 
-    enum CountStyle: String, CaseIterable {
-        case countDown
-        case progress
-
-        var description: String {
-            switch self {
-            case .countDown: return "Count Down"
-            case .progress: return "Progress"
-            }
-        }
-
-        var preview: EventSummaryView {
-            switch self {
-            case .countDown: return EventSummaryView(draft: .countdownMock, size: .small)
-            case .progress: return EventSummaryView(draft: .progressMock, size: .small)
-            }
-        }
-    }
-
     @Environment(\.presentationMode) var presentationMode
 
-    @Binding var startDate: Date?
-    @State private var selectedStyle: CountStyle
+    @Binding var countStyle: CountStyle
 
-    init(startDate: Binding<Date?>) {
-        self._startDate = startDate
-        self._selectedStyle = State<CountStyle>(
-            initialValue: (startDate.wrappedValue == nil)
-                ? .countDown
-                : .progress
-        )
+    init(countStyle: Binding<CountStyle>) {
+        self._countStyle = countStyle
     }
 
     var body: some View {
         NavigationView {
-            VStack {
-                HStack {
-                    ForEach(CountStyle.allCases, id: \.self) { style in
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: EventViewSize.small.gridLayout(spacing: 0)) {
+                    ForEach(
+                        CountStyle.allCases,
+                        id: \.self
+                    ) { style in
                         VStack {
                             style.preview
                             Text(style.description)
                         }
-                            .padding()
-                            .onTapGesture {
-                                self.selectedStyle = style
-                                switch style {
-                                case .countDown:
-                                    self.startDate = nil
-                                case .progress:
-                                    self.startDate = Calendar.gregorian.startOfDay(for: Date())
-                                }
+                        .padding()
+                        .onTapGesture {
+                            if countStyle != style {
+                                countStyle = style
                             }
-                            .background(self.selectedStyle == style ? Color(UIColor.tertiarySystemFill) : Color.clear)
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        .background(self.countStyle == style ? Color(UIColor.tertiarySystemFill) : Color.clear)
                     }
                 }
-
-                Spacer()
             }
-            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarTitle("Count Style", displayMode: .inline)
             .toolbar {
-                Button("Done") {
-                    presentationMode.wrappedValue.dismiss()
+                ToolbarItem(placement: .navigation) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                    }
                 }
             }
         }
@@ -79,6 +56,6 @@ struct SelectCountStyleListView: View {
 
 struct SelectCountStyleListView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectCountStyleListView(startDate: .constant(nil))
+        SelectCountStyleListView(countStyle: .constant(.countUp))
     }
 }

@@ -50,6 +50,7 @@
 		528BE05526427EFE006449CA /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE05326427EFE006449CA /* Event+CoreDataClass.swift */; };
 		528BE05626427EFE006449CA /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE05426427EFE006449CA /* Event+CoreDataProperties.swift */; };
 		528BE05D2642DC8C006449CA /* EventDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528BE05C2642DC8C006449CA /* EventDraft.swift */; };
+		528C3CAB264D65EB00FE11C0 /* CountStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C3CAA264D65EB00FE11C0 /* CountStyle.swift */; };
 		52B3F8CA263FEF20001DC736 /* CoreData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B3F8C9263FEF20001DC736 /* CoreData+Ext.swift */; };
 		52C680AF262F2A2F00BEF355 /* Event+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C680AE262F2A2F00BEF355 /* Event+Util.swift */; };
 		52F3760D263836C50074990C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3760C263836C50074990C /* ImagePicker.swift */; };
@@ -128,6 +129,7 @@
 		528BE05326427EFE006449CA /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		528BE05426427EFE006449CA /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		528BE05C2642DC8C006449CA /* EventDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDraft.swift; sourceTree = "<group>"; };
+		528C3CAA264D65EB00FE11C0 /* CountStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountStyle.swift; sourceTree = "<group>"; };
 		52B3F8C9263FEF20001DC736 /* CoreData+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Ext.swift"; sourceTree = "<group>"; };
 		52C680AE262F2A2F00BEF355 /* Event+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Util.swift"; sourceTree = "<group>"; };
 		52F3760C263836C50074990C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				52C680AE262F2A2F00BEF355 /* Event+Util.swift */,
 				528BE05C2642DC8C006449CA /* EventDraft.swift */,
 				524C6EE62643DB8700EE8F20 /* UserSettings.swift */,
+				528C3CAA264D65EB00FE11C0 /* CountStyle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				5219E97D2625618D0004FFC0 /* EventCreateView.swift in Sources */,
 				528BE03026414977006449CA /* UIColor+Ext.swift in Sources */,
 				528BE05626427EFE006449CA /* Event+CoreDataProperties.swift in Sources */,
+				528C3CAB264D65EB00FE11C0 /* CountStyle.swift in Sources */,
 				525B1F24263308B300D22B32 /* CreateBackgroundView.swift in Sources */,
 				52F37610263843050074990C /* Image+Ext.swift in Sources */,
 				B6E91267261C85E200D58C5B /* PinDayApp.swift in Sources */,

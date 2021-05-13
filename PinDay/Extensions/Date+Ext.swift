@@ -27,6 +27,10 @@ extension Calendar {
         component(.year, from: date)
     }
 
+    func move(day value: Int, from date: Date) -> Date {
+        self.date(byAdding: .day, value: value, to: date)!
+    }
+
     func days(from start: Date, to end: Date) -> Int {
         dateComponents([.day], from: startOfDay(for: start), to: startOfDay(for: end)).day!
     }
