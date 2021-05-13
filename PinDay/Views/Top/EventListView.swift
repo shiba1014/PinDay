@@ -56,9 +56,9 @@ struct EventListView: View {
                         ToolbarItem(placement: .navigation) {
                             Menu {
                                 Section {
-                                    Menu("Event Size") {
+                                    Menu("Display Size") {
                                         Picker(
-                                            "Event Size",
+                                            "Display Size",
                                             selection: $userSettings.eventViewSize
                                         ) {
                                             ForEach([EventViewSize.small, EventViewSize.medium], id: \.self) { size in

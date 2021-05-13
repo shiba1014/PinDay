@@ -22,17 +22,17 @@ struct TipsView: View {
                 }
                 .padding(.bottom, 2)
 
-                Text("At an event detail page, You can change a format for duration to smart one by tapping lightbulb button.")
+                Text("If the lightbulb icon on an event details page is tapped, the number of days will be displayed in a smart format.")
                     .padding(.bottom, 16)
 
                 HStack {
-                    Text("Flickering widget issue")
+                    Text("Flickering Widgets")
                         .font(.headline)
-                    Image(systemName: "cloud.bolt")
+                    Image(systemName: "exclamationmark.triangle")
                 }
                 .padding(.bottom, 2)
 
-                Text("After updating events, sometimes your widgets start flickering. If this issue occur, please remove Pinday's widget and add it again.")
+                Text("Sometimes, the widget may start to flicker if events are updated frequently or too many widgets is added to your home screen. If this issue occurs, please wait a few seconds. You may also troubleshoot this by removing the PinDay widget and adding it again.")
                     .padding(.bottom, 16)
 
                 Spacer()
@@ -41,7 +41,7 @@ struct TipsView: View {
                 Image("Logo")
                     .resizable()
                     .frame(width: 50, height: 50)
-                    Text("Have a nice day!")
+                    Text("Have a lovely day!")
                         .font(.caption)
                         .padding(.top, -8)
                 }
