@@ -118,7 +118,7 @@ struct WidgetCircularDayProgressView: View {
     private var progress: CGFloat
 
     init(start: Date, end: Date, now: Date) {
-        progress = CGFloat(min((now - start) / (end - start), 1.0))
+        progress = CGFloat(Date.calcProgress(from: start, to: end, now: now))
     }
 
     var body: some View {

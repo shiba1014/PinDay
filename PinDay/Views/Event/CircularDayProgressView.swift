@@ -38,7 +38,7 @@ struct CircularDayProgressView: View {
 
     init(start: Date, end: Date, now: Date, size: EventViewSize) {
         self.size = size
-        progress = CGFloat(min((now - start) / (end - start), 1.0))
+        progress = CGFloat(Date.calcProgress(from: start, to: end, now: now))
     }
 
     var body: some View {

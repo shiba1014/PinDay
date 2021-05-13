@@ -12,6 +12,10 @@ extension Date {
     static func - (lhs: Date, rhs: Date) -> TimeInterval {
         lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
     }
+
+    static func calcProgress(from start: Date, to end: Date, now: Date) -> Double {
+        max(min((now - start) / (end - start), 1.0), 0.0)
+    }
 }
 
 extension Calendar {
